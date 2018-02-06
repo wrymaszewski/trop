@@ -1,41 +1,39 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
-
-  <h1 class="text-center" >{{route_list.0.location}}</h1>
-
+  <h1 class="text-center">{{object_list.0.route}}</h1>
   <table class="table">
     <thead>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Protection</th>
-      <th>Grade</th>
-      <th>Average Rating</th>
+      <th>Username</th>
+      <th>Date of Ascent</th>
+      <th>Style of Ascent</th>
+      <th>Description</th>
+      <th>Rating</th>
     </thead>
     <tbody>
-    {% for route in route_list %}
+    {% for ascent in object_list %}
       <tr>
-        <td><a href="{% url 'routes:route_ascent_list' pk=route.pk %}">{{route.name}}</a></td>
-        <td>{{route.get_route_type_display}}</td>
-        <td>{{route.get_protection_display}}</td>
-        <td>{{route.grade}}</td>
+        <td><a href="x">{{ascent.user.username}}</a></td>
+        <td>{{ascent.date}}</td>
+        <td>{{ascent.get_ascent_style_display}}</td>
+        <td>{{ascent.description}}</td>
         <td>
-          {% if not route.rating %}
+          {% if not ascent.rating %}
             <span></span>
-          {% elif route.rating > 0 and route.rating < 1 %}
+          {% elif ascent.rating > 0 and ascent.rating < 1 %}
             <span class="fas fa-star-half"></span>
-          {% elif route.rating == 1 %}
+          {% elif ascent.rating == 1 %}
             <span class="fas fa-star"></span>
-          {% elif route.rating > 1 and route.rating < 2 %}
+          {% elif ascent.rating > 1 and ascent.rating < 2 %}
               <span class="fas fa-star"></span>
               <span class="fas fa-star-half"></span>
-          {% elif route.rating == 2 %}
+          {% elif ascent.rating == 2 %}
               <span class="fas fa-star"></span>
               <span class="fas fa-star"></span>
-          {% elif route.rating > 2 and route.rating < 3 %}
+          {% elif ascent.rating > 2 and ascent.rating < 3 %}
               <span class="fas fa-star"></span>
               <span class="fas fa-star"></span>
               <span class="fas fa-star-half"></span>
-          {% elif route.rating == 3 %}
+          {% elif ascent.rating == 3 %}
               <span class="fas fa-star"></span>
               <span class="fas fa-star"></span>
               <span class="fas fa-star"></span>
@@ -45,5 +43,4 @@
     {% endfor %}
     </tbody>
   </table>
-
 {% endblock route_content %}

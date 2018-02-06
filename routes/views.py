@@ -3,6 +3,7 @@ from . import forms
 from django.views.generic import ListView, CreateView, DetailView
 from django.views.generic.edit import DeleteView
 from .models import Place, Ascent, Route
+from accounts.models import User
 from django.db.models import Avg
 # Create your views here.
 
@@ -52,13 +53,21 @@ class RouteList(ListView):
         return context
 
 
-class UserAscentsList(ListView):
+# class UserAscentsList(ListView):
+#     model = Ascent
+#     template_name = 'routes/user_ascent_list.html'
+#
+#     def get_queryset(self):
+#         ascents = User.objects.prefetch_related("ascents").get(
+#             username__iexact=self.kwargs.get("username"))
+#         # .get(
+#         #     username__iexact=self.kwargs.get("username"))
+#         print (ascents)
+
+
+class RouteAscentList(ListView):
     model = Ascent
-    template_name = 'routes/user_ascent_list.html'
+    template_name = 'routes/route_ascent_list.html'
 
     def get_queryset(self):
-        ascents = User.objects.prefetch_related('ascents')
-
-
-class RouteAscentsList(ListView):
-    pass
+        return Ascent.objects.select_related().filter(route = self.kwargs['pk'])
