@@ -53,17 +53,12 @@ class RouteList(ListView):
         return context
 
 
-# class UserAscentsList(ListView):
-#     model = Ascent
-#     template_name = 'routes/user_ascent_list.html'
-#
-#     def get_queryset(self):
-#         ascents = User.objects.prefetch_related("ascents").get(
-#             username__iexact=self.kwargs.get("username"))
-#         # .get(
-#         #     username__iexact=self.kwargs.get("username"))
-#         print (ascents)
+class UserAscentList(ListView):
+    model = Ascent
+    template_name = 'routes/user_ascent_list.html'
 
+    def get_queryset(self):
+        return Ascent.objects.select_related().filter(user = self.kwargs['pk'])
 
 class RouteAscentList(ListView):
     model = Ascent

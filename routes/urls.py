@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/$', views.RouteList.as_view(),
     name = 'route_list'),
     url(r'^ascents/(?P<pk>\d+)/$', views.RouteAscentList.as_view(),
-    name = 'route_ascent_list'),
-    # url(r'^(?P<username>[-\w]+)', views.UserAscentList.as_view(),
-    # name = 'user_ascents')
+    name = 'route_ascents'),
+    url(r'^user/(?P<pk>\d+)/$', views.UserAscentList.as_view(),
+    name = 'user_ascents')
 ]

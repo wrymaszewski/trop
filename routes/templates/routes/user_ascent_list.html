@@ -1,0 +1,56 @@
+{% extends "routes/routes_base.html" %}
+{% block route_content %}
+  <h1 class="text-center">{{object_list.0.user}}</h1>
+
+  <table class="table">
+    <thead>
+      <th>Place</th>
+      <th>Route</th>
+      <th>Type</th>
+      <th>Grade</th>
+      <th>Protection</th>
+      <th>Date of Ascent</th>
+      <th>Style of Ascent</th>
+      <th>Description</th>
+      <th>Rating</th>
+    </thead>
+    <tbody>
+    {% for ascent in object_list %}
+      <tr>
+        <td><a href={% url 'routes:route_list' pk=ascent.route.location.pk %}>{{ascent.route.location}}</a>
+              <spam>, {{ascent.route.location.city}}, {{ascent.route.location.country}}</spam></td>
+        <td><a href="{% url 'routes:route_ascents' pk=ascent.route.pk %}">{{ascent.route}}</a></td>
+        <td>{{ascent.route.get_route_type_display}}</td>
+        <td>{{ascent.route.grade}}</td>
+        <td>{{ascent.route.get_protection_display}}</td>
+        <td>{{ascent.date}}</td>
+        <td>{{ascent.get_ascent_style_display}}</td>
+        <td>{{ascent.description}}</td>
+        <td>
+          {% if not ascent.rating %}
+            <span></span>
+          {% elif ascent.rating > 0 and ascent.rating < 1 %}
+            <span class="fas fa-star-half"></span>
+          {% elif ascent.rating == 1 %}
+            <span class="fas fa-star"></span>
+          {% elif ascent.rating > 1 and ascent.rating < 2 %}
+              <span class="fas fa-star"></span>
+              <span class="fas fa-star-half"></span>
+          {% elif ascent.rating == 2 %}
+              <span class="fas fa-star"></span>
+              <span class="fas fa-star"></span>
+          {% elif ascent.rating > 2 and ascent.rating < 3 %}
+              <span class="fas fa-star"></span>
+              <span class="fas fa-star"></span>
+              <span class="fas fa-star-half"></span>
+          {% elif ascent.rating == 3 %}
+              <span class="fas fa-star"></span>
+              <span class="fas fa-star"></span>
+              <span class="fas fa-star"></span>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock route_content %}

@@ -14,7 +14,7 @@
     <tbody>
     {% for route in route_list %}
       <tr>
-        <td><a href="{% url 'routes:route_ascent_list' pk=route.pk %}">{{route.name}}</a></td>
+        <td><a href="{% url 'routes:route_ascents' pk=route.pk %}">{{route.name}}</a></td>
         <td>{{route.get_route_type_display}}</td>
         <td>{{route.get_protection_display}}</td>
         <td>{{route.grade}}</td>

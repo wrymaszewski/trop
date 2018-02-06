@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="text-center">List of Visible Users</h1>
+  <ul>
+    {% for user in  object_list %}
+    <li><a href="{% url 'routes:user_ascents' pk=user.pk%}">{{user.username}}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock content %}
