@@ -16,6 +16,11 @@
     <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
     <!-- static -->
     <link rel="stylesheet" href="{% static 'css/master.css' %}">
+    <script type="text/javascript" src="{% static 'js/master.js' %}"></script>
+    <!-- dataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
   </head>
   <body>
     <div class="container">
@@ -36,7 +41,7 @@
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:user_profile' pk=user.pk %}">
+                <a class="nav-link" href="{% url 'accounts:user_profile' pk=user.userprofile.pk %}">
                   <span class="fas fa-user"></span><span> {{user}}</span>
                 </a>
               </li>

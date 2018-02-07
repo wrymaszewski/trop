@@ -44,12 +44,15 @@ class RouteList(ListView):
         self.route_list = []
         for route in routes:
             route.rating = Ascent.objects.filter(route = route.pk).aggregate(Avg('rating'))['rating__avg']
+            route.lat = route.location.location.split(',')[0]
+            route.lng = route.location.location.split(',')[1]
             self.route_list.append(route)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['route_list'] = self.route_list
-        print(context)
+        context['lat'] = self.route_list[0].lat
+        context['lng'] = self.route_list[0].lng
         return context
 
 

@@ -1,7 +1,7 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
   <h1 class="text-center">{{object_list.0.route}}</h1>
-  <table class="table">
+  <table class="table datatable">
     <thead>
       <th>Username</th>
       <th>Date of Ascent</th>
@@ -12,7 +12,13 @@
     <tbody>
     {% for ascent in object_list %}
       <tr>
-        <td><a href="{% url 'accounts:user_profile' pk=ascent.user.pk%}">{{ascent.user.username}}</a></td>
+        <td>
+          {% if ascent.user.userprofile.hidden %}
+            Hidden User
+          {% else %}
+            <a href="{% url 'accounts:user_profile' pk=ascent.user.pk%}">{{ascent.user.username}}</a>
+          {% endif %}
+        </td>
         <td>{{ascent.date}}</td>
         <td>{{ascent.get_ascent_style_display}}</td>
         <td>{{ascent.description}}</td>

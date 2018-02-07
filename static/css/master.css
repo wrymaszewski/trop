@@ -2,3 +2,12 @@ span.logo {
   font-size: 150%;
   font-weight: bold;
 }
+
+#map {
+        height: 400px;
+        width: 100%;
+}
+
+h1.text-center {
+  text-decoration: underline;
+}

@@ -3,7 +3,9 @@
   <h1 class="text-center">List of Visible Users</h1>
   <ul>
     {% for user in  object_list %}
-    <li><a href="{% url 'accounts:user_profile' pk=user.pk%}">{{user.username}}</a></li>
+    {% if not user.userprofile.hidden %}
+    <li><a href="{% url 'accounts:user_profile' pk=user.userprofile.pk%}">{{user.username}}</a></li>
+    {% endif %}
     {% endfor %}
   </ul>
 {% endblock content %}

@@ -3,7 +3,7 @@
 
   <h1 class="text-center" >{{route_list.0.location}}</h1>
 
-  <table class="table">
+  <table class="table datatable">
     <thead>
       <th>Name</th>
       <th>Type</th>
@@ -45,5 +45,29 @@
     {% endfor %}
     </tbody>
   </table>
+
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+     }
+  </style>
+  <div id="map"></div>
+  <script>
+    function initMap() {
+      var uluru = {lat: {{lat}}, lng: {{lng}} };
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: uluru
+      });
+      var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+      });
+    }
+  </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCg5LexUKagRVz70XIKSG46jnOx6-a6Lsk&callback=initMap">
+  </script>
 
 {% endblock route_content %}
