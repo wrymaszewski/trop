@@ -1,9 +1,13 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView
 from django.core.urlresolvers import reverse_lazy
 from . import forms
-from .models import User
+from .models import UserProfile
 from django.contrib.auth.models import User
+
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
 
 # Create your views here.
 
@@ -18,3 +22,11 @@ class UserList(ListView):
 
     def get_queryset(self):
         return User.objects.all()
+
+class UserProfilePage(DetailView):
+    model = UserProfile
+    template_name = 'accounts/user_profile.html'
+
+    # def get_queryset(self):
+    #     user = User.objects.all()
+    #     print (user)

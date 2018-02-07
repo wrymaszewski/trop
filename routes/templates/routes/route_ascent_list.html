@@ -12,7 +12,7 @@
     <tbody>
     {% for ascent in object_list %}
       <tr>
-        <td><a href="{% url 'routes:user_ascents' pk=ascent.user.pk %}">{{ascent.user.username}}</a></td>
+        <td><a href="{% url 'accounts:user_profile' pk=ascent.user.pk%}">{{ascent.user.username}}</a></td>
         <td>{{ascent.date}}</td>
         <td>{{ascent.get_ascent_style_display}}</td>
         <td>{{ascent.description}}</td>

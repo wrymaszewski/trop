@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -25,4 +27,4 @@ urlpatterns = [
     url(r'accounts/', include('accounts.urls', namespace='accounts')),
     url(r'accounts/', include('django.contrib.auth.urls')),
     url(r'routes/', include('routes.urls', namespace='routes'))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

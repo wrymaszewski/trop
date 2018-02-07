@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <h1>{{userprofile}}</h1>
+  <img src="/media/{{userprofile.avatar}}" alt="avatar", placeholder = {% static 'user_placeholder.png' %} width = 200>
+  <h2><a href="{% url 'routes:user_ascents' pk=userprofile.user.pk %}">Ascents</a></h2>
+{% endblock content %}
+  
