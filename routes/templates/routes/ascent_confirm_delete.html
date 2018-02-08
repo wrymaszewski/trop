@@ -1,0 +1,15 @@
+{% extends "routes/routes_base.html" %}
+{% block route_content %}
+{# {% load bootstrap3 %} #}
+
+  <div class="jumbotron">
+    <form action="" method="post">
+        {% csrf_token %}
+        {# {% bootstrap_form form %} #}
+        <h3>Are you sure you want to delete this record?</h3>
+        <input type="submit" value="Delete" />
+    </form>
+  </div>
+
+
+{% endblock route_content %}

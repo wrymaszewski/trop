@@ -13,6 +13,9 @@
       <th>Style of Ascent</th>
       <th>Description</th>
       <th>Rating</th>
+    {% if user == object_list.0.user %}
+      <th>Modify</th>
+    {% endif %}
     </thead>
     <tbody>
     {% for ascent in object_list %}
@@ -49,6 +52,12 @@
               <span class="fas fa-star"></span>
           {% endif %}
         </td>
+      {% if user == object_list.0.user %}
+        <td>
+          <a href="{% url 'routes:update_ascent' ascent.id %}"><span class="fas fa-edit" ></span> </a>
+          <a href="{% url 'routes:delete_ascent' ascent.id %}"><span class="fas fa-trash" ></span> </a>
+        </td>
+      {% endif %}
       </tr>
     {% endfor %}
     </tbody>

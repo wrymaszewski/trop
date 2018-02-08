@@ -13,5 +13,14 @@ urlpatterns = [
     url(r'^user/(?P<pk>\d+)/$', views.UserAscentList.as_view(),
     name = 'user_ascents'),
     url(r'^ascent/new/$', views.CreateAscent.as_view(),
-    name = 'new_ascent')
+    name = 'new_ascent'),
+    url(r'^ascent/delete/(?P<pk>\d+)/$', views.DeleteAscent.as_view(),
+    name='delete_ascent'),
+    url(r'^ascent/update/(?P<pk>\d+)/$', views.UpdateAscent.as_view(),
+    name='update_ascent'),
+    url(r'^new/$', views.CreateRoute.as_view(),
+    name='new_route'),
+    url(r'^place/new/$', views.CreatePlace.as_view(),
+    name='new_place')
+
 ]

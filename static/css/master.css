@@ -7,3 +7,18 @@ span.logo {
         height: 400px;
         width: 400px;
 }
+
+/* select[name=route] {
+  margin-right: 0px;
+  width: 90%;
+  float:left
+}
+
+label[for='id_route'] {
+  float:left;
+}
+
+.add-route{
+  float: right;
+  display:inline;
+} */

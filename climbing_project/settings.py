@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'location_field.apps.DefaultConfig',
     'django_extensions',
+    'sekizai',
     'star_ratings',
+    'bootstrapform',
     'bootstrap3',
     'accounts',
     'routes'
@@ -69,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'sekizai.context_processors.sekizai'
             ],
         },
     },
@@ -106,6 +109,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOCATION_FIELD = {
+    'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
+    'provider.google.api_key': 'AIzaSyCYtpFDw_8LlRzTV9vHKuFUKDLX_nbpYfg',
+    'provider.google.api_libraries': '',
+    'provider.google.map.type': 'ROADMAP',
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
