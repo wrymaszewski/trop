@@ -36,7 +36,9 @@
           <ul class="nav navbar-nav">
             <li class="nav-item"><a class="nav-link" href="{% url 'routes:places' %}">Climbing locations</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'accounts:users' %}">User Profiles</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Add an Ascent</a></li>
+          {% if user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'routes:new_ascent' %}">Add an Ascent</a></li>
+          {% endif %}
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}

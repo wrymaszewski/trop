@@ -8,8 +8,10 @@ urlpatterns = [
     name = 'places'),
     url(r'^(?P<pk>\d+)/$', views.RouteList.as_view(),
     name = 'route_list'),
-    url(r'^ascents/(?P<pk>\d+)/$', views.RouteAscentList.as_view(),
+    url(r'^route/(?P<pk>\d+)/$', views.RouteAscentList.as_view(),
     name = 'route_ascents'),
     url(r'^user/(?P<pk>\d+)/$', views.UserAscentList.as_view(),
-    name = 'user_ascents')
+    name = 'user_ascents'),
+    url(r'^ascent/new/$', views.CreateAscent.as_view(),
+    name = 'new_ascent')
 ]

@@ -5,9 +5,5 @@ span.logo {
 
 #map {
         height: 400px;
-        width: 100%;
-}
-
-h1.text-center {
-  text-decoration: underline;
+        width: 400px;
 }

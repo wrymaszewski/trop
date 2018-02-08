@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'location_field.apps.DefaultConfig',
+    'django_extensions',
     'star_ratings',
     'bootstrap3',
     'accounts',

@@ -1,0 +1,14 @@
+{% extends "routes/routes_base.html"  %}
+{% block route_content %}
+{% load bootstrap3 %}
+
+  <div class="jumbotron">
+    <form action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Save" />
+    </form>
+  </div>
+
+
+{% endblock route_content %}
