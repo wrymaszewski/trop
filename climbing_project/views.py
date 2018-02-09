@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, RedirectView
+from django.views.generic import TemplateView
 
 class Homepage(TemplateView):
     template_name = 'index.html'

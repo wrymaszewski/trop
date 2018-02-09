@@ -1,20 +1,18 @@
-from django.shortcuts import render, get_object_or_404
-from . import forms
+from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView
-from django.views.generic.edit import DeleteView, UpdateView, ModelFormMixin
+from django.views.generic.edit import DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Place, Ascent, Route
-from accounts.models import User
+# from accounts.models import User
 from django.db.models import Avg
 from django.core.urlresolvers import reverse, reverse_lazy
-from braces.views import SelectRelatedMixin
 from django.http import HttpResponseRedirect
-from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib import messages
-from django.forms import HiddenInput as django_forms
+from django.contrib.auth import get_user_model
+
+from .models import Place, Ascent, Route
+from . import forms
+
 # Create your views here.
 
-from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class PlaceList(ListView):
@@ -84,6 +82,7 @@ class RouteAscentList(ListView):
     def get_queryset(self):
         return Ascent.objects.select_related().filter(route = self.kwargs['pk'])
 
+# CRUD
 class CreateRoute(LoginRequiredMixin, CreateView):
     model = Route
     fields = ['location', 'name', 'route_type', 'protection', 'scale', 'grade']
@@ -96,13 +95,12 @@ class CreateRoute(LoginRequiredMixin, CreateView):
 
 class CreatePlace(LoginRequiredMixin, CreateView):
     model = Place
-    form_class = forms.PlaceForm
+    fields = ('name', 'city', 'country', 'location')
     success_url = reverse_lazy('routes:new_route')
 
 
 class CreateAscent(LoginRequiredMixin, CreateView):
     model = Ascent
-    # fields = ['route', 'date', 'ascent_style', 'rating', 'description']
     form_class = forms.AscentForm
 
     def form_valid(self, form):
@@ -117,13 +115,11 @@ class CreateAscent(LoginRequiredMixin, CreateView):
         return {'route': route}
 
 
-class DeleteAscent(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class DeleteAscent(LoginRequiredMixin, DeleteView):
     model = Ascent
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         success_url = reverse_lazy('routes:user_ascents', kwargs = {'pk':self.object.user.pk})
-        # success_message = "Your ascent of {} was successfully deleted!".format(self.object.route.name)
-        # messages.success(self.request, success_message)
         self.object.delete()
         return HttpResponseRedirect(success_url)
 
@@ -131,6 +127,7 @@ class DeleteAscent(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 class UpdateAscent(LoginRequiredMixin, UpdateView):
     model = Ascent
     fields = ['route', 'date', 'ascent_style', 'rating', 'description']
+    template_name = 'routes/ascent_update_form.html'
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user

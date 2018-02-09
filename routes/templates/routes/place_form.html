@@ -2,18 +2,16 @@
 {% block route_content %}
 {% load bootstrap %}
 
-      <div class="jumbotron">
-        <form  action="" method="post">
-            {% csrf_token %}
-            {{form.media}}
-            {% for field in form.visible_fields %}
-              {# {{field.label_tag}} #}
-              {{field|bootstrap}}
-            {% endfor %}
-            <input class="btn btn-primary" type="submit" value="Save" />
-        </form>
-      </div>
-
-
+  <div class="jumbotron">
+    <h1 class="text-center">New Crag</h1>
+    <form  action="" method="post">
+        {% csrf_token %}
+        {{form.media}}
+        {% for field in form.visible_fields %}
+          {{field|bootstrap}}
+        {% endfor %}
+        <input class="btn btn-primary" type="submit" value="Save" />
+    </form>
+  </div>
 
 {% endblock route_content %}

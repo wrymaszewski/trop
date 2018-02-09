@@ -1,11 +1,7 @@
 from django.db import models
 from location_field.models.plain import PlainLocationField
-from star_ratings.models import Rating
-from django.contrib.contenttypes.fields import GenericRelation
-from geopy.geocoders import GoogleV3
-
-
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
 
 # Create your models here.
@@ -15,7 +11,6 @@ class Place(models.Model):
     city = models.CharField(max_length = 100, verbose_name = 'Region')
     country = models.CharField(max_length = 100)
     location = PlainLocationField(based_fields=['city'], zoom=7)
-    description = models.TextField(blank = False, null= True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -27,11 +22,6 @@ class Place(models.Model):
         self.city = self.city.capitalize()
         lat = self.location.split(',')[0]
         lng = self.location.split(',')[1]
-
-        # geolocator = GoogleV3()
-        # loc = geolocator.reverse([lat, lng])
-        # print(loc)
-        # print(loc.raw['address']['country'])
         self.country = self.country.capitalize()
         super().save(*args, **kwargs)
 

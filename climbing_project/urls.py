@@ -23,7 +23,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^$', views.Homepage.as_view(), name = 'home'),
     url(r'^admin/', admin.site.urls),
-    url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'accounts/', include('accounts.urls', namespace='accounts')),
     url(r'accounts/', include('django.contrib.auth.urls')),
     url(r'routes/', include('routes.urls', namespace='routes'))

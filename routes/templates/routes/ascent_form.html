@@ -2,34 +2,30 @@
 {% block route_content %}
 {% load bootstrap %}
 
-      <div class="jumbotron">
-        <form  action="" method="post">
-            {% csrf_token %}
-            {# Include the hidden fields #}
-            {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-            {% endfor %}
-            {% for field in form.visible_fields %}
-                <div class="fieldWrapper form-group">
-                    {{ field.errors }}
-                    {% if field.label == 'Location' %}
-                      {{field.as_hidden}}
-                    {% else %}
-                      {{ field.label }}
-                      <br>
-                      {{ field }}
-                    {% endif %}
-                    {% if field.label == 'Route' %}
-                      <a href='{% url 'routes:new_route' %}'><span class='fas fa-plus'></span></a>
-                    {% endif %}
-                </div>
-
-            {% endfor %}
-
-            <input class="btn btn-primary" type="submit" value="Save" />
-        </form>
-      </div>
-
-
+  <div class="jumbotron">
+    <form  action="" method="post">
+        {% csrf_token %}
+        {# Include the hidden fields #}
+        {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+        {% endfor %}
+        {% for field in form.visible_fields %}
+            <div class="fieldWrapper form-group">
+                {{ field.errors }}
+                {% if field.label == 'Location' %}
+                  {{field.as_hidden}}
+                {% else %}
+                  {{ field.label }}
+                  <br>
+                  {{ field }}
+                {% endif %}
+                {% if field.label == 'Route' %}
+                  <a href='{% url 'routes:new_route' %}'><span class='fas fa-plus'></span></a>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <input class="btn btn-primary" type="submit" value="Save" />
+    </form>
+  </div>
 
 {% endblock route_content %}

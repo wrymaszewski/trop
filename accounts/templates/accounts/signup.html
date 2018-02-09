@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% load bootstrap3 %}
+{% load bootstrap %}
 
 {% block content %}
   <div class="jumbotron">
     <h1>Sign Up</h1>
     <form class="SignUpForm" method="post">
       {% csrf_token %}
-      {% bootstrap_form form %}
+      {{form|bootstrap}}
       <input type="submit" value="Sign Up!" class="btn btn-default">
     </form>
   </div>

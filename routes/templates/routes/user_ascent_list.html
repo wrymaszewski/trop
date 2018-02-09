@@ -1,7 +1,7 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
-  <h1 class="text-center">{{object_list.0.user}}</h1>
-
+{% if object_list %}
+  <h1 class="text-center">Ascents of {{object_list.0.user}}</h1>
   <table class="table datatable">
     <thead>
       <th>Route</th>
@@ -20,7 +20,7 @@
     <tbody>
     {% for ascent in object_list %}
       <tr>
-        <td><a href="{% url 'routes:route_ascents' pk=ascent.route.pk %}">{{ascent.route}}</a></td>
+        <td><a href="{% url 'routes:route_ascents' pk=ascent.route.pk %}">{{ascent.route.name}}</a></td>
         <td><a href={% url 'routes:route_list' pk=ascent.route.location.pk %}>{{ascent.route.location.name}}</a>
               <spam>, {{ascent.route.location.city}}, {{ascent.route.location.country}}</spam></td>
         <td>{{ascent.route.get_route_type_display}}</td>
@@ -62,4 +62,8 @@
     {% endfor %}
     </tbody>
   </table>
+{% else %}
+  <h1>No ascents found</h1>
+{% endif %}
+
 {% endblock route_content %}

@@ -1,24 +1,11 @@
+/* navbar brand */
 span.logo {
   font-size: 150%;
   font-weight: bold;
 }
 
+/* location googlemaps */
 #map {
         height: 400px;
         width: 400px;
 }
-
-/* select[name=route] {
-  margin-right: 0px;
-  width: 90%;
-  float:left
-}
-
-label[for='id_route'] {
-  float:left;
-}
-
-.add-route{
-  float: right;
-  display:inline;
-} */
