@@ -12,9 +12,13 @@
             {% for field in form.visible_fields %}
                 <div class="fieldWrapper form-group">
                     {{ field.errors }}
-                    {{ field.label }}
-                    <br>
-                    {{ field }}
+                    {% if field.label == 'Location' %}
+                      {{field.as_hidden}}
+                    {% else %}
+                      {{ field.label }}
+                      <br>
+                      {{ field }}
+                    {% endif %}
                     {% if field.label == 'Route' %}
                       <a href='{% url 'routes:new_route' %}'><span class='fas fa-plus'></span></a>
                     {% endif %}

@@ -1,28 +1,26 @@
-from django.forms import ModelForm, DateInput
 from .models import Route, Place, Ascent
 from location_field.forms.plain import PlainLocationField
 from location_field.widgets import LocationWidget
+from django import forms
 
 
-class RouteForm(ModelForm):
+class PlaceForm(forms.ModelForm):
     class Meta:
-        model = Route
-        fields = ('name', 'route_type', 'protection', 'grade', 'scale', 'location')
+        model=Place
+        fields = ('name', 'city', 'country', 'location')
+        labels = {
+            'city': 'Region'
+        }
+        def __init__(self, *args, **kwargs):
+            super(PlaceForm, self).__init__(*args, **kwargs)
+            self.fields['location'].widget = HiddenInput()
 
-# class PlaceForm(ModelForm):
-#     # location = PlainLocationField(based_fields=['city'],
-#     #                                       initial='-22.2876834,-49.1607606')
-#     class Meta:
-#         model = Place
-#         fields = ('name',  'country', 'city', 'location', 'description')
-#         # widgets = {
-#         # 'location': LocationWidget(based_fields = ['city'], zoom=3)
-#         # }
 
-class DateInput(DateInput):
+
+class DateInput(forms.DateInput):
     input_type = 'date'
 
-class AscentForm(ModelForm):
+class AscentForm(forms.ModelForm):
     class Meta:
         model = Ascent
         fields = ('route', 'date', 'ascent_style', 'rating', 'description')

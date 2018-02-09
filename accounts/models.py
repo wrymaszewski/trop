@@ -11,8 +11,11 @@ User = get_user_model()
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField()
-    email = models.EmailField(),
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length = 100)
+    avatar = models.ImageField(blank=True, null=True,
+    upload_to='accounts/avatars/', default = 'media/avatars/user_placeholder.png')
+    email = models.EmailField()
     description = models.TextField()
     hidden = models.BooleanField(default=False)
 

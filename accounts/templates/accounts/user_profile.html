@@ -2,7 +2,13 @@
 {% load static %}
 {% block content %}
   <h1>{{userprofile}}</h1>
-  <img src="/media/{{userprofile.avatar}}" alt="avatar", placeholder = {% static 'user_placeholder.png' %} width = 200>
+  <img src="/media/{{userprofile.avatar}}" alt="avatar" width = 200>
+  <h4>{{userprofile.first_name}}</h4>
+  <h4>{{userprofile.last_name}}</h4>
+  <h5>{{userprofile.email}}</h5>
+  <p>{{userprofile.description}}</p>
   <h2><a href="{% url 'routes:user_ascents' pk=userprofile.user.pk %}">Ascents</a></h2>
+  {% if userprofile.user == user %}
+  <h3><a href="{% url 'accounts:edit_profile' pk=userprofile.pk %}">Edit Profile</a></h3>
+  {% endif %}
 {% endblock content %}
-  

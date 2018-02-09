@@ -2,6 +2,7 @@ from django.db import models
 from location_field.models.plain import PlainLocationField
 from star_ratings.models import Rating
 from django.contrib.contenttypes.fields import GenericRelation
+from geopy.geocoders import GoogleV3
 
 
 from django.contrib.auth import get_user_model
@@ -11,19 +12,32 @@ User = get_user_model()
 
 class Place(models.Model):
     name = models.CharField(max_length = 100)
-    city = models.CharField(max_length = 100)
+    city = models.CharField(max_length = 100, verbose_name = 'Region')
     country = models.CharField(max_length = 100)
-    location = PlainLocationField(based_fields=['city', 'country'], zoom=7)
+    location = PlainLocationField(based_fields=['city'], zoom=7)
     description = models.TextField(blank = False, null= True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return "{} ({}, {})".format(self.name, self.city, self.country)
 
     def save(self, *args, **kwargs):
         self.name = self.name.capitalize()
         self.city = self.city.capitalize()
+        lat = self.location.split(',')[0]
+        lng = self.location.split(',')[1]
+
+        # geolocator = GoogleV3()
+        # loc = geolocator.reverse([lat, lng])
+        # print(loc)
+        # print(loc.raw['address']['country'])
         self.country = self.country.capitalize()
         super().save(*args, **kwargs)
+
+    class Meta:
+        get_latest_by = 'created_at'
+        ordering = ['country', 'city', 'name']
 
 class Route(models.Model):
 
@@ -60,7 +74,9 @@ class Route(models.Model):
         protection = models.CharField(max_length = 100, choices = PROTECTION_CHOICES, default = EQ)
         scale = models.CharField(max_length = 100, choices = SCALE_CHOICES, default = FR)
         grade = models.CharField(max_length = 20)
-        location = models.ForeignKey(Place)
+        location = models.ForeignKey(Place ,related_name='routes', verbose_name = 'Crag')
+        created_at = models.DateTimeField(auto_now_add=True)
+        updated_at = models.DateTimeField(auto_now=True)
 
         def save(self, *args, **kwargs):
             self.name = self.name.capitalize()
@@ -71,7 +87,12 @@ class Route(models.Model):
             super().save(*args, **kwargs)
 
         def __str__(self):
-            return self.name
+            return "{} ({}, {}, {})".format(self.name, self.location.name,
+            self.location.city, self.location.country)
+
+        class Meta:
+            ordering = ['location', 'name']
+            get_latest_by = 'created_at'
 
 
 class Ascent(models.Model):
@@ -106,6 +127,12 @@ class Ascent(models.Model):
     ascent_style = models.CharField(max_length = 20, choices = ASCENT_STYLE_CHOICES)
     rating = models.IntegerField(choices = RATING_CHOICES, default=UNRATED)
     description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.user.username + ' : ' + self.route.name
+
+    class Meta:
+        ordering = ['date']
+        get_latest_by = ['created_at']
