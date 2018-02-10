@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'bootstrapform',
     'accounts',
-    'routes'
+    'routes',
+    'indoor'
 ]
 
 MIDDLEWARE = [

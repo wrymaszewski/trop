@@ -1,0 +1,12 @@
+{% extends "indoor/indoor_base.html" %}
+{% load bootstrap %}
+{% block indoor_block %}
+  <div class="jumbotron">
+    <h1>New/edit Top</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{form|bootstrap}}
+      <input class="btn btn-default" type="submit" name="" value="Submit">
+    </form>
+  </div>
+{% endblock indoor_block %}
