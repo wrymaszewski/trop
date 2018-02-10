@@ -64,7 +64,7 @@ class Route(models.Model):
         protection = models.CharField(max_length = 100, choices = PROTECTION_CHOICES, default = EQ)
         scale = models.CharField(max_length = 100, choices = SCALE_CHOICES, default = FR)
         grade = models.CharField(max_length = 20)
-        location = models.ForeignKey(Place ,related_name='routes', verbose_name = 'Crag')
+        location = models.ForeignKey(Place ,related_name='routes', verbose_name = 'Crag', on_delete = models.CASCADE)
         created_at = models.DateTimeField(auto_now_add=True)
         updated_at = models.DateTimeField(auto_now=True)
 
@@ -111,8 +111,8 @@ class Ascent(models.Model):
                     (MEDIUM, 'Medium'),
                     (HIGH, 'High'))
 
-    route = models.ForeignKey(Route, related_name='ascents')
-    user = models.ForeignKey(User, related_name='ascents')
+    route = models.ForeignKey(Route, related_name='ascents', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='ascents', on_delete=models.CASCADE)
     date = models.DateField()
     ascent_style = models.CharField(max_length = 20, choices = ASCENT_STYLE_CHOICES)
     rating = models.IntegerField(choices = RATING_CHOICES, default=UNRATED)

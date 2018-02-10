@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, RedirectView
-from django.core.urlresolvers import reverse_lazy, reverse
+from django.urls import reverse_lazy, reverse
 from . import forms
 from .models import UserProfile
 from django.contrib.auth.models import User
