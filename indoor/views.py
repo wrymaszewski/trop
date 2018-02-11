@@ -48,6 +48,9 @@ class CreateTraining(LoginRequiredMixin, CreateView):
         self.object.save()
         return super().form_valid(form)
 
+    def get_initial(self):
+        return {'location': models.Gym.objects.latest()}
+
 class CreateTop(LoginRequiredMixin, CreateView):
     model = models.Top
     form_class = forms.TopForm
@@ -70,7 +73,7 @@ class UpdateTraining(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         self.object = self.get_object()
-        self.success_url = reverse_lazy('indoor:training_list', kwargs = {'pk':self.object.user.pk})
+        self.success_url = reverse_lazy('indoor:training_list', kwargs = {'username':self.object.user.username})
         self.object.save()
         return super().form_valid(form)
 
@@ -79,6 +82,11 @@ class UpdateTop(LoginRequiredMixin, UpdateView):
     form_class = forms.TopForm
     template_name = 'indoor/top_update.html'
 
+    def form_valid(self,form):
+        self.object = self.get_object()
+        self.success_url = reverse_lazy('indoor:top_list', kwargs ={'pk':self.object.training.pk})
+        self.object.save()
+        return super().form_valid(form)
 
 class DeleteTraining(LoginRequiredMixin, DeleteView):
     model = models.Training

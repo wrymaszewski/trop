@@ -4,7 +4,7 @@ from . import views
 app_name = 'indoor'
 
 urlpatterns = [
-    url(r'top/new/$', views.CreateTop.as_view(),
+    url(r'top/new//$', views.CreateTop.as_view(),
     name = 'new_top'),
     url(r'top/update/(?P<pk>\d+)/$', views.UpdateTop.as_view(),
     name = 'edit_top'),

@@ -105,7 +105,7 @@ class CreateAscent(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
-        self.success_url = reverse_lazy('routes:user_ascents', kwargs={'pk': self.object.user.pk})
+        self.success_url = reverse_lazy('routes:user_ascents', kwargs={'username': self.object.user.username})
         self.object.save()
         return super().form_valid(form)
 
@@ -118,7 +118,7 @@ class DeleteAscent(LoginRequiredMixin, DeleteView):
     model = Ascent
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
-        success_url = reverse_lazy('routes:user_ascents', kwargs = {'pk':self.object.user.pk})
+        success_url = reverse_lazy('routes:user_ascents', kwargs = {'username':self.object.user.username})
         self.object.delete()
         return HttpResponseRedirect(success_url)
 
@@ -130,6 +130,6 @@ class UpdateAscent(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
-        self.success_url = reverse_lazy('routes:user_ascents', kwargs={'pk': self.object.user.pk})
+        self.success_url = reverse_lazy('routes:user_ascents', kwargs={'username': self.object.user.username})
         self.object.save()
         return super().form_valid(form)

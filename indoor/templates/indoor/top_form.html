@@ -2,7 +2,8 @@
 {% load bootstrap %}
 {% block indoor_content %}
   <div class="jumbotron">
-    <h1>New/edit Top</h1>
+    <h1>New Top</h1>
       {% include "indoor/_form.html" %}
+      <a class="btn btn-default" href="{% url 'indoor:top_list' pk=training.pk %}">Finish</a>
   </div>
 {% endblock indoor_content %}

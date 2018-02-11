@@ -9,9 +9,15 @@ class Gym(models.Model):
     name = models.CharField(max_length = 100)
     address = models.CharField(max_length = 200, verbose_name = 'Street, City')
     location = PlainLocationField(based_fields = ['address'], zoom=10)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "{} ({})".format(self.name, self.address)
+
+    class Meta:
+        ordering = ['name']
+        get_latest_by = 'created_at'
 
 class Training(models.Model):
     user = models.ForeignKey(User, related_name='trainings',
@@ -47,3 +53,10 @@ class Top(models.Model):
     ascent_style = models.CharField(max_length = 100, choices = Ascent.ASCENT_STYLE_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if self.scale == 'YDS' or self.scale == 'FR':
+            self.grade = self.grade.lower()
+        else:
+            self.grade = self.grade.upper()
+        super().save(*args, **kwargs)
