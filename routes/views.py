@@ -90,7 +90,6 @@ class CreateRoute(LoginRequiredMixin, CreateView):
 
     def get_initial(self):
         location = Place.objects.latest()
-        print(location)
         return {'location': location}
 
 class CreatePlace(LoginRequiredMixin, CreateView):

@@ -1,0 +1,32 @@
+{% extends "indoor/indoor_base.html" %}
+{% block indoor_content %}
+  <h1>Training {{top_list.0.training}}</h1>
+  <table class="table datatable">
+    <thead>
+      <th>Grade</th>
+      <th>Type</th>
+      <th>Scale</th>
+      <th>Style</th>
+    {% if user == top_list.0.training.user %}
+      <th>Modify</th>
+    {% endif %}
+    </thead>
+    <tbody>
+    {% for top in top_list %}
+      <tr>
+        <td>{{top.grade}}</td>
+        <td>{{top.get_route_type_display}}</td>
+        <td>{{top.get_scale_display}}</td>
+        <td>{{top.get_ascent_style_display}}</td>
+      {% if user == top_list.0.training.user %}
+        <td>
+          <a href="{% url 'indoor:edit_top' pk=top.pk %}"><span class="fas fa-edit" ></span> </a>
+          <a href="{% url 'indoor:delete_top' pk=top.pk %}"><span class="fas fa-trash" ></span> </a>
+        </td>
+      {% endif %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock indoor_content %}

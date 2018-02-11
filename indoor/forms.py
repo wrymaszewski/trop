@@ -1,6 +1,9 @@
 from django import forms
 from .models import Top, Training, Gym
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
 class TopForm(forms.ModelForm):
     class Meta:
         model = Top
@@ -11,7 +14,7 @@ class TrainingForm(forms.ModelForm):
         model = Training
         fields = ('location', 'date', 'description')
         widgets = {
-            'date':forms.SplitDateTimeWidget()
+            'date':DateInput()
         }
 
 class GymForm(forms.ModelForm):

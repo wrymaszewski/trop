@@ -1,12 +1,25 @@
 {% extends "indoor/indoor_base.html" %}
 {% load bootstrap %}
-{% block indoor_block %}
+{% block indoor_content %}
   <div class="jumbotron">
     <h1>New/edit Training</h1>
     <form method="post">
       {% csrf_token %}
-      {{form|bootstrap}}
+      {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+      {% endfor %}
+      {% for field in form.visible_fields %}
+          <div class="fieldWrapper form-group">
+              {{ field.errors }}
+                {{ field.label }}
+                <br>
+                {{ field }}
+              {% if field.label == 'Gym' %}
+                <a href='{% url 'indoor:new_gym' %}'><span class='fas fa-plus'></span></a>
+              {% endif %}
+          </div>
+      {% endfor %}
       <input class="btn btn-default" type="submit" name="" value="Submit">
     </form>
   </div>
-{% endblock indoor_block %}
+{% endblock indoor_content %}

@@ -1,0 +1,36 @@
+{% extends "indoor/indoor_base.html" %}
+{% block indoor_content %}
+  <h1>List of trainings</h1>
+  {% if training_list %}
+  <table class="table datatable">
+    <thead>
+      <th>Date</th>
+      <th>Gym</th>
+      <th>Tops</th>
+      <th>description</th>
+    {% if user == training_list.0.user %}
+      <th>Modify</th>
+    {% endif %}
+    </thead>
+    <tbody>
+    {% for training in training_list %}
+      <tr>
+        <td><a href="{% url 'indoor:top_list' pk=training.pk %}">{{training.date}}</a></td>
+        <td>{{training.gym}}</td>
+        <td>{{training.tops.count}}</td>
+        <td>{{training.description}}</td>
+      {% if user == training_list.0.user %}
+        <td>
+          <a href="{% url 'indoor:edit_training' pk=training.pk %}"><span class="fas fa-edit" ></span> </a>
+          <a href="{% url 'indoor:delete_training' pk=training.pk %}"><span class="fas fa-trash" ></span> </a>
+        </td>
+      {% endif %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <h2>There were no records found</h2>
+{% endif %}
+  <a href="{% url 'indoor:new_training' %}">Add a Training</a>
+{% endblock indoor_content %}

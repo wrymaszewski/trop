@@ -17,5 +17,9 @@ urlpatterns = [
     url(r'training/delete/(?P<pk>\d+)/$', views.DeleteTraining.as_view(),
     name = 'delete_training'),
     url(r'gym/new/$', views.CreateGym.as_view(),
-    name = 'new_gym')
+    name = 'new_gym'),
+    url(r'training/(?P<pk>\d+)/$', views.TopList.as_view(),
+    name = 'top_list'),
+    url(r'(?P<pk>\d+)/training/$', views.TrainingList.as_view(),
+    name = 'training_list')
 ]
