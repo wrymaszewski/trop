@@ -1,0 +1,20 @@
+{# GoogleMaps API#}
+<div class="container">
+  <div id="map"></div>
+</div>
+<script>
+ function initMap() {
+   var uluru = {lat: {{lat}}, lng: {{lng}} };
+   var map = new google.maps.Map(document.getElementById('map'), {
+     zoom: 13,
+     center: uluru
+   });
+   var marker = new google.maps.Marker({
+     position: uluru,
+     map: map
+   });
+ }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYtpFDw_8LlRzTV9vHKuFUKDLX_nbpYfg&callback=initMap">
+</script>

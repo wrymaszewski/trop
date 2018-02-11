@@ -3,11 +3,6 @@
 {% block indoor_content %}
   <div class="jumbotron">
     <h1>New/edit Top</h1>
-    <form method="post">
-      {% csrf_token %}
-      {{form|bootstrap}}
-      <input class="btn btn-default" type="submit" name="" value="Add Top">
-      <a class="btn btn-default" href="{% url 'indoor:training_detail' pk=training.pk%}">Finish</a>
-    </form>
+      {% include "indoor/_form.html" %}
   </div>
 {% endblock indoor_content %}

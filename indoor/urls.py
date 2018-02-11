@@ -20,6 +20,6 @@ urlpatterns = [
     name = 'new_gym'),
     url(r'training/(?P<pk>\d+)/$', views.TopList.as_view(),
     name = 'top_list'),
-    url(r'(?P<pk>\d+)/training/$', views.TrainingList.as_view(),
+    url(r'(?P<username>\w+)/trainings/$', views.TrainingList.as_view(),
     name = 'training_list')
 ]

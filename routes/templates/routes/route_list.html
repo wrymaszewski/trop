@@ -11,63 +11,20 @@
       <th>Average Rating</th>
     </thead>
     <tbody>
-    {% for route in route_list %}
+    {% for object in route_list %}
       <tr>
-        <td><a href="{% url 'routes:route_ascents' pk=route.pk %}">{{route.name}}</a></td>
-        <td>{{route.get_route_type_display}}</td>
-        <td>{{route.get_protection_display}}</td>
-        <td>{{route.grade}}</td>
-        <td>
-          {% if not route.rating %}
-            <span></span>
-          {% elif route.rating > 0 and route.rating < 1 %}
-            <span class="fas fa-star-half"></span>
-          {% elif route.rating == 1 %}
-            <span class="fas fa-star"></span>
-          {% elif route.rating > 1 and route.rating < 2 %}
-              <span class="fas fa-star"></span>
-              <span class="fas fa-star-half"></span>
-          {% elif route.rating == 2 %}
-              <span class="fas fa-star"></span>
-              <span class="fas fa-star"></span>
-          {% elif route.rating > 2 and route.rating < 3 %}
-              <span class="fas fa-star"></span>
-              <span class="fas fa-star"></span>
-              <span class="fas fa-star-half"></span>
-          {% elif route.rating == 3 %}
-              <span class="fas fa-star"></span>
-              <span class="fas fa-star"></span>
-              <span class="fas fa-star"></span>
-          {% endif %}
-        </td>
+        <td><a href="{% url 'routes:route_ascents' pk=object.pk %}">{{object.name}}</a></td>
+        <td>{{object.get_route_type_display}}</td>
+        <td>{{object.get_protection_display}}</td>
+        <td>{{object.grade}}</td>
+        <td>{% include "routes/_rating.html" %} </td>
       </tr>
     {% endfor %}
     </tbody>
   </table>
-
-   {# GoogleMaps  #}
-   <div class="container">
-     <div id="map"></div>
-   </div>
-
-  <script>
-    function initMap() {
-      var uluru = {lat: {{lat}}, lng: {{lng}} };
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
-        center: uluru
-      });
-      var marker = new google.maps.Marker({
-        position: uluru,
-        map: map
-      });
-    }
-  </script>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYtpFDw_8LlRzTV9vHKuFUKDLX_nbpYfg&callback=initMap">
-  </script>
+{% include "_map.html" %}
 {% else %}
 <h1>No routes were found</h1>
 {% endif %}
-
+  <a href="{% url 'routes:new_route' %}">Add a Route</a>
 {% endblock route_content %}

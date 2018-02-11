@@ -28,5 +28,6 @@
     {% endfor %}
     </tbody>
   </table>
-
+  {% include "_map.html" %}
+  <a href="{% url 'indoor:new_top' %}">Add a Top</a>
 {% endblock indoor_content %}

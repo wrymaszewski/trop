@@ -2,7 +2,7 @@
 {% load bootstrap %}
 {% block indoor_content %}
   <div class="jumbotron">
-    <h1>New/edit Training</h1>
+    <h1>New Training</h1>
     <form method="post">
       {% csrf_token %}
       {% for hidden in form.hidden_fields %}

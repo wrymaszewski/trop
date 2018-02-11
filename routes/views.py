@@ -73,7 +73,7 @@ class UserAscentList(ListView):
     template_name = 'routes/user_ascent_list.html'
 
     def get_queryset(self):
-        return Ascent.objects.select_related().filter(user = self.kwargs['pk'])
+        return Ascent.objects.select_related().filter(user__username__iexact = self.kwargs.get('username'))
 
 class RouteAscentList(ListView):
     model = Ascent

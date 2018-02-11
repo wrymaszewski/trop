@@ -24,7 +24,7 @@ class Training(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.location.name + ' - ' + str(self.date)
+        return self.location.name + ' : ' + str(self.date)
 
     class Meta:
         ordering = ['date']

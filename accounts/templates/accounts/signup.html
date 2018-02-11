@@ -1,13 +1,12 @@
-{% extends "base.html" %}
+{% extends "accounts/accounts_base.html" %}
 {% load bootstrap %}
-
-{% block content %}
+{% block accounts_content %}
   <div class="jumbotron">
-    <h1>Sign Up</h1>
-    <form class="SignUpForm" method="post">
+    <h1 class="text-center">Sign Up</h1>
+    <form method="post">
       {% csrf_token %}
       {{form|bootstrap}}
       <input type="submit" value="Sign Up!" class="btn btn-default">
     </form>
   </div>
-{% endblock content %}
+{% endblock accounts_content %}

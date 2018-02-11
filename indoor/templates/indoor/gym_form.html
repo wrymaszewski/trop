@@ -2,12 +2,7 @@
 {% load bootstrap %}
 {% block indoor_content %}
   <div class="jumbotron">
-    <h1>New/edit Gym</h1>
-    <form method="post">
-      {% csrf_token %}
-      {{form.media}}
-      {{form|bootstrap}}
-      <input class="btn btn-default" type="submit" name="" value="Submit">
-    </form>
+    <h1>New Gym</h1>
+    {% include "indoor/_form.html" %}
   </div>
 {% endblock indoor_content %}

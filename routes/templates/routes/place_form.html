@@ -1,7 +1,6 @@
 {% extends "routes/routes_base.html"  %}
 {% block route_content %}
 {% load bootstrap %}
-
   <div class="jumbotron">
     <h1 class="text-center">New Crag</h1>
     <form  action="" method="post">
@@ -13,5 +12,5 @@
         <input class="btn btn-primary" type="submit" value="Save" />
     </form>
   </div>
-
+  <a href="{% url 'routes:new_place' %}">Add a Region</a>
 {% endblock route_content %}

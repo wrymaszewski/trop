@@ -12,13 +12,22 @@ class TrainingList(LoginRequiredMixin, ListView):
     model = models.Training
 
     def get_queryset(self):
-        return models.Training.objects.select_related().filter(user=self.kwargs['pk'])
+        return models.Training.objects.select_related().filter(user__username__iexact = self.kwargs.get('username'))
 
 class TopList(LoginRequiredMixin, ListView):
     model = models.Top
+    template_name = 'indoor/top_list.html'
 
     def get_queryset(self):
-        return models.Top.objects.select_related().filter(training=self.kwargs['pk'])
+        self.training = models.Training.objects.get(pk=self.kwargs.get('pk'))
+        self.tops = models.Top.objects.select_related().filter(training=self.training)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['top_list'] = self.tops
+        context['lat'] = self.training.location.location.split(',')[0]
+        context['lng'] = self.training.location.location.split(',')[1]
+        return context
 
 # CRUD operations
 
@@ -57,6 +66,7 @@ class CreateTop(LoginRequiredMixin, CreateView):
 class UpdateTraining(LoginRequiredMixin, UpdateView):
     model = models.Training
     form_class = forms.TrainingForm
+    template_name = 'indoor/training_update.html'
 
     def form_valid(self, form):
         self.object = self.get_object()
@@ -67,6 +77,7 @@ class UpdateTraining(LoginRequiredMixin, UpdateView):
 class UpdateTop(LoginRequiredMixin, UpdateView):
     model = models.Top
     form_class = forms.TopForm
+    template_name = 'indoor/top_update.html'
 
 
 class DeleteTraining(LoginRequiredMixin, DeleteView):

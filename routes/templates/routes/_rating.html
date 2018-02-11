@@ -1,0 +1,21 @@
+{% if not object.rating %}
+  <span></span>
+{% elif object.rating > 0 and object.rating < 1 %}
+  <span class="fas fa-star-half"></span>
+{% elif object.rating == 1 %}
+  <span class="fas fa-star"></span>
+{% elif object.rating > 1 and object.rating < 2 %}
+    <span class="fas fa-star"></span>
+    <span class="fas fa-star-half"></span>
+{% elif object.rating == 2 %}
+    <span class="fas fa-star"></span>
+    <span class="fas fa-star"></span>
+{% elif object.rating > 2 and object.rating < 3 %}
+    <span class="fas fa-star"></span>
+    <span class="fas fa-star"></span>
+    <span class="fas fa-star-half"></span>
+{% elif object.rating == 3 %}
+    <span class="fas fa-star"></span>
+    <span class="fas fa-star"></span>
+    <span class="fas fa-star"></span>
+{% endif %}

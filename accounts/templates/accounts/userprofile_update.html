@@ -1,11 +1,8 @@
-{% extends "base.html" %}
-{% load bootstrap %}
-
-{% block content %}
-  <h1>Edit Profile</h1>
-  <form class="SignUpForm" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{form|bootstrap}}
-    <input type="submit" value="Submit" class="btn btn-default">
-  </form>
-{% endblock content %}
+{% extends "accounts/accounts_base.html" %}
+{% block accounts_content %}
+  <h1 class="text-center">Edit Profile</h1>
+  <div class="jumbotron">
+    {% include "accounts/_form.html" %}
+    <input class="btn btn-default" type=button value='Back' onClick="javascript:history.go(-1);">
+  </div>
+{% endblock accounts_content %}

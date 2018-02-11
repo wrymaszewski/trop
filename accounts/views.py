@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, RedirectView
 from django.urls import reverse_lazy, reverse
 from . import forms
@@ -6,18 +6,21 @@ from .models import UserProfile
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 
 User = get_user_model()
 
 # Create your views here.
-class UserHomeRedirectView(RedirectView):
+class UserHomeRedirectView(LoginRequiredMixin,RedirectView):
     permanent = True
 
     def get_redirect_url(self, *args, **kwargs):
         if hasattr(self.request.user, 'userprofile'):
-            return '/accounts/users/' + str(self.request.user.userprofile.pk) + '/'
+            # URL = '/accounts/users/' + self.request.user.username + '/'
+            return reverse_lazy('accounts:user_profile',
+             kwargs = {'username':self.request.user.username})
         else:
-            return '/accounts/newprofile/'
+            return reverse('accounts:new_profile')
 
 class UserList(LoginRequiredMixin, ListView):
     model = User
@@ -26,9 +29,11 @@ class UserList(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return User.objects.all()
 
-class UserProfilePage(LoginRequiredMixin, DetailView):
-    model = UserProfile
-    template_name = 'accounts/user_profile.html'
+@login_required
+def get_user_profile(request, username):
+    user = User.objects.get(username=username)
+    return render(request, 'accounts/userprofile_detail.html',
+                    {"userprofile":user.userprofile})
 
 # CRUD views
 class SignUp(CreateView):
@@ -54,3 +59,6 @@ class UpdateUserProfile(LoginRequiredMixin, UpdateView):
                 'description', 'avatar', 'hidden']
     template_name = 'accounts/userprofile_update.html'
     success_url = reverse_lazy('accounts:redirect')
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(self.model, user=self.request.user)
