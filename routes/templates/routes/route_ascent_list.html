@@ -1,7 +1,7 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
 {% if object_list %}
-  <h1 class="text-center"> Ascents of {{object_list.0.route}}</h1>
+  <h1 class="text-center"> Ascents of {{route}}</h1>
   <table class="table datatable">
     <thead>
       <th>Username</th>
@@ -31,4 +31,5 @@
 {% else %}
     <h1>No ascents were found</h1>
 {% endif %}
+  <a href="{% url 'routes:new_ascent_from_route' route_slug=route.slug place_slug=place.slug %}">New Ascent</a>
 {% endblock route_content %}

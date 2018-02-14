@@ -4,23 +4,27 @@ from . import views
 app_name = 'routes'
 
 urlpatterns = [
-    url(r'^places/$', views.PlaceList.as_view(),
+    url(r'^regions/$', views.PlaceList.as_view(),
     name = 'places'),
-    url(r'^(?P<pk>\d+)/$', views.RouteList.as_view(),
+    url(r'^(?P<slug>[-\w]+)/$', views.RouteList.as_view(),
     name = 'route_list'),
-    url(r'^route/(?P<pk>\d+)/$', views.RouteAscentList.as_view(),
+    url(r'^(?P<place_slug>[-\w]+)/(?P<route_slug>[-\w]+)/ascents/$', views.RouteAscentList.as_view(),
     name = 'route_ascents'),
-    url(r'^ascents/(?P<username>\w+)/$', views.UserAscentList.as_view(),
+    url(r'^(?P<username>\w+)/ascents/$', views.UserAscentList.as_view(),
     name = 'user_ascents'),
     url(r'^ascent/new/$', views.CreateAscent.as_view(),
     name = 'new_ascent'),
-    url(r'^ascent/delete/(?P<pk>\d+)/$', views.DeleteAscent.as_view(),
+    url(r'^(?P<place_slug>[-\w]+)/(?P<route_slug>[-\w]+)/ascent/new/$', views.CreateAscentFromRoute.as_view(),
+    name = 'new_ascent_from_route'),
+    url(r'^ascent/(?P<pk>\d+)/delete/$', views.DeleteAscent.as_view(),
     name='delete_ascent'),
-    url(r'^ascent/update/(?P<pk>\d+)/$', views.UpdateAscent.as_view(),
+    url(r'^ascent/(?P<pk>\d+)/edit/$', views.UpdateAscent.as_view(),
     name='update_ascent'),
-    url(r'^new/$', views.CreateRoute.as_view(),
+    url(r'^route/new/$', views.CreateRoute.as_view(),
     name='new_route'),
-    url(r'^place/new/$', views.CreatePlace.as_view(),
+    url(r'^route/(?P<slug>[-\w]+)/new/$', views.CreateRouteFromCrag.as_view(),
+    name='new_route_from_crag'),
+    url(r'^crag/new/$', views.CreatePlace.as_view(),
     name='new_place')
 
 ]

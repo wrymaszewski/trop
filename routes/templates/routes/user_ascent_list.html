@@ -1,7 +1,7 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
 {% if object_list %}
-  <h1 class="text-center">Ascents of {{object_list.0.user}}</h1>
+  <h1 class="text-center">Ascents of {{user_prof}}</h1>
   <table class="table datatable">
     <thead>
       <th>Route</th>
@@ -13,15 +13,15 @@
       <th>Style of Ascent</th>
       <th>Description</th>
       <th>Rating</th>
-    {% if user == object_list.0.user %}
+    {% if user == user_prof %}
       <th>Modify</th>
     {% endif %}
     </thead>
     <tbody>
     {% for object in object_list %}
       <tr>
-        <td><a href="{% url 'routes:route_ascents' pk=object.route.pk %}">{{object.route.name}}</a></td>
-        <td><a href={% url 'routes:route_list' pk=object.route.location.pk %}>{{object.route.location.name}}</a>
+        <td><a href="{% url 'routes:route_ascents' route_slug=object.route.slug place_slug=object.route.location.slug %}">{{object.route.name}}</a></td>
+        <td><a href="{% url 'routes:route_list' slug=object.route.location.slug %}">{{object.route.location.name}}</a>
               <spam>, {{object.route.location.city}}, {{object.route.location.country}}</spam></td>
         <td>{{object.route.get_route_type_display}}</td>
         <td>{{object.route.grade}}</td>
@@ -30,7 +30,7 @@
         <td>{{object.get_ascent_style_display}}</td>
         <td>{{object.description}}</td>
         <td>{% include "routes/_rating.html" %}</td>
-      {% if user == object_list.0.user %}
+      {% if user == user_prof %}
         <td>
           <a href="{% url 'routes:update_ascent' object.id %}"><span class="fas fa-edit" ></span> </a>
           <a href="{% url 'routes:delete_ascent' object.id %}"><span class="fas fa-trash" ></span> </a>
@@ -43,6 +43,7 @@
 {% else %}
   <h1>No ascents found</h1>
 {% endif %}
-  <a href="{% url 'routes:new_ascent' %}">Add an Ascent</a>
-
+{% if user == user_prof%}
+  <a href="{% url 'routes:new_ascent'%}">Add an Ascent</a>
+{% endif %}
 {% endblock route_content %}

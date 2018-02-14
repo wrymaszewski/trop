@@ -1,5 +1,4 @@
 {% extends "indoor/indoor_base.html" %}
-{% load bootstrap %}
 {% block indoor_content %}
   <div class="jumbotron">
     <h1>New Training</h1>
@@ -10,12 +9,12 @@
       {% endfor %}
       {% for field in form.visible_fields %}
           <div class="fieldWrapper form-group">
-              {{ field.errors }}
+                {{ field.errors }}
                 {{ field.label }}
                 <br>
                 {{ field }}
               {% if field.label == 'Gym' %}
-                <a href='{% url 'indoor:new_gym' %}'><span class='fas fa-plus'></span></a>
+                <a href="{% url 'indoor:new_gym' %}"><span class='fas fa-plus'></span></a>
               {% endif %}
           </div>
       {% endfor %}

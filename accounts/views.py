@@ -11,14 +11,12 @@ from django.contrib.auth.decorators import login_required
 User = get_user_model()
 
 # Create your views here.
-class UserHomeRedirectView(LoginRequiredMixin,RedirectView):
+class UserProfileRedirectView(LoginRequiredMixin,RedirectView):
     permanent = True
-
     def get_redirect_url(self, *args, **kwargs):
         if hasattr(self.request.user, 'userprofile'):
-            # URL = '/accounts/users/' + self.request.user.username + '/'
             return reverse_lazy('accounts:user_profile',
-             kwargs = {'username':self.request.user.username})
+                                kwargs = {'username':self.request.user.username})
         else:
             return reverse('accounts:new_profile')
 
@@ -31,9 +29,9 @@ class UserList(LoginRequiredMixin, ListView):
 
 @login_required
 def get_user_profile(request, username):
-    user = User.objects.get(username=username)
+    userprofile = UserProfile.objects.select_related().get(user__username__iexact = username)
     return render(request, 'accounts/userprofile_detail.html',
-                    {"userprofile":user.userprofile})
+                    {"userprofile": userprofile})
 
 # CRUD views
 class SignUp(CreateView):

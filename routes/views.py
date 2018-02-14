@@ -51,21 +51,21 @@ class RouteList(ListView):
     model = Route
 
     def get_queryset(self):
-        routes = Route.objects.select_related().filter(location = self.kwargs['pk'])
+        routes = Route.objects.select_related().filter(location__slug__iexact = self.kwargs.get('slug'))
         self.route_list = []
         for route in routes:
             route.rating = Ascent.objects.filter(route = route.pk).filter(rating__range = range(1,3)).aggregate(Avg('rating'))['rating__avg']
-            if route.location:
-                route.lat = route.location.location.split(',')[0]
-                route.lng = route.location.location.split(',')[1]
             self.route_list.append(route)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        self.crag = Place.objects.get(slug=self.kwargs.get('slug'))
+        context['crag'] = self.crag
+        context['lat'] = self.crag.location.split(',')[0]
+        context['lng'] = self.crag.location.split(',')[1]
         if self.route_list:
             context['route_list'] = self.route_list
-            context['lat'] = self.route_list[0].lat
-            context['lng'] = self.route_list[0].lng
+        print(context)
         return context
 
 class UserAscentList(ListView):
@@ -75,12 +75,24 @@ class UserAscentList(ListView):
     def get_queryset(self):
         return Ascent.objects.select_related().filter(user__username__iexact = self.kwargs.get('username'))
 
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['user_prof'] = User.objects.get(username = self.kwargs.get('username'))
+        return context
+
 class RouteAscentList(ListView):
     model = Ascent
     template_name = 'routes/route_ascent_list.html'
 
     def get_queryset(self):
-        return Ascent.objects.select_related().filter(route = self.kwargs['pk'])
+        return Ascent.objects.select_related().filter(route__slug__iexact = self.kwargs.get('route_slug'),
+         route__location__slug__iexact = self.kwargs.get('place_slug'))
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['route'] = Route.objects.get(slug = self.kwargs.get('route_slug'))
+        context['place'] = Place.objects.get(slug = self.kwargs.get('place_slug'))
+        return context
 
 # CRUD
 class CreateRoute(LoginRequiredMixin, CreateView):
@@ -90,6 +102,16 @@ class CreateRoute(LoginRequiredMixin, CreateView):
 
     def get_initial(self):
         location = Place.objects.latest()
+        return {'location': location}
+
+class CreateRouteFromCrag(LoginRequiredMixin, CreateView):
+    model = Route
+    fields = ['location', 'name', 'route_type', 'protection', 'scale', 'grade']
+
+    def get_initial(self):
+        location = Place.objects.get(slug = self.kwargs.get('slug'))
+        self.success_url = reverse_lazy('routes:route_list',
+        kwargs = {'slug': location.slug})
         return {'location': location}
 
 class CreatePlace(LoginRequiredMixin, CreateView):
@@ -111,6 +133,22 @@ class CreateAscent(LoginRequiredMixin, CreateView):
 
     def get_initial(self):
         route = Route.objects.latest()
+        return {'route': route}
+
+class CreateAscentFromRoute(LoginRequiredMixin, CreateView):
+    model = Ascent
+    form_class = forms.AscentForm
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.success_url = reverse_lazy('routes:user_ascents', kwargs={'username': self.object.user.username})
+        self.object.save()
+        return super().form_valid(form)
+
+    def get_initial(self):
+        route = Route.objects.get(slug = self.kwargs.get('route_slug'),
+        location__slug = self.kwargs.get('place_slug'))
         return {'route': route}
 
 

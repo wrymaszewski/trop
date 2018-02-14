@@ -1,13 +1,13 @@
 {% extends "indoor/indoor_base.html" %}
 {% block indoor_content %}
-  <h1>Training {{top_list.0.training}}</h1>
+  <h1>Training {{training}}</h1>
   <table class="table datatable">
     <thead>
       <th>Grade</th>
       <th>Type</th>
       <th>Scale</th>
       <th>Style</th>
-    {% if user == top_list.0.training.user %}
+    {% if user == training.user %}
       <th>Modify</th>
     {% endif %}
     </thead>
@@ -18,7 +18,7 @@
         <td>{{top.get_route_type_display}}</td>
         <td>{{top.get_scale_display}}</td>
         <td>{{top.get_ascent_style_display}}</td>
-      {% if user == top_list.0.training.user %}
+      {% if user == training.user %}
         <td>
           <a href="{% url 'indoor:edit_top' pk=top.pk %}"><span class="fas fa-edit" ></span> </a>
           <a href="{% url 'indoor:delete_top' pk=top.pk %}"><span class="fas fa-trash" ></span> </a>
@@ -29,5 +29,5 @@
     </tbody>
   </table>
   {% include "_map.html" %}
-  <a href="{% url 'indoor:new_top' %}">Add a Top</a>
+  <a href="{% url 'indoor:new_top' pk=training.pk %}">Add a Top</a>
 {% endblock indoor_content %}

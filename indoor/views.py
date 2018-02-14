@@ -12,7 +12,8 @@ class TrainingList(LoginRequiredMixin, ListView):
     model = models.Training
 
     def get_queryset(self):
-        return models.Training.objects.select_related().filter(user__username__iexact = self.kwargs.get('username'))
+        queryset = super().get_queryset()
+        return queryset.filter(user__username__iexact = self.kwargs.get('username'))
 
 class TopList(LoginRequiredMixin, ListView):
     model = models.Top
@@ -27,6 +28,7 @@ class TopList(LoginRequiredMixin, ListView):
         context['top_list'] = self.tops
         context['lat'] = self.training.location.location.split(',')[0]
         context['lng'] = self.training.location.location.split(',')[1]
+        context['training'] = self.training
         return context
 
 # CRUD operations
@@ -40,30 +42,33 @@ class CreateGym(LoginRequiredMixin, CreateView):
 class CreateTraining(LoginRequiredMixin, CreateView):
     model = models.Training
     form_class = forms.TrainingForm
-    success_url = reverse_lazy('indoor:new_top')
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
+        self.success_url = reverse_lazy('indoor:new_top', kwargs={'pk': self.object.pk})
         return super().form_valid(form)
 
-    def get_initial(self):
-        return {'location': models.Gym.objects.latest()}
+    # def get_initial(self):
+    #     return {'location': models.Gym.objects.latest()}
 
 class CreateTop(LoginRequiredMixin, CreateView):
     model = models.Top
     form_class = forms.TopForm
-    success_url = reverse_lazy('indoor:new_top')
-    training = models.Training.objects.latest()
 
     def get_initial(self):
-        return {'training': self.training}
+        return {'training': models.Training.objects.get(pk=self.kwargs.get('pk'))}
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['training'] = self.training
+        context['training'] = models.Training.objects.get(pk = self.kwargs.get('pk'))
         return context
+
+    def form_valid(self,form):
+        self.success_url = reverse_lazy('indoor:new_top', kwargs = {'pk': self.kwargs.get('pk')})
+        return super().form_valid(form)
+
 
 
 class UpdateTraining(LoginRequiredMixin, UpdateView):
@@ -93,7 +98,7 @@ class DeleteTraining(LoginRequiredMixin, DeleteView):
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
-        success_url = reverse_lazy('indoor:training_list', kwargs = {'pk':self.object.user.pk})
+        success_url = reverse_lazy('indoor:training_list', kwargs = {'username':self.object.user.username})
         self.object.delete()
         return HttpResponseRedirect(success_url)
 

@@ -1,7 +1,7 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
 {% if route_list %}
-  <h1 class="text-center" >{{route_list.0.location}}</h1>
+  <h1 class="text-center" >{{crag}}</h1>
   <table class="table datatable">
     <thead>
       <th>Name</th>
@@ -13,7 +13,7 @@
     <tbody>
     {% for object in route_list %}
       <tr>
-        <td><a href="{% url 'routes:route_ascents' pk=object.pk %}">{{object.name}}</a></td>
+        <td><a href="{% url 'routes:route_ascents' route_slug=object.slug place_slug=crag.slug %}">{{object.name}}</a></td>
         <td>{{object.get_route_type_display}}</td>
         <td>{{object.get_protection_display}}</td>
         <td>{{object.grade}}</td>
@@ -22,9 +22,9 @@
     {% endfor %}
     </tbody>
   </table>
-{% include "_map.html" %}
 {% else %}
 <h1>No routes were found</h1>
 {% endif %}
-  <a href="{% url 'routes:new_route' %}">Add a Route</a>
+{% include "_map.html" %}
+  <a href="{% url 'routes:new_route_from_crag' slug=crag.slug %}">Add a Route</a>
 {% endblock route_content %}

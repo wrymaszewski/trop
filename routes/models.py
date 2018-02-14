@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from location_field.models.plain import PlainLocationField
 from django.contrib.auth import get_user_model
 
@@ -7,7 +8,8 @@ User = get_user_model()
 # Create your models here.
 
 class Place(models.Model):
-    name = models.CharField(max_length = 100)
+    name = models.CharField(max_length = 100, unique=True)
+    slug = models.SlugField(allow_unicode = True)
     city = models.CharField(max_length = 100, verbose_name = 'Region')
     country = models.CharField(max_length = 100)
     location = PlainLocationField(based_fields=['city'], zoom=7)
@@ -18,6 +20,7 @@ class Place(models.Model):
         return "{} ({}, {})".format(self.name, self.city, self.country)
 
     def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
         self.name = self.name.capitalize()
         self.city = self.city.capitalize()
         lat = self.location.split(',')[0]
@@ -60,6 +63,7 @@ class Route(models.Model):
                             (MX,'Mixed'))
 
         name = models.CharField(max_length = 100)
+        slug = models.SlugField(allow_unicode = True)
         route_type = models.CharField(max_length = 50, choices = ROUTE_TYPE_CHOICES, default = SP)
         protection = models.CharField(max_length = 100, choices = PROTECTION_CHOICES, default = EQ)
         scale = models.CharField(max_length = 100, choices = SCALE_CHOICES, default = FR)
@@ -69,6 +73,7 @@ class Route(models.Model):
         updated_at = models.DateTimeField(auto_now=True)
 
         def save(self, *args, **kwargs):
+            self.slug = slugify(self.name)
             self.name = self.name.capitalize()
             if self.scale == 'YDS' or self.scale == 'FR':
                 self.grade = self.grade.lower()
