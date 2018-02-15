@@ -19,7 +19,9 @@ Endomondo for Climbers. It has 3 modules: <b>accounts</b>, <b>routes</b>, <b>ind
 
 ## To do
 
-- [x] indoor
+- [x] accounts module
+- [x] routes module
+- [x] indoor module
 - [ ] mobile version
 
 ## CLI commands
