@@ -1,20 +1,125 @@
+// ~~~~~~~~~~~~~~~~~~~~~~~~
+// colors
+
+$orange: #e4730a;
+$white: #fff;
+$black: #000;
+
+@mixin hover {
+    transition: 0.6s linear;
+
+    &:hover {
+            color: $orange;
+    }
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~
+// body
+
 body {
     margin: 0;
     padding: 0;
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~
+// logo
+
+.logo {
+    font-family: Bungee, sans-serif;
+    text-decoration: none;
+    color: $black;
+    font-size: xx-large;
+    @include hover;
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~
+// ...
+
 .container {
     height: 1000px;
-    width: 1200px;
+    width: 900px;
     margin: 0 auto;
     background-color: #909090;
+    font-family: 'Roboto', sans-serif;
     
-    nav {
+    // ~~~~~~~~~~~~~~~~~~~~~~~~
+    // navigation bar
+
+    .navbar {
+        
         background-color: #585858;
+        height: 70px;
+        display: flex;
+
+        align-items: center;
+        justify-content: space-between;
+
+        .nav-element {
+            
+            display: flex;
+            align-items: center;
+            padding: 0;
+            height: 100%;
+
+            .nav-item {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                list-style: none;
+
+                .nav-link {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: $black;
+                    text-decoration: none;
+                    padding: 0 10px;
+                    height: 100%;
+
+                    @include hover;      
+                }              
+            }
+        }
     }
+    // ~~~~~~~~~~~~~~~~~~~~~~~~
+    // welcome page
 
     .welcome {
         
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+        .logo {
+            margin: 25px; 
+            font-size: 5rem;
+        }
+
+        .slogan {
+
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.8rem;
+            margin: 25px;
+
+            .high {
+                text-transform: uppercase;
+                color: $orange;
+                font-weight: bolder;
+            }
+
+        }
+
+        .fas, .fa-arrow-up {
+            color: $orange;
+            font-size: 2.5rem;
+        }
+
+        .random-pic {
+            border-radius: 12%;
+            margin: 25px;
+        }
     }
 }
 
