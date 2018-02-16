@@ -1,0 +1,5 @@
+body { margin: 0; padding: 0; }
+
+.container { height: 1000px; width: 1200px; margin: 0 auto; background-color: #909090; }
+
+.container nav { background-color: #585858; }
