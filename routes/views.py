@@ -2,14 +2,15 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView
 from django.views.generic.edit import DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-# from accounts.models import User
-from django.db.models import Avg
+from django.db.models import Avg, Count
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
-
 from .models import Place, Ascent, Route
 from . import forms
+from .scales import convert_scale
+from chartit import Chart, DataPool
+from . import charts
 
 # Create your views here.
 
@@ -51,9 +52,9 @@ class RouteList(ListView):
     model = Route
 
     def get_queryset(self):
-        routes = Route.objects.select_related().filter(location__slug__iexact = self.kwargs.get('slug'))
+        self.routes =  Route.objects.select_related().filter(location__slug__iexact = self.kwargs.get('slug'))
         self.route_list = []
-        for route in routes:
+        for route in self.routes:
             route.rating = Ascent.objects.filter(route = route.pk).filter(rating__range = range(1,3)).aggregate(Avg('rating'))['rating__avg']
             self.route_list.append(route)
 
@@ -65,7 +66,7 @@ class RouteList(ListView):
         context['lng'] = self.crag.location.split(',')[1]
         if self.route_list:
             context['route_list'] = self.route_list
-        print(context)
+        context['chart'] = charts.route_pie_chart(self, **kwargs)
         return context
 
 class UserAscentList(ListView):
@@ -78,6 +79,10 @@ class UserAscentList(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['user_prof'] = User.objects.get(username = self.kwargs.get('username'))
+        context['chart_list'] = [
+                                charts.user_ascent_chart(self, **kwargs),
+                                charts.user_ascent_pie_chart(self, **kwargs)
+                                ]
         return context
 
 class RouteAscentList(ListView):
@@ -92,6 +97,10 @@ class RouteAscentList(ListView):
         context = super().get_context_data(*args, **kwargs)
         context['route'] = Route.objects.get(slug = self.kwargs.get('route_slug'))
         context['place'] = Place.objects.get(slug = self.kwargs.get('place_slug'))
+        context['chart_list'] = [
+                                charts.route_ascent_chart(self, **kwargs),
+                                charts.ascent_pie_chart(self, **kwargs)
+                                ]
         return context
 
 # CRUD
@@ -101,8 +110,9 @@ class CreateRoute(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('routes:new_ascent')
 
     def get_initial(self):
-        location = Place.objects.latest()
-        return {'location': location}
+        if Place.objects.all():
+            location = Place.objects.latest()
+            return {'location': location}
 
 class CreateRouteFromCrag(LoginRequiredMixin, CreateView):
     model = Route
@@ -116,7 +126,7 @@ class CreateRouteFromCrag(LoginRequiredMixin, CreateView):
 
 class CreatePlace(LoginRequiredMixin, CreateView):
     model = Place
-    fields = ('name', 'city', 'country', 'location')
+    form_class = forms.PlaceForm
     success_url = reverse_lazy('routes:new_route')
 
 
@@ -132,8 +142,9 @@ class CreateAscent(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_initial(self):
-        route = Route.objects.latest()
-        return {'route': route}
+        if Route.objects.all():
+            route = Route.objects.latest()
+            return {'route': route}
 
 class CreateAscentFromRoute(LoginRequiredMixin, CreateView):
     model = Ascent

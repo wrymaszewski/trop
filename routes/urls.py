@@ -26,5 +26,4 @@ urlpatterns = [
     name='new_route_from_crag'),
     url(r'^crag/new/$', views.CreatePlace.as_view(),
     name='new_place')
-
 ]

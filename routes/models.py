@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from location_field.models.plain import PlainLocationField
 from django.contrib.auth import get_user_model
+from .scales import convert_scale
 
 User = get_user_model()
 
@@ -23,8 +24,6 @@ class Place(models.Model):
         self.slug = slugify(self.name)
         self.name = self.name.capitalize()
         self.city = self.city.capitalize()
-        lat = self.location.split(',')[0]
-        lng = self.location.split(',')[1]
         self.country = self.country.capitalize()
         super().save(*args, **kwargs)
 
@@ -52,7 +51,7 @@ class Route(models.Model):
                         (FR,'French'),
                         (UIAA,'UIAA'),
                         (POL,'Polish'),
-                        (V,'Verm'))
+                        (V,'Vermin'))
 
         # Protection
         EQ = 'EQ'
@@ -66,13 +65,27 @@ class Route(models.Model):
         slug = models.SlugField(allow_unicode = True)
         route_type = models.CharField(max_length = 50, choices = ROUTE_TYPE_CHOICES, default = SP)
         protection = models.CharField(max_length = 100, choices = PROTECTION_CHOICES, default = EQ)
-        scale = models.CharField(max_length = 100, choices = SCALE_CHOICES, default = FR)
-        grade = models.CharField(max_length = 20)
+        scale = models.CharField(max_length = 50, choices = SCALE_CHOICES, default = FR)
+        grade = models.CharField(max_length = 20, null= True, blank=True)
+        grade_fr = models.CharField(max_length = 20, null= True, blank=True)
+        # grade_yds = models.CharField(max_length = 20, null= True, blank=True)
+        # grade_uiaa = models.CharField(max_length = 20, null= True, blank=True)
+        # grade_pol = models.CharField(max_length = 20, null= True, blank=True)
+        # grade_bld_v = models.CharField(max_length = 20, null= True, blank=True)
+        grade_bld_fr = models.CharField(max_length = 20, null= True, blank=True)
         location = models.ForeignKey(Place ,related_name='routes', verbose_name = 'Crag', on_delete = models.CASCADE)
         created_at = models.DateTimeField(auto_now_add=True)
         updated_at = models.DateTimeField(auto_now=True)
 
         def save(self, *args, **kwargs):
+            if self.route_type=='BLD':
+                # self.grade_bld_v = convert_scale(self, 'V')
+                self.grade_bld_fr = convert_scale(self, 'FR')
+            else:
+                self.grade_fr = convert_scale(self, 'FR')
+                # self.grade_yds = convert_scale(self, 'YDS')
+                # self.grade_uiaa = convert_scale(self, 'UIAA')
+                # self.grade_pol = convert_scale(self, 'POL')
             self.slug = slugify(self.name)
             self.name = self.name.capitalize()
             if self.scale == 'YDS' or self.scale == 'FR':

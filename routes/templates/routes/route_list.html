@@ -22,9 +22,20 @@
     {% endfor %}
     </tbody>
   </table>
+
+  {% load chartit %}
+  {{chart|load_charts:"c1"}}
+  <div id="c1"></div>
+
 {% else %}
 <h1>No routes were found</h1>
 {% endif %}
+
+
+
 {% include "_map.html" %}
   <a href="{% url 'routes:new_route_from_crag' slug=crag.slug %}">Add a Route</a>
+
+
+
 {% endblock route_content %}

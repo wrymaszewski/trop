@@ -28,6 +28,12 @@
     {% endfor %}
     </tbody>
   </table>
+
+  {% load chartit %}
+  {{chart_list|load_charts:'pie1,pie2'}}
+  <div id="pie1"></div>
+  <div id="pie2"></div>
+
   {% include "_map.html" %}
   <a href="{% url 'indoor:new_top' pk=training.pk %}">Add a Top</a>
 {% endblock indoor_content %}

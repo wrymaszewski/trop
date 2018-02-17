@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'location_field.apps.DefaultConfig',
     'django_extensions',
     'bootstrapform',
+    'chartit',
     'accounts',
     'routes',
     'indoor'

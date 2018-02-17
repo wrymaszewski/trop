@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from location_field.models.plain import PlainLocationField
 from routes.models import Route, Ascent
+from routes.scales import convert_scale
 # Create your models here.
 User = get_user_model()
 
@@ -49,7 +50,9 @@ class Top(models.Model):
         related_name='tops', on_delete=models.CASCADE)
     route_type = models.CharField(max_length = 100, choices = ROUTE_TYPE_CHOICES, default=R)
     scale = models.CharField(max_length = 100, choices = Route.SCALE_CHOICES, default = Route.FR)
-    grade = models.CharField(max_length=10)
+    grade = models.CharField(max_length=20)
+    grade_fr = models.CharField(max_length=20, blank=True, null=True)
+    grade_bld_fr = models.CharField(max_length=20, blank=True, null=True)
     ascent_style = models.CharField(max_length = 100, choices = Ascent.ASCENT_STYLE_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -59,4 +62,9 @@ class Top(models.Model):
             self.grade = self.grade.lower()
         else:
             self.grade = self.grade.upper()
+
+        if self.route_type=='BLD':
+            self.grade_bld_fr = convert_scale(self, 'FR')
+        else:
+            self.grade_fr = convert_scale(self, 'FR')
         super().save(*args, **kwargs)

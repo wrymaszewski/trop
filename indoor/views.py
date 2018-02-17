@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from . import models, forms
+from . import models, forms, charts
 from django.views.generic import (CreateView, UpdateView,
     DeleteView, ListView, DetailView)
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -15,6 +15,11 @@ class TrainingList(LoginRequiredMixin, ListView):
         queryset = super().get_queryset()
         return queryset.filter(user__username__iexact = self.kwargs.get('username'))
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['chart'] = charts.gym_pie_chart(self,**kwargs)
+        return context
+        
 class TopList(LoginRequiredMixin, ListView):
     model = models.Top
     template_name = 'indoor/top_list.html'
@@ -29,6 +34,10 @@ class TopList(LoginRequiredMixin, ListView):
         context['lat'] = self.training.location.location.split(',')[0]
         context['lng'] = self.training.location.location.split(',')[1]
         context['training'] = self.training
+        context['chart_list'] = [
+                                charts.training_grade_pie_chart(self,**kwargs),
+                                charts.training_style_pie_chart(self, **kwargs)
+                                ]
         return context
 
 # CRUD operations
@@ -50,8 +59,6 @@ class CreateTraining(LoginRequiredMixin, CreateView):
         self.success_url = reverse_lazy('indoor:new_top', kwargs={'pk': self.object.pk})
         return super().form_valid(form)
 
-    # def get_initial(self):
-    #     return {'location': models.Gym.objects.latest()}
 
 class CreateTop(LoginRequiredMixin, CreateView):
     model = models.Top

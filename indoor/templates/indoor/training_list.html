@@ -29,6 +29,11 @@
     {% endfor %}
     </tbody>
   </table>
+
+{% load chartit %}
+{{chart|load_charts:'pie'}}
+<div id="pie"></div>
+
 {% else %}
   <h2>There were no records found</h2>
 {% endif %}

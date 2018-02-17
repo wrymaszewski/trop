@@ -28,6 +28,13 @@
     {% endfor %}
     </tbody>
   </table>
+
+  {% load chartit %}
+  {{chart_list|load_charts:"line,pie"}}
+  <div id="line"></div>
+  <div id="pie"></div>
+
+
 {% else %}
     <h1>No ascents were found</h1>
 {% endif %}
