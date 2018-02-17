@@ -36,7 +36,7 @@
             <li class="nav-item"><a class="nav-link" href="{% url 'routes:places' %}">Climbing locations</a></li>
             {% if user.is_authenticated %}
               <li class="nav-item"><a class="nav-link" href="{% url 'routes:new_ascent' %}">Outdoor activity</a></li>
-              <li class="nav-item"><a class="nav-link" href="{% url 'indoor:training_list' username=user.username %}">Add indoor activity</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'indoor:training_list' username=user.username %}">Indoor activity</a></li>
               <li class="nav-item"><a class="nav-link" href="{% url 'accounts:users' %}">User profiles</a></li>
             {% endif %}
           </ul>
