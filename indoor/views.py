@@ -17,9 +17,10 @@ class TrainingList(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['chart'] = charts.gym_pie_chart(self,**kwargs)
+        context['chart_list'] = [charts.gym_pie_chart(self.kwargs.get('username')),
+                                charts.training_line_chart(self.kwargs.get('username'))]
         return context
-        
+
 class TopList(LoginRequiredMixin, ListView):
     model = models.Top
     template_name = 'indoor/top_list.html'
@@ -35,8 +36,8 @@ class TopList(LoginRequiredMixin, ListView):
         context['lng'] = self.training.location.location.split(',')[1]
         context['training'] = self.training
         context['chart_list'] = [
-                                charts.training_grade_pie_chart(self,**kwargs),
-                                charts.training_style_pie_chart(self, **kwargs)
+                                charts.training_grade_pie_chart(self.kwargs.get('pk')),
+                                charts.training_style_pie_chart(self.kwargs.get('pk'))
                                 ]
         return context
 

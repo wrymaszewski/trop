@@ -66,7 +66,7 @@ class RouteList(ListView):
         context['lng'] = self.crag.location.split(',')[1]
         if self.route_list:
             context['route_list'] = self.route_list
-        context['chart'] = charts.route_pie_chart(self, **kwargs)
+        context['chart'] = charts.route_pie_chart(self.kwargs.get('slug'))
         return context
 
 class UserAscentList(ListView):
@@ -80,8 +80,8 @@ class UserAscentList(ListView):
         context = super().get_context_data(*args, **kwargs)
         context['user_prof'] = User.objects.get(username = self.kwargs.get('username'))
         context['chart_list'] = [
-                                charts.user_ascent_chart(self, **kwargs),
-                                charts.user_ascent_pie_chart(self, **kwargs)
+                                charts.user_ascent_chart(self.kwargs.get('username')),
+                                charts.user_ascent_pie_chart(self.kwargs.get('username'))
                                 ]
         return context
 
@@ -98,8 +98,8 @@ class RouteAscentList(ListView):
         context['route'] = Route.objects.get(slug = self.kwargs.get('route_slug'))
         context['place'] = Place.objects.get(slug = self.kwargs.get('place_slug'))
         context['chart_list'] = [
-                                charts.route_ascent_chart(self, **kwargs),
-                                charts.ascent_pie_chart(self, **kwargs)
+                                charts.route_ascent_chart(self.kwargs.get('route_slug')),
+                                charts.ascent_pie_chart(self.kwargs.get('route_slug'))
                                 ]
         return context
 

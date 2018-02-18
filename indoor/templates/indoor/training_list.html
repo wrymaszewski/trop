@@ -31,7 +31,8 @@
   </table>
 
 {% load chartit %}
-{{chart|load_charts:'pie'}}
+{{chart_list|load_charts:'pie,line'}}
+<div id="line"></div>
 <div id="pie"></div>
 
 {% else %}

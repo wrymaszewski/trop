@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from indoor import charts as indoor_charts
+from routes import charts as outdoor_charts
 
 User = get_user_model()
 
@@ -30,8 +32,18 @@ class UserList(LoginRequiredMixin, ListView):
 @login_required
 def get_user_profile(request, username):
     userprofile = UserProfile.objects.select_related().get(user__username__iexact = username)
+    context_dict = {
+                    "userprofile": userprofile,
+                    "chart_list": [
+                                    indoor_charts.training_line_chart(username),
+                                    indoor_charts.gym_pie_chart(username),
+                                    outdoor_charts.user_ascent_chart(username),
+                                    outdoor_charts.user_ascent_pie_chart(username)
+                                    ],
+                    }
+
     return render(request, 'accounts/userprofile_detail.html',
-                    {"userprofile": userprofile})
+                    context_dict)
 
 # CRUD views
 class SignUp(CreateView):
