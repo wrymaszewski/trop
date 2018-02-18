@@ -2,7 +2,7 @@
 {% block accounts_content %}
 
 <div class="user-list">
-  <h1>List of Visible Users</h1>
+  <h1>Visible users</h1>
   <ul>
     {% for user in  object_list %}
     {% if not user.userprofile.hidden %}

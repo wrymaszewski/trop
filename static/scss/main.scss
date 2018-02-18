@@ -16,7 +16,7 @@ body {
 // main elements
 
 .container {
-    height: 1000px;
+    // height: 1000px;
     width: 900px;
     margin: 0 auto;
     // background-color: #909090;
@@ -74,108 +74,203 @@ body {
         }
     }
 
-    // ~~~~~~~~~~~~~~~~~~~~~~~~
-    // back button
-
-    .back {
-        display: flex;
-        @include main-margin;
-        justify-content: flex-end;
-        
-        .back-button {
-            height: 50px;
-            width: 70px;
-            border-radius: 15%; 
-            cursor: pointer;
-            color: $almost-black;
-            background-color: $grey;
-            font-family: 'Roboto', sans-serif;
-            font-size: large;
-            font-weight: bold;
-            border: none;
-            @include hover;
-        }
-    }
-
-    // ~~~~~~~~~~~~~~~~~~~~~~~~
-    // main page
-
-    .welcome {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        @include main-margin;
-
-        .logo {
-            @include logo;
-            // margin: 25px; 
-            font-size: 5rem;
-        }
-
-        .slogan {
-
-            font-family: 'Roboto', sans-serif;
-            font-size: 2.8rem;
-
-            .high {
-                text-transform: uppercase;
-                color: $orange;
-                font-weight: bolder;
-            }
-
-        }
-
-        .fas, .fa-arrow-up {
-            color: $orange;
-            font-size: 2.5rem;
-        }
-
-        .random-pic {
-            border-radius: 12px;
-            margin: 25px;
-        }
-
-    }
-
-    // ~~~~~~~~~~~~~~~~~~~~~~~~
-    // user-profile pages
-
-    .users {
-        
-        display: flex;
-        justify-content: space-between;
-        @include main-margin;
-        
+    .content {
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~
-        // user-profile 
+        // buttons
 
-        .user-list {
+        .buttons {
             display: flex;
-            flex-direction: column;    
-            
+            @include main-margin;
+            justify-content: space-between;
 
-            h1 {
-                border-bottom: 1px solid #ccc;
+            .add-route, .back-button {
+                height: 50px;
+                width: 70px;
+                border-radius: 12px;
+                cursor: pointer;
+                color: $almost-black;
+                background-color: $grey;
+                font-family: 'Roboto', sans-serif;
+                font-size: large;
+                font-weight: bold;
+                border: none;
+                @include hover;
+            }
+            
+            .add-route {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                width: 140px;
+            }
+        }
+
+        // ~~~~~~~~~~~~~~~~~~~~~~~~
+        // main page
+
+        .welcome {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            @include main-margin;
+
+            .logo {
+                @include logo;
+                // margin: 25px; 
+                font-size: 5rem;
             }
 
-            ul {
+            .slogan {
+                font-family: 'Roboto', sans-serif;
+                font-size: 2.8rem;
+        
+                .high {
+                    text-transform: uppercase;
+                    color: $orange;
+                    font-weight: bolder;
+                }
 
-                list-style: none;
-                padding: 0;
+            }
 
-                li {
+            .fas, .fa-arrow-up {
+                color: $orange;
+                font-size: 2.5rem;
+            }
+            
+            .random-pic {
+                border-radius: 12px;
+                margin: 25px;
+            }
+        }
+
+        // ~~~~~~~~~~~~~~~~~~~~~~~~
+        // user-profile pages
+        .users {
+            display: flex;
+            justify-content: space-between;
+            @include main-margin;
+        
+            // ~~~~~~~~~~~~~~~~~~~~~~~~
+            // user-profile 
+        
+            .user-list {
+                display: flex;
+                flex-direction: column;    
+                width: 100%;
+
+                h1 {
                     border-bottom: 1px solid #ccc;
-                    display: flex;
-                    @include hover;
+                }
 
-                    a {
-                        text-decoration: none;
-                        color: $almost-black;
-                        line-height: 40px;
-                        width: 100%;
+                ul {
+            
+                    list-style: none;
+                    padding: 0;
+            
+                    li {
+                        border-bottom: 1px solid #ccc;
+                        display: flex;
+                        @include hover;
+            
+                        a {
+                            text-decoration: none;
+                            color: $almost-black;
+                            line-height: 40px;
+                            width: 100%;
+                        }
+            
+                        // TEN HOVER POWINIEN BYĆ W A !!!!
+                        &:hover {
+                            background-color: #4c4b4b;
+                            font-size: larger;
+                            font-weight: bold;
+                            color: $orange;
+                        }
                     }
+                }  
+            }
+
+            // ~~~~~~~~~~~~~~~~~~~~~~~~
+            // user-profile
+        
+            .user-profile {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                height: 100%;
+
+                .user-image,
+                .user-data,
+                .user-options {
+
+                    img {
+                        max-height: 350px;
+                        // max-width: 300px;
+                        border-radius: 12px;
+                    }
+                }
+
+                .user-data {
+                
+                    padding: 20px;
+                
+                    .user-name {
+                        display: inline-block;
+                    }
+                }
+                
+                .user-options {
+                
+                    h2, h3 {
+                        display: flex;
+                        width: 110px;
+                        height: 50px;
+                    }
+                
+                    h2 > a,
+                    h3 > a {
+                        display: flex;
+                        align-items: center;
+                        padding-left: 10px;
+                        width: 100%;
+                        color: #000;
+                        text-decoration: none;
+                        border-radius: 12px;
+                
+                        @include hover;
+                    }
+                }
+            }
+        }
+    }
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~
+    // routes
+
+    .routes {
+        display: flex;
+        flex-direction: column;
+        @include main-margin;
+
+        h1, h2, h3, h4 {
+            border-bottom: 1px solid #ccc;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;    
+
+            li {
+    
+                a {
+                    display: flex;
+                    text-decoration: none;
+                    color: $almost-black;
+                    line-height: 40px;
+                    @include hover;
 
                     &:hover {
                         background-color: #4c4b4b;
@@ -183,32 +278,12 @@ body {
                         font-weight: bold;
                         color: $orange;
                     }
-                }
-            }  
+                }            
+            }
         }
 
-        // ~~~~~~~~~~~~~~~~~~~~~~~~
-        // user-profile
-
-        .user-profile {
-            display: flex;
-            justify-content: space-between;
-
-            width: 100%;
-            height: 100%;
-            
-            .user-image,
-            .user-name,
-            .user-options {
-                padding: 20px;
-            }
-
-            img {
-                max-height: 350px;
-                max-width: 300px;
-                border-radius: 12px;
-            }
+        .region-list, .sector-list {
+            display: none;
         }
     }
-}
-
+}   

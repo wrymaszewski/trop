@@ -1,43 +1,32 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
-  <h1>List of climbing locations</h1>
-  <div class="panel-group">
-    <div class="panel panel-default">
-      <!-- List of countries -->
+
+  <h1>Climbing locations</h1>
+  <ul>
+    <!-- List of countries -->
     {% for country, city_dict in place_dict.items %}
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <a data-toggle = "collapse" href="#{{country|slugify}}">{{country}}</a>
-        </h3>
-      </div>
-      <div id="{{country|slugify}}" class="panel-collapse collapse">
-        <!-- List of cities -->
-        {% for city, places in city_dict.items %}
-          <ul class="list-group">
-            <li class="list-group-item">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">
-                    <a data-toggle = "collapse" href="#{{city|slugify}}">{{city}}</a>
-                  </h3>
-                </div>
-                <!-- List of Regions -->
-                <div id="{{city|slugify}}" class="panel-collapse collapse">
-                  <ul class="list-group">
-                    {% for place in places %}
-                    <li class="list-group-item">
-                      <a href="{% url 'routes:route_list' slug=place.slug %}">{{place.name}}</a>
-                    </li>
-                    {% endfor %}
-                  </ul>
-                </div>
-              </div>
+    <li class="country-list">
+      <h2><a class="countries" href="#{{country|slugify}}">{{country}}</a></h2>
+      
+      <ul>
+          <!-- List of cities / regions / location -->
+          <li class="region-list">
+          {% for city, places in city_dict.items %}                
+          <h3><a class="regions" href="#{{city|slugify}}">{{city}}</a></h3>
+          <ul>
+            <!-- List of Regions / sectors -->
+            <li class="sector-list">
+              {% for place in places %}
+              <h4><a class="sectors"  href="{% url 'routes:route_list' slug=place.slug %}">{{place.name}}</a></h4>
+              {% endfor %}
+              
             </li>
-        {% endfor %}
           </ul>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-  <a href="{% url 'routes:new_place' %}">Add a Crag</a>
+          {% endfor %}
+        </li>
+      </ul>
+    {% endfor %}
+    </li>
+  </ul>
+  
 {% endblock route_content %}
