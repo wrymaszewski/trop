@@ -11,6 +11,6 @@ $( document ).ready(function(){
     let link = $('a');
     link.on('click', function() {
         $(this).parent().next().children('li').toggle();
-
     });    
+    
 });
