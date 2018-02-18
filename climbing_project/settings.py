@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'chartit',
     'accounts',
     'routes',
-    'indoor'
+    'indoor',
+    'posts'
 ]
 
 MIDDLEWARE = [

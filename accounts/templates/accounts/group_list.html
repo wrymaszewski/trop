@@ -1,0 +1,36 @@
+{% extends "accounts/accounts_base.html" %}
+{% block accounts_content %}
+{% if group_list %}
+  <ul>
+    {% for group in group_list %}
+      <li>
+        <a href="{% url 'accounts:single_group' slug=group.slug %}">{{group.name}}</a>
+        <br>
+        <p>{{group.description}}</p>
+        <br>
+        {% if group.members %}
+          <h3>Members: {{group.members.count}}</h3>
+            <ul>
+              {% for member in group.members.all %}
+                <li>
+                  <a href="{% url 'accounts:user_profile' username=member.username %}">
+                  {{member.username}}</a>
+                </li>
+              {% endfor %}
+            </ul>
+        {% endif %}
+        {% if user.is_authenticated %}
+          {% if user in group.members.all %}
+            <a href="{% url 'accounts:leave_group' slug=group.slug %}">Leave!</a>
+          {% else %}
+            <a href="{% url 'accounts:join_group' slug=group.slug %}">Join!</a>
+          {% endif %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <h1>No groups are available</h1>
+{% endif %}
+<h3><a href="{% url 'accounts:new_group' %}">New Group</a></h3>
+{% endblock accounts_content %}

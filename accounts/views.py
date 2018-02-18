@@ -4,11 +4,13 @@ from django.urls import reverse_lazy, reverse
 from . import forms
 from .models import UserProfile
 from django.contrib.auth.models import User
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from indoor import charts as indoor_charts
 from routes import charts as outdoor_charts
+from .models import Group, GroupMember
+from django.contrib import messages
 
 User = get_user_model()
 
@@ -72,3 +74,48 @@ class UpdateUserProfile(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return get_object_or_404(self.model, user=self.request.user)
+
+
+###### Groups
+class CreateGroup(LoginRequiredMixin, CreateView):
+    fields = ('name', 'description')
+    model = Group
+
+class SingleGroup(DetailView):
+    model = Group
+
+class ListGroups(ListView):
+    model = Group
+
+class JoinGroup(LoginRequiredMixin, RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        return reverse('accounts:single_group', kwargs={'slug':self.kwargs.get('slug')})
+
+    def get(self, request, *args, **kwargs):
+        group = get_object_or_404(Group, slug=self.kwargs.get('slug'))
+
+        try:
+            GroupMember.objects.create(user=self.request.user, group=group)
+        except IntegrityError:
+            messages.warning(self.request, 'Warning, already a member!')
+        else:
+            messages.success(self.request, 'You are now a member!')
+        return super().get(request, *args, **kwargs)
+
+class LeaveGroup(LoginRequiredMixin, RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        return reverse('accounts:group_list')
+
+    def get(self, request, *args, **kwargs):
+
+        try:
+            membership = GroupMember.objects.filter(
+                user=self.request.user,
+                group__slug = self.kwargs.get('slug')
+            ).get()
+        except GroupMember.DoesNotExist:
+            messages.warning(self.request, 'Sorry you are not in this group!')
+        else:
+            membership.delete()
+            messages.success(self.request, 'You have left the group!')
+        return super().get(request, *args, **kwargs)

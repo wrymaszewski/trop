@@ -1,0 +1,6 @@
+<form method="post">
+  {% load bootstrap %}
+  {% csrf_token %}
+  {{form|bootstrap}}
+  <input type="submit" value="Submit" class="btn btn-default">
+</form>

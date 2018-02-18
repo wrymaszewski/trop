@@ -1,0 +1,46 @@
+<div class="post-media">
+  <h3>{{post.title|safe}}</h3>
+  <div class="media-body">
+    <h5 class="media-heading">
+      <span class="username">
+        <img src="/media/{{post.author.userprofile.avatar}}" alt="avatar" height="40" width="40">
+        <a href="{% url 'accounts:user_profile' username=post.author.username %}">{{post.author.username}}</a>
+      </span>
+    </h5>
+    <div class="media-footer">
+      {% if user.is_authenticated and post.author == user %}
+      <a href="{% url 'posts:edit_post' pk=post.pk %}"><span class="fas fa-edit" ></span> </a>
+      <a href="{% url 'posts:delete_post' pk=post.pk %}"><span class="fas fa-trash" ></span> </a>
+      {% endif %}
+    </div>
+    <div class="comment container">
+      {% if post.comments %}
+        <h4>Comments: {{post.comments.count}}</h4>
+        <ul>
+          {% for comment in post.comments.all %}
+          <li>
+            <div class="container">
+              <h5 class="media-heading">
+                <span class="username">
+                  <img src="/media/{{comment.author.userprofile.avatar}}" alt="avatar" height="40" width="40">
+                  <a href="{% url 'accounts:user_profile' username=comment.author.username %}">{{comment.author.username}}</a>
+                </span>
+              </h5>
+              <div class="container comment-body">
+                <p>{{comment.text}}</p>
+              </div>
+              {% if user.is_authenticated and comment.author == user %}
+              <a href="{% url 'posts:edit_comment' pk=comment.pk slug=post.group.slug %}"><span class="fas fa-edit" ></span> </a>
+              <a href="{% url 'posts:delete_comment' pk=comment.pk slug=post.group.slug %}"><span class="fas fa-trash" ></span> </a>
+              {% endif %}
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <h4>No comments</h4>
+      {% endif %}
+      <a href="{% url 'posts:new_comment' pk=post.pk slug=post.group.slug %}">New Comment</a>
+    </div>
+  </div>
+</div>

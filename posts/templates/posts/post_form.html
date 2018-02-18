@@ -1,0 +1,7 @@
+{% extends "posts/posts_base.html" %}
+{% block posts_content %}
+  <h1 class="text-center">New Post</h1>
+  <div class="jumbotron">
+    {% include "posts/_form.html" %}
+  </div>
+{% endblock posts_content %}

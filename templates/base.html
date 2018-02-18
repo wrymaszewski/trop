@@ -38,6 +38,7 @@
             <li class="nav-item"><a class="nav-link" href="{% url 'accounts:users' %}">User Profiles</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'routes:new_ascent' %}">Add an Ascent</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'indoor:training_list' username=user.username %}">Indoor</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'accounts:group_list' %}">Groups</a></li>
           {% endif %}
           </ul>
           <ul class="nav navbar-nav navbar-right">

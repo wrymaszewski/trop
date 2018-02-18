@@ -1,0 +1,25 @@
+{% extends "accounts/accounts_base.html" %}
+{% block accounts_content %}
+<h1>Group: {{group.name}}</h1>
+<p>{{group.description}}</p>
+<div class="container">
+  <h3>Members: {{group.members.count}}</h3>
+  <ul>
+    {% for member in group.members.all %}
+      <li><a href="{% url 'accounts:user_profile' username=member.username%}">{{member.username}}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="container">
+{% if group.posts %}
+{% for post in  group.posts.all%}
+  {% include "posts/_post.html" %}
+{% endfor %}
+{% else %}
+  <h2>No Posts</h2>
+{% endif %}
+  <a href="{% url 'posts:new_post' slug=group.slug%}">New Post</a>
+</div>
+
+
+{% endblock accounts_content %}
