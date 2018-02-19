@@ -1,38 +1,15 @@
 {% extends "accounts/accounts_base.html" %}
 {% load static %}
 {% block accounts_content %}
-<<<<<<< HEAD
-  <h1>{{userprofile}}</h1>
-  <img src="/media/{{userprofile.avatar}}" alt="avatar" width = 200>
-  <h4>{{userprofile.first_name}}</h4>
-  <h4>{{userprofile.last_name}}</h4>
-  <h5>{{userprofile.email}}</h5>
-  <p>{{userprofile.description}}</p>
-  <h2><a href="{% url 'routes:user_ascents' username=userprofile.user.username %}">Ascents</a></h2>
-  {% if userprofile.user == user %}
-  <h3><a href="{% url 'accounts:edit_profile' username=userprofile.user.username %}">Edit Profile</a></h3>
-  <h3><a href="{% url 'indoor:training_list' username=userprofile.user.username %}">Indoor</a></h3>
-  {% endif %}
 
-{% load chartit %}
-{{chart_list|load_charts:'in_line,in_pie,out_line,out_pie'}}
 
-  <h3>Outdoor Activity</h3>
-  <div id="out_line"></div>
-  <div id="out_pie"></div>
-
-  <h3>Indoor Activity</h3>
-  <div id="in_line"></div>
-  <div id="in_pie"></div>
-
-=======
 
   <div class="user-profile">
 
     <div class="user-image">
         <img src="/media/{{userprofile.avatar}}"  alt="avatar">
     </div>
-    
+
     <div class="user-data">
       <h1>{{userprofile}}</h1>
       <h5>{{userprofile.email}}</h5>
@@ -40,15 +17,28 @@
       <h3 class="user-name">{{userprofile.last_name}}</h3>
       <p>{{userprofile.description}}</p>
     </div>
-    
+
     <div class="user-options">
         <h3><a href="{% url 'routes:user_ascents'   username=userprofile.user.username %}">Ascents</a></h3>
         {% if userprofile.user == user %}
         <h3><a href="{% url 'accounts:edit_profile' username=userprofile.user.username %}">Edit profile</a></h3>
         <h3><a href="{% url 'indoor:training_list' username=userprofile.user.username %}">Indoor</a></h3>
         {% endif %}
+
+      </div>
+      {# Charts #}
+      {% load chartit %}
+      {{chart_list|load_charts:'in_line,in_pie,out_line,out_pie'}}
+
+        <h3>Outdoor Activity</h3>
+        <div id="out_line"></div>
+        <div id="out_pie"></div>
+
+        <h3>Indoor Activity</h3>
+        <div id="in_line"></div>
+        <div id="in_pie"></div>
+
     </div>
-    
-  </div>
->>>>>>> front-end
+
+
 {% endblock accounts_content %}

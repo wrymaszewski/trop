@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- jquery -->
-    <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
     <!-- fontawesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <!-- google fonts -->
@@ -17,14 +17,11 @@
     <!-- dataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<<<<<<< HEAD
     <!-- Highcharts -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
-=======
-  
+
     <title>Trop</title>
 
->>>>>>> front-end
   </head>
   <body>
 
@@ -34,24 +31,16 @@
 
           <!-- 1 PART OF MENU -->
           <a class="logo nav-element" href="{% url 'home' %}">TROP</a>
-          
+
           <!-- 2 PART OF MENU -->
           <ul class="nav-element">
             <li class="nav-item"><a class="nav-link" href="{% url 'routes:places' %}">Climbing locations</a></li>
-<<<<<<< HEAD
           {% if user.is_authenticated %}
             <li class="nav-item"><a class="nav-link" href="{% url 'accounts:users' %}">User Profiles</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'routes:new_ascent' %}">Add an Ascent</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'indoor:training_list' username=user.username %}">Indoor</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'accounts:group_list' %}">Groups</a></li>
-          {% endif %}
-=======
-            {% if user.is_authenticated %}
-              <li class="nav-item"><a class="nav-link" href="{% url 'routes:new_ascent' %}">Outdoor</a></li>
-              <li class="nav-item"><a class="nav-link" href="{% url 'indoor:training_list' username=user.username %}">Indoor</a></li>
-              <li class="nav-item"><a class="nav-link" href="{% url 'accounts:users' %}">User profiles</a></li>
             {% endif %}
->>>>>>> front-end
           </ul>
 
           <!-- 3 PART OF MENU -->
