@@ -1,0 +1,96 @@
+// ~~~~~~~~~~~~~~~~~~~~~~~~
+// user-profile pages
+.users {
+    display: flex;
+    justify-content: space-between;
+    @include main-margin;
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~
+    // user-profile 
+
+    .user-list {
+        display: flex;
+        flex-direction: column;    
+        width: 100%;
+        h1 {
+            border-bottom: 1px solid #ccc;
+        }
+        ul {
+    
+            list-style: none;
+            padding: 0;
+    
+            li {
+                border-bottom: 1px solid #ccc;
+                display: flex;
+                
+    
+                a {
+                    text-decoration: none;
+                    color: $almost-black;
+                    line-height: 40px;
+                    width: 100%;
+                    @include hover;
+
+                    &:hover {
+                        background-color: #4c4b4b;
+                        font-size: larger;
+                        font-weight: bold;
+                        color: $orange;
+                    }
+                }
+    
+                
+            }
+        }  
+    }
+    // ~~~~~~~~~~~~~~~~~~~~~~~~
+    // user-profile
+
+    .user-profile {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        margin: 25px 0 0 0;
+        .user-image,
+        .user-data,
+        .user-options {
+            img {
+                max-height: 350px;
+                // max-width: 300px;
+                border-radius: 12px;
+            }
+        }
+        .user-data {
+        
+            padding: 20px;
+        
+            .user-name {
+                display: inline-block;
+            }
+        }
+        
+        .user-options {
+        
+            h2, h3 {
+                display: flex;
+                width: 110px;
+                height: 50px;
+            }
+        
+            h2 > a,
+            h3 > a {
+                display: flex;
+                align-items: center;
+                padding-left: 10px;
+                width: 100%;
+                color: #000;
+                text-decoration: none;
+                border-radius: 12px;
+        
+                @include hover;
+            }
+        }
+    }
+}

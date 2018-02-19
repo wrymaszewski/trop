@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-  <div class="container">
-        {% block route_content %}
-        {% endblock route_content %}
-        <input class="btn btn-default" type=button value='Back' onClick="javascript:history.go(-1);">
+
+  <div class="routes">
+    
+    {% block route_content %}
+    {% endblock route_content %}
+
   </div>
-{% endblock content %}
+  <div class="buttons">
+    <!-- I'd propose have the same elements... now there is A and INPUT -->
+    <a class="add-route" href="{% url 'routes:new_place' %}">Add crag/route</a>
+    <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
+  </div>
+  
+  {% endblock content %}

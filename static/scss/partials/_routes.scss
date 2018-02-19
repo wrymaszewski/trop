@@ -1,0 +1,33 @@
+// ~~~~~~~~~~~~~~~~~~~~~~~~
+// routes
+.routes {
+    display: flex;
+    flex-direction: column;
+    @include main-margin;
+    h1, h2, h3, h4 {
+        border-bottom: 1px solid #ccc;
+    }
+    ul {
+        list-style: none;
+        padding: 0;    
+        li {
+
+            a {
+                display: flex;
+                text-decoration: none;
+                color: $almost-black;
+                line-height: 40px;
+                @include hover;
+                &:hover {
+                    background-color: #4c4b4b;
+                    font-size: larger;
+                    font-weight: bold;
+                    color: $orange;
+                }
+            }            
+        }
+    }
+    .region-list, .sector-list {
+        display: none;
+    }
+}

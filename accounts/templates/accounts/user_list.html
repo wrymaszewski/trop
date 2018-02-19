@@ -1,11 +1,15 @@
 {% extends "accounts/accounts_base.html" %}
 {% block accounts_content %}
-  <h1 class="text-center">List of Visible Users</h1>
+
+<div class="user-list">
+  <h1>Visible users</h1>
   <ul>
     {% for user in  object_list %}
     {% if not user.userprofile.hidden %}
-    <li><a href="{% url 'accounts:user_profile' username=user.username%}">{{user.username}}</a></li>
+      <li><a href="{% url 'accounts:user_profile' username=user.username%}">{{user.username}}</a></li>
     {% endif %}
     {% endfor %}
   </ul>
+</div>
+
 {% endblock accounts_content %}

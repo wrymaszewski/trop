@@ -1,0 +1,28 @@
+// ~~~~~~~~~~~~~~~~~~~~~~~~
+// buttons
+.buttons {
+    display: flex;
+    @include main-margin;
+    justify-content: space-between;
+    .add-route, .back-button {
+        height: 50px;
+        width: 70px;
+        border-radius: 12px;
+        cursor: pointer;
+        color: $white;
+        background-color: $grey;
+        font-family: 'Roboto', sans-serif;
+        font-size: large;
+        // font-weight: bold;
+        border: none;
+        @include hover;
+    }
+    
+    .add-route {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        width: 140px;
+    }
+}

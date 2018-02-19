@@ -2,14 +2,14 @@
 {% block route_content %}
 {% load bootstrap %}
   <div class="jumbotron">
-    <h1 class="text-center">New Crag</h1>
+    <h1>New route</h1>
     <form  action="" method="post">
         {% csrf_token %}
         {{form.media}}
         {% for field in form.visible_fields %}
           {{field|bootstrap}}
         {% endfor %}
-        <input class="btn btn-primary" type="submit" value="Save" />
+        <input class="" type="submit" value="Save route" />
     </form>
   </div>
 {% endblock route_content %}
