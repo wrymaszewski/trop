@@ -7,11 +7,11 @@
     {% for country, city_dict in place_dict.items %}
     <li class="country-list">
       <h2><a class="countries" href="#{{country|slugify}}">{{country}}</a></h2>
-      
+
       <ul>
           <!-- List of cities / regions / location -->
           <li class="region-list">
-          {% for city, places in city_dict.items %}                
+          {% for city, places in city_dict.items %}
           <h3><a class="regions" href="#{{city|slugify}}">{{city}}</a></h3>
           <ul>
             <!-- List of Regions / sectors -->
@@ -19,7 +19,7 @@
               {% for place in places %}
               <h4><a class="sectors"  href="{% url 'routes:route_list' slug=place.slug %}">{{place.name}}</a></h4>
               {% endfor %}
-              
+
             </li>
           </ul>
           {% endfor %}
@@ -28,5 +28,6 @@
     {% endfor %}
     </li>
   </ul>
-  
+<a class="nav-link" href="{% url 'routes:new_ascent' %}">Add an Ascent</a>
+
 {% endblock route_content %}

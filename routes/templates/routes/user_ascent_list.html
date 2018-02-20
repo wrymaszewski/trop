@@ -1,16 +1,13 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
 {% if object_list %}
-  <h1 class="text-center">Ascents of {{user_prof}}</h1>
+  <h1 class="text-center">Ascents of <a href="{% url 'accounts:user_profile' username=user_prof%}">{{user_prof}}</a></h1>
   <table class="table datatable">
     <thead>
       <th>Route</th>
-      <th>Place</th>
-      <th>Type</th>
       <th>Grade</th>
-      <th>Protection</th>
-      <th>Date of Ascent</th>
-      <th>Style of Ascent</th>
+      <th>Date</th>
+      <th>Style</th>
       <th>Description</th>
       <th>Rating</th>
     {% if user == user_prof %}
@@ -20,12 +17,16 @@
     <tbody>
     {% for object in object_list %}
       <tr>
-        <td><a href="{% url 'routes:route_ascents' route_slug=object.route.slug place_slug=object.route.location.slug %}">{{object.route.name}}</a></td>
-        <td><a href="{% url 'routes:route_list' slug=object.route.location.slug %}">{{object.route.location.name}}</a>
-              <spam>, {{object.route.location.city}}, {{object.route.location.country}}</spam></td>
-        <td>{{object.route.get_route_type_display}}</td>
+        <td>
+          <a href="{% url 'routes:route_ascents' route_slug=object.route.slug place_slug=object.route.location.slug %}">
+            {{object.route.name}}
+          </a>
+          <span>, </span>
+          <a href="{% url 'routes:route_list' slug=object.route.location.slug %}">
+            {{object.route.location.name}}
+          </a>
+        </td>
         <td>{{object.route.grade}}</td>
-        <td>{{object.route.get_protection_display}}</td>
         <td>{{object.date}}</td>
         <td>{{object.get_ascent_style_display}}</td>
         <td>{{object.description}}</td>

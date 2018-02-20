@@ -90,18 +90,21 @@ class RouteAscentList(ListView):
     template_name = 'routes/route_ascent_list.html'
 
     def get_queryset(self):
+        self.route = Route.objects.get(slug = self.kwargs.get('route_slug'))
+        self.route.rating = Ascent.objects.filter(route = self.route.pk).filter(rating__range = range(1,3)).aggregate(Avg('rating'))['rating__avg']
         return Ascent.objects.select_related().filter(route__slug__iexact = self.kwargs.get('route_slug'),
          route__location__slug__iexact = self.kwargs.get('place_slug'))
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['route'] = Route.objects.get(slug = self.kwargs.get('route_slug'))
+        context['object'] = self.route
         context['place'] = Place.objects.get(slug = self.kwargs.get('place_slug'))
         context['chart_list'] = [
                                 charts.route_ascent_chart(self.kwargs.get('route_slug')),
                                 charts.ascent_pie_chart(self.kwargs.get('route_slug'))
                                 ]
         return context
+
 
 # CRUD
 class CreateRoute(LoginRequiredMixin, CreateView):

@@ -1,12 +1,30 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
+<h1 class="text-center">{{object.name}}</h1>
+
+  <p><strong>Sector: </strong><a href="{% url 'routes:route_list' slug=object.location.slug %}">{{object.location.name}}</a>
+  , {{object.location.city}}, {{object.location.country}}</p>
+  <p><strong>Grade: </strong>{{object.grade}}, {{object.get_scale_display}} scale</p>
+  <p><strong>Protection: </strong>{{object.get_protection_display}}</p>
+  <p><strong>Average rating: </strong>{% include "routes/_rating.html" %}</p>
+
+  <h3>Descriptions</h3>
+  {% for object in object_list%}
+  <div>
+    <a href="{% url 'accounts:user_profile' username=object.user.username %}"><img src="/media/{{object.user.userprofile.avatar}}" alt="avatar" height="40" width="40"></a>
+    <span>{{object.description}}</span>
+  </div>
+  {% endfor %}
+
+
+
+
 {% if object_list %}
-  <h1 class="text-center"> Ascents of {{route}}</h1>
   <table class="table datatable">
     <thead>
       <th>Username</th>
-      <th>Date of Ascent</th>
-      <th>Style of Ascent</th>
+      <th>Date</th>
+      <th>Style</th>
       <th>Description</th>
       <th>Rating</th>
     </thead>
@@ -38,5 +56,5 @@
 {% else %}
     <h1>No ascents were found</h1>
 {% endif %}
-  <a href="{% url 'routes:new_ascent_from_route' route_slug=route.slug place_slug=place.slug %}">New Ascent</a>
+  <a href="{% url 'routes:new_ascent_from_route' route_slug=object.slug place_slug=place.slug %}">New Ascent</a>
 {% endblock route_content %}
