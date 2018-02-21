@@ -5,7 +5,7 @@ from django.views.generic import (TemplateView, ListView, DetailView,
 from .models import Post, Comment
 # from blog.forms import PostForm, CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from accounts.models import Group
 from django.http import HttpResponseRedirect

@@ -48,12 +48,14 @@ class Top(models.Model):
 
     training = models.ForeignKey(Training,
         related_name='tops', on_delete=models.CASCADE)
-    route_type = models.CharField(max_length = 100, choices = ROUTE_TYPE_CHOICES, default=R)
+    route_type = models.CharField(max_length = 100, choices = ROUTE_TYPE_CHOICES, default=R,
+                                    verbose_name = 'Type')
     scale = models.CharField(max_length = 100, choices = Route.SCALE_CHOICES, default = Route.FR)
     grade = models.CharField(max_length=20)
     grade_fr = models.CharField(max_length=20, blank=True, null=True)
     grade_bld_fr = models.CharField(max_length=20, blank=True, null=True)
-    ascent_style = models.CharField(max_length = 100, choices = Ascent.ASCENT_STYLE_CHOICES)
+    ascent_style = models.CharField(max_length = 100, choices = Ascent.ASCENT_STYLE_CHOICES,
+                                    verbose_name = 'Style')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -3,6 +3,8 @@
 {% load bootstrap %}
   <div class="jumbotron">
     <form  action="" method="post">
+    
+        {{form.media}}
         {% csrf_token %}
         {# Include the hidden fields #}
         {% for hidden in form.hidden_fields %}

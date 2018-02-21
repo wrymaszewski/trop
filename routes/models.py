@@ -8,28 +8,29 @@ User = get_user_model()
 
 # Create your models here.
 
-class Place(models.Model):
+class Sector(models.Model):
     name = models.CharField(max_length = 100, unique=True)
     slug = models.SlugField(allow_unicode = True)
-    city = models.CharField(max_length = 100, verbose_name = 'Region')
+    region = models.CharField(max_length = 100, verbose_name = 'Region, Country')
     country = models.CharField(max_length = 100)
-    location = PlainLocationField(based_fields=['city'], zoom=7)
+    location = PlainLocationField(based_fields=['region'], zoom=7)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "{} ({}, {})".format(self.name, self.city, self.country)
+        return "{} ({}, {})".format(self.name, self.region, self.country)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         self.name = self.name.capitalize()
-        self.city = self.city.capitalize()
-        self.country = self.country.capitalize()
+        address = self.region.split(', ')
+        self.country = address[1]
+        self.region = address[0]
         super().save(*args, **kwargs)
 
-    class Meta:
+    # class Meta:
         get_latest_by = 'created_at'
-        ordering = ['country', 'city', 'name']
+        ordering = ['country', 'region', 'name']
 
 class Route(models.Model):
 
@@ -63,29 +64,23 @@ class Route(models.Model):
 
         name = models.CharField(max_length = 100)
         slug = models.SlugField(allow_unicode = True)
-        route_type = models.CharField(max_length = 50, choices = ROUTE_TYPE_CHOICES, default = SP)
+        route_type = models.CharField(max_length = 50, choices = ROUTE_TYPE_CHOICES,
+                    default = SP, verbose_name='Type')
         protection = models.CharField(max_length = 100, choices = PROTECTION_CHOICES, default = EQ)
         scale = models.CharField(max_length = 50, choices = SCALE_CHOICES, default = FR)
         grade = models.CharField(max_length = 20, null= True, blank=True)
         grade_fr = models.CharField(max_length = 20, null= True, blank=True)
-        # grade_yds = models.CharField(max_length = 20, null= True, blank=True)
-        # grade_uiaa = models.CharField(max_length = 20, null= True, blank=True)
-        # grade_pol = models.CharField(max_length = 20, null= True, blank=True)
-        # grade_bld_v = models.CharField(max_length = 20, null= True, blank=True)
         grade_bld_fr = models.CharField(max_length = 20, null= True, blank=True)
-        location = models.ForeignKey(Place ,related_name='routes', verbose_name = 'Crag', on_delete = models.CASCADE)
+        sector = models.ForeignKey(Sector ,related_name='routes', on_delete = models.CASCADE)
         created_at = models.DateTimeField(auto_now_add=True)
         updated_at = models.DateTimeField(auto_now=True)
 
         def save(self, *args, **kwargs):
             if self.route_type=='BLD':
-                # self.grade_bld_v = convert_scale(self, 'V')
                 self.grade_bld_fr = convert_scale(self, 'FR')
             else:
                 self.grade_fr = convert_scale(self, 'FR')
-                # self.grade_yds = convert_scale(self, 'YDS')
-                # self.grade_uiaa = convert_scale(self, 'UIAA')
-                # self.grade_pol = convert_scale(self, 'POL')
+
             self.slug = slugify(self.name)
             self.name = self.name.capitalize()
             if self.scale == 'YDS' or self.scale == 'FR':
@@ -95,11 +90,11 @@ class Route(models.Model):
             super().save(*args, **kwargs)
 
         def __str__(self):
-            return "{} ({}, {}, {})".format(self.name, self.location.name,
-            self.location.city, self.location.country)
+            return "{} ({}, {}, {})".format(self.name, self.sector.name,
+            self.sector.region, self.sector.country)
 
         class Meta:
-            ordering = ['location', 'name']
+            ordering = ['sector', 'name']
             get_latest_by = 'created_at'
 
 
@@ -132,7 +127,8 @@ class Ascent(models.Model):
     route = models.ForeignKey(Route, related_name='ascents', on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='ascents', on_delete=models.CASCADE)
     date = models.DateField()
-    ascent_style = models.CharField(max_length = 20, choices = ASCENT_STYLE_CHOICES)
+    ascent_style = models.CharField(max_length = 20, choices = ASCENT_STYLE_CHOICES,
+                    default=OS, verbose_name = 'Style')
     rating = models.IntegerField(choices = RATING_CHOICES, default=UNRATED)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

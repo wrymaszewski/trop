@@ -1,5 +1,5 @@
 $( document ).ready(function(){
-    
+
     // jquery datatables
     $('.datatable').DataTable({
         "scrollY":        "400px",
@@ -11,6 +11,6 @@ $( document ).ready(function(){
     let link = $('a');
     link.on('click', function() {
         $(this).parent().next().children('li').toggle();
-    });    
-    
+    });
+
 });

@@ -2,8 +2,8 @@
 {% block route_content %}
 <h1 class="text-center">{{object.name}}</h1>
 
-  <p><strong>Sector: </strong><a href="{% url 'routes:route_list' slug=object.location.slug %}">{{object.location.name}}</a>
-  , {{object.location.city}}, {{object.location.country}}</p>
+  <p><strong>Sector: </strong><a href="{% url 'routes:route_list' slug=object.sector.slug %}">{{object.sector.name}}</a>
+  , {{object.sector.city}}, {{object.sector.country}}</p>
   <p><strong>Grade: </strong>{{object.grade}}, {{object.get_scale_display}} scale</p>
   <p><strong>Protection: </strong>{{object.get_protection_display}}</p>
   <p><strong>Average rating: </strong>{% include "routes/_rating.html" %}</p>
@@ -56,5 +56,5 @@
 {% else %}
     <h1>No ascents were found</h1>
 {% endif %}
-  <a href="{% url 'routes:new_ascent_from_route' route_slug=object.slug place_slug=place.slug %}">New Ascent</a>
+  <a href="{% url 'routes:new_ascent_from_route' route_slug=object.slug sector_slug=sector.slug %}">New Ascent</a>
 {% endblock route_content %}

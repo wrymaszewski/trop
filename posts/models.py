@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from accounts.models import Group
 
 from django.contrib.auth import get_user_model
@@ -8,8 +8,8 @@ User = get_user_model()
 
 # Create your models here.
 class Post(models.Model):
-    author = models.ForeignKey(User, related_name='posts')
-    group = models.ForeignKey(Group, related_name = 'posts')
+    author = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, related_name = 'posts', on_delete=models.CASCADE)
     title = models.CharField(max_length = 200)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

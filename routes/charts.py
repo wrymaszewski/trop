@@ -1,4 +1,4 @@
-from .models import Ascent, Route, Place
+from .models import Ascent, Route, Sector
 from django.db.models import Count
 from django.db.models.functions import TruncMonth
 from charts.charts import verbose_style, verbose_months, pie, line
@@ -8,7 +8,7 @@ from chartit import PivotChart, PivotDataPool
 def route_pie_chart(args):
     return pie(
         queryset = (Route.objects
-                    .filter(location__slug__iexact = args)
+                    .filter(sector__slug__iexact = args)
                     .values('grade')
                     .order_by()
                     .annotate(Count = Count('grade'))),

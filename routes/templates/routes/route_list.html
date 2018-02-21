@@ -1,7 +1,7 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
 {% if route_list %}
-  <h1 class="text-center" >{{crag}}</h1>
+  <h1 class="text-center" >{{sector}}</h1>
   <table class="table datatable">
     <thead>
       <th>Name</th>
@@ -13,7 +13,7 @@
     <tbody>
     {% for object in route_list %}
       <tr>
-        <td><a href="{% url 'routes:route_ascents' route_slug=object.slug place_slug=crag.slug %}">{{object.name}}</a></td>
+        <td><a href="{% url 'routes:route_ascents' route_slug=object.slug sector_slug=sector.slug %}">{{object.name}}</a></td>
         <td>{{object.get_route_type_display}}</td>
         <td>{{object.get_protection_display}}</td>
         <td>{{object.grade}}</td>
@@ -34,7 +34,7 @@
 
 
 {% include "_map.html" %}
-  <a href="{% url 'routes:new_route_from_crag' slug=crag.slug %}">Add a Route</a>
+  <a href="{% url 'routes:new_route_from_sector' slug=sector.slug %}">Add a Route</a>
 
 
 
