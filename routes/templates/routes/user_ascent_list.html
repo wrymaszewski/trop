@@ -18,12 +18,12 @@
     {% for object in object_list %}
       <tr>
         <td>
-          <a href="{% url 'routes:route_ascents' route_slug=object.route.slug place_slug=object.route.location.slug %}">
+          <a href="{% url 'routes:route_ascents' route_slug=object.route.slug sector_slug=object.route.sector.slug %}">
             {{object.route.name}}
           </a>
           <span>, </span>
-          <a href="{% url 'routes:route_list' slug=object.route.location.slug %}">
-            {{object.route.location.name}}
+          <a href="{% url 'routes:route_list' slug=object.route.sector.slug %}">
+            {{object.route.sector.name}}
           </a>
         </td>
         <td>{{object.route.grade}}</td>

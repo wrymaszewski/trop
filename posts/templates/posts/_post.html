@@ -1,12 +1,16 @@
+{% load cloudinary %}
 <div class="post-media">
   <h3>{{post.title|safe}}</h3>
   <div class="media-body">
     <h5 class="media-heading">
       <span class="username">
-        <img src="/media/{{post.author.userprofile.avatar}}" alt="avatar" height="40" width="40">
+        {% cloudinary post.author.userprofile.avatar format="jpg" width=50 height=50 crop="fill" gravity="face" radius="max" %}
         <a href="{% url 'accounts:user_profile' username=post.author.username %}">{{post.author.username}}</a>
       </span>
     </h5>
+    <div class="post_body">
+      <p>{{post.text|safe|linebreaksbr}}</p>
+    </div>
     <div class="media-footer">
       {% if user.is_authenticated and post.author == user %}
       <a href="{% url 'posts:edit_post' pk=post.pk %}"><span class="fas fa-edit" ></span> </a>
@@ -22,12 +26,12 @@
             <div class="container">
               <h5 class="media-heading">
                 <span class="username">
-                  <img src="/media/{{comment.author.userprofile.avatar}}" alt="avatar" height="40" width="40">
+                  {% cloudinary post.author.userprofile.avatar format="jpg" width=30 height=30 crop="fill" gravity="face" radius="max" %}
                   <a href="{% url 'accounts:user_profile' username=comment.author.username %}">{{comment.author.username}}</a>
                 </span>
               </h5>
               <div class="container comment-body">
-                <p>{{comment.text}}</p>
+                <p>{{comment.text|safe|linebreaksbr}}</p>
               </div>
               {% if user.is_authenticated and comment.author == user %}
               <a href="{% url 'posts:edit_comment' pk=comment.pk slug=post.group.slug %}"><span class="fas fa-edit" ></span> </a>
@@ -40,7 +44,9 @@
       {% else %}
         <h4>No comments</h4>
       {% endif %}
-      <a href="{% url 'posts:new_comment' pk=post.pk slug=post.group.slug %}">New Comment</a>
+      {% if user in group.members.all %}
+        <a href="{% url 'posts:new_comment' pk=post.pk slug=post.group.slug %}">New Comment</a>
+      {% endif %}
     </div>
   </div>
 </div>

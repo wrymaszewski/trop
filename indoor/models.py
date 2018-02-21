@@ -55,7 +55,7 @@ class Top(models.Model):
     grade_fr = models.CharField(max_length=20, blank=True, null=True)
     grade_bld_fr = models.CharField(max_length=20, blank=True, null=True)
     ascent_style = models.CharField(max_length = 100, choices = Ascent.ASCENT_STYLE_CHOICES,
-                                    verbose_name = 'Style')
+                                    verbose_name = 'Style', default = Ascent.OS)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

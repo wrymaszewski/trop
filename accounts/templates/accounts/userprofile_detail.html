@@ -1,5 +1,6 @@
 {% extends "accounts/accounts_base.html" %}
 {% load static %}
+{% load cloudinary %}
 {% block accounts_content %}
 
 
@@ -7,7 +8,8 @@
   <div class="user-profile">
 
     <div class="user-image">
-        <img src="/media/{{userprofile.avatar}}"  alt="avatar">
+      {% load cloudinary %}
+      {% cloudinary userprofile.avatar %}
     </div>
 
     <div class="user-data">
@@ -37,8 +39,13 @@
         <h3>Indoor Activity</h3>
         <div id="in_line"></div>
         <div id="in_pie"></div>
-
     </div>
 
+    <div>
+    {% for post in recent_posts %}
+      <h4> Group: {{post.group.name}}</h4>
+      {% include "posts/_post.html" %}
+    {% endfor %}
+    </div>
 
 {% endblock accounts_content %}

@@ -1,19 +1,26 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
+{% load cloudinary %}
+
 <h1 class="text-center">{{object.name}}</h1>
 
   <p><strong>Sector: </strong><a href="{% url 'routes:route_list' slug=object.sector.slug %}">{{object.sector.name}}</a>
-  , {{object.sector.city}}, {{object.sector.country}}</p>
+  , {{object.sector.region}}, {{object.sector.country}}</p>
   <p><strong>Grade: </strong>{{object.grade}}, {{object.get_scale_display}} scale</p>
   <p><strong>Protection: </strong>{{object.get_protection_display}}</p>
   <p><strong>Average rating: </strong>{% include "routes/_rating.html" %}</p>
 
   <h3>Descriptions</h3>
   {% for object in object_list%}
-  <div>
-    <a href="{% url 'accounts:user_profile' username=object.user.username %}"><img src="/media/{{object.user.userprofile.avatar}}" alt="avatar" height="40" width="40"></a>
-    <span>{{object.description}}</span>
-  </div>
+  {% if object.description != '' %}
+    <div>
+      <a href="{% url 'accounts:user_profile' username=object.user.username %}">
+        {% cloudinary object.user.userprofile.avatar format="jpg" width=30 height=30 crop="fill" gravity="face" radius="max" %}
+      </a>
+      <span>{{object.description}}</span>
+    </div>
+  {% endif %}
+
   {% endfor %}
 
 

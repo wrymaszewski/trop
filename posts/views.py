@@ -9,11 +9,19 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from accounts.models import Group
 from django.http import HttpResponseRedirect
+from . import forms
 
 # posts
+class RecentPostListView(ListView):
+    model=Post
+    template_name = 'posts/_recent_posts.html'
+
+    def get_queryset(self):
+        user = g
+
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'text']
+    form_class = forms.PostForm
 
     def form_valid(self, form):
          self.object = form.save(commit=False)
@@ -27,14 +35,14 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
-    field = ['title', 'text']
+    form_class = forms.PostForm
 
     def form_valid(self, form):
          self.object = form.save(commit=False)
+         self.object.group = Group.objects.get(slug=self.object.group.slug)
          self.success_url = reverse_lazy('accounts:single_group',
-                            kwargs = {'slug': self.kwargs.get('slug')})
+                            kwargs = {'slug': self.object.group.slug})
          self.object.author = self.request.user
-         self.object.group = Group.objects.get(slug=self.kwargs.get('slug'))
          self.object.save()
          return super().form_valid(form)
 
@@ -52,7 +60,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 #comments
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment
-    fields = ['text']
+    form_class = forms.CommentForm
 
     def form_valid(self, form):
          self.object = form.save(commit=False)
@@ -65,7 +73,7 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
 
 class CommentUpdateView(LoginRequiredMixin, UpdateView):
     model = Comment
-    fields = ['text']
+    form_class = forms.CommentForm
 
     def form_valid(self, form):
          self.object = form.save(commit=False)

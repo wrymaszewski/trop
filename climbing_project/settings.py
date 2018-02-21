@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+# cloudinary
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,6 +46,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'bootstrapform',
     'chartit',
+    'cloudinary',
+    'mediumeditor',
     'accounts',
     'routes',
     'indoor',
@@ -114,6 +120,12 @@ AUTH_PASSWORD_VALIDATORS = [
 #     'provider.google.api_libraries': '',
 #     'provider.google.map.type': 'ROADMAP',
 # }
+
+cloudinary.config(
+  cloud_name = "wrymaszewski",
+  api_key = "731153266842248",
+  api_secret = "5PsDAd_1BjwpfnqygZSfi6MIEFI"
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

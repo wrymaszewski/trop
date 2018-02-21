@@ -15,7 +15,7 @@
                 {{ field.label }}
                 <br>
                 {{ field }}
-                {% if field.label == 'Crag' %}
+                {% if field.label == 'Sector' %}
                   <a href='{% url 'routes:new_sector' %}'><span class='fas fa-plus'></span></a>
                 {% endif %}
             </div>

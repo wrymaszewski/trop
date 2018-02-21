@@ -18,7 +18,16 @@
 {% else %}
   <h2>No Posts</h2>
 {% endif %}
+{% if user in group.members.all %}
   <a href="{% url 'posts:new_post' slug=group.slug%}">New Post</a>
+{% endif %}
+{% if user.is_authenticated %}
+  {% if user in group.members.all %}
+    <a href="{% url 'accounts:leave_group' slug=group.slug %}">Leave!</a>
+  {% else %}
+    <a href="{% url 'accounts:join_group' slug=group.slug %}">Join!</a>
+  {% endif %}
+{% endif %}
 </div>
 
 

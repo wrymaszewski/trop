@@ -3,6 +3,7 @@ from django.contrib import auth
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 from django.urls import reverse_lazy
+from cloudinary.models import CloudinaryField
 
 
 
@@ -18,8 +19,8 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100, blank=True, null=True)
     last_name = models.CharField(max_length = 100, blank=True, null=True)
-    avatar = models.ImageField(blank=True, null=True,
-        upload_to='accounts/avatars/', default = 'accounts/avatars/user_placeholder.png')
+    avatar = CloudinaryField('avatar', default = 'user-placeholder-circle_o5pzxf.png',
+                            null=True, blank=True)
     email = models.EmailField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     hidden = models.BooleanField(default=False)

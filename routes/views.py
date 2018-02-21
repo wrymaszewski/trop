@@ -52,7 +52,7 @@ class RouteList(ListView):
     model = Route
 
     def get_queryset(self):
-        self.routes =  Route.objects.select_related().filter(location__slug__iexact = self.kwargs.get('slug'))
+        self.routes =  Route.objects.select_related().filter(sector__slug__iexact = self.kwargs.get('slug'))
         self.route_list = []
         for route in self.routes:
             route.rating = Ascent.objects.filter(route = route.pk).filter(rating__range = range(1,3)).aggregate(Avg('rating'))['rating__avg']
@@ -93,7 +93,7 @@ class RouteAscentList(ListView):
         self.route = Route.objects.get(slug = self.kwargs.get('route_slug'))
         self.route.rating = Ascent.objects.filter(route = self.route.pk).filter(rating__range = range(1,3)).aggregate(Avg('rating'))['rating__avg']
         return Ascent.objects.select_related().filter(route__slug__iexact = self.kwargs.get('route_slug'),
-         route__location__slug__iexact = self.kwargs.get('sector_slug'))
+         route__sector__slug__iexact = self.kwargs.get('sector_slug'))
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -114,18 +114,18 @@ class CreateRoute(LoginRequiredMixin, CreateView):
 
     def get_initial(self):
         if Sector.objects.all():
-            location = Sector.objects.latest()
-            return {'location': location}
+            sector = Sector.objects.latest()
+            return {'sector': sector}
 
 class CreateRouteFromSector(LoginRequiredMixin, CreateView):
     model = Route
-    fields = ['location', 'name', 'route_type', 'protection', 'scale', 'grade']
+    fields = ['sector', 'name', 'route_type', 'protection', 'scale', 'grade']
 
     def get_initial(self):
-        location = Sector.objects.get(slug = self.kwargs.get('slug'))
+        sector = Sector.objects.get(slug = self.kwargs.get('slug'))
         self.success_url = reverse_lazy('routes:route_list',
-        kwargs = {'slug': location.slug})
-        return {'location': location}
+        kwargs = {'slug': sector.slug})
+        return {'sector': sector}
 
 class CreateSector(LoginRequiredMixin, CreateView):
     model = Sector
@@ -162,7 +162,7 @@ class CreateAscentFromRoute(LoginRequiredMixin, CreateView):
 
     def get_initial(self):
         route = Route.objects.get(slug = self.kwargs.get('route_slug'),
-        location__slug = self.kwargs.get('sector_slug'))
+        sector__slug = self.kwargs.get('sector_slug'))
         return {'route': route}
 
 

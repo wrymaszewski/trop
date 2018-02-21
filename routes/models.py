@@ -28,7 +28,7 @@ class Sector(models.Model):
         self.region = address[0]
         super().save(*args, **kwargs)
 
-    # class Meta:
+    class Meta:
         get_latest_by = 'created_at'
         ordering = ['country', 'region', 'name']
 
