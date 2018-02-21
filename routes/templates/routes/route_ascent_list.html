@@ -32,7 +32,6 @@
       <th>Username</th>
       <th>Date</th>
       <th>Style</th>
-      <th>Description</th>
       <th>Rating</th>
     </thead>
     <tbody>
@@ -47,7 +46,6 @@
         </td>
         <td>{{object.date}}</td>
         <td>{{object.get_ascent_style_display}}</td>
-        <td>{{object.description}}</td>
         <td>{% include "routes/_rating.html" %} </td>
       </tr>
     {% endfor %}

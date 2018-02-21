@@ -46,7 +46,6 @@ class SectorList(ListView):
         context['sector_dict'] = self.sector_dict
         return context
 
-
 class RouteList(ListView):
     template_name = 'routes/route_list.html'
     model = Route
