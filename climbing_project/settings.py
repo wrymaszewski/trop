@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'location_field.apps.DefaultConfig',
     'django_extensions',
-    'bootstrapform',
     'chartit',
     'cloudinary',
     'mediumeditor',

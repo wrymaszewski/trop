@@ -69,17 +69,16 @@ class Route(models.Model):
         protection = models.CharField(max_length = 100, choices = PROTECTION_CHOICES, default = EQ)
         scale = models.CharField(max_length = 50, choices = SCALE_CHOICES, default = FR)
         grade = models.CharField(max_length = 20, null= True, blank=True)
-        grade_fr = models.CharField(max_length = 20, null= True, blank=True)
-        grade_bld_fr = models.CharField(max_length = 20, null= True, blank=True)
+        grade_converted = models.CharField(max_length = 20, null= True, blank=True)
         sector = models.ForeignKey(Sector ,related_name='routes', on_delete = models.CASCADE)
         created_at = models.DateTimeField(auto_now_add=True)
         updated_at = models.DateTimeField(auto_now=True)
 
         def save(self, *args, **kwargs):
             if self.route_type=='BLD':
-                self.grade_bld_fr = convert_scale(self, 'FR')
+                self.grade_converted = convert_scale(self, 'V')
             else:
-                self.grade_fr = convert_scale(self, 'FR')
+                self.grade_converted = convert_scale(self, 'FR')
 
             self.slug = slugify(self.name)
             self.name = self.name.capitalize()

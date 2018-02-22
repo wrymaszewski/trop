@@ -21,10 +21,10 @@ def training_grade_pie_chart(args):
     return pie(
             queryset = (Top.objects
                         .filter(training__pk = args)
-                        .values('grade_fr')
+                        .values('grade_converted')
                         .order_by()
-                        .annotate(Count = Count('grade_fr'))),
-            terms = ['grade_fr', 'Count'],
+                        .annotate(Count = Count('grade_converted'))),
+            terms = ['grade_converted', 'Count'],
             title = 'Number of Ascents'
     )
 
@@ -45,15 +45,15 @@ def training_line_chart(args):
             [{  'options': {
                 'source': (Top.objects
                            .filter(training__user__username__iexact = args)
-                           .values('training__date', 'grade_fr')
-                           .order_by('grade_fr')
+                           .values('training__date', 'grade_converted')
+                           .order_by('grade_converted')
                            .order_by('training__date')),
 
                 'categories': 'training__date',
-                'legend_by': 'grade_fr'
+                'legend_by': 'grade_converted'
             },
               'terms': {
-                'Count': Count('grade_fr')
+                'Count': Count('grade_converted')
               }
             }],
     )

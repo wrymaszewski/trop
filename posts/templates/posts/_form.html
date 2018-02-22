@@ -1,8 +1,0 @@
-<form method="post">
-  {% load bootstrap %}
-  {% csrf_token %}
-  {{form|bootstrap}}
-  <script>var editor = new MediumEditor('.editable');</script>
-
-  <input type="submit" value="Submit" class="btn btn-default">
-</form>

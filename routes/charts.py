@@ -61,14 +61,14 @@ def user_ascent_chart(args):
                'source':  (Ascent.objects
                             .filter(user__username__iexact = args)
                             .annotate(date_trunc=TruncMonth('date'))
-                            .values('date_trunc', 'route__grade_fr')
-                            .order_by('route__grade_fr')
+                            .values('date_trunc', 'route__grade_converted')
+                            .order_by('route__grade_converted')
                             .order_by('date_trunc')),
                 'categories': 'date_trunc',
-                'legend_by': 'route__grade_fr'
+                'legend_by': 'route__grade_converted'
             },
               'terms': {
-                'count': Count('route__grade_fr')
+                'count': Count('route__grade_converted')
               }
             }],
             sortf_mapf_mts=(None, verbose_months, False)

@@ -2,6 +2,21 @@
 {% block accounts_content %}
   <h1 class="text-center">New profile</h1>
   <div class="jumbotron">
-    {% include "accounts/_form.html" %}
-  </div>
+    <form  action="" method="post">
+        {{form.media}}
+        {% csrf_token %}
+        {# Include the hidden fields #}
+        {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+        {% endfor %}
+        {% for field in form.visible_fields %}
+            <div class="fieldWrapper form-group">
+                {{ field.errors }}
+                {{ field.label }}
+                  <br>
+                  {{ field }}
+              </div>
+        {% endfor %}
+        <input class="btn btn-primary" type="submit" value="Save" />
+    </form>  </div>
 {% endblock accounts_content %}

@@ -1,7 +1,6 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
 {% load cloudinary %}
-
 <h1 class="text-center">{{object.name}}</h1>
 
   <p><strong>Sector: </strong><a href="{% url 'routes:route_list' slug=object.sector.slug %}">{{object.sector.name}}</a>
@@ -22,9 +21,6 @@
   {% endif %}
 
   {% endfor %}
-
-
-
 
 {% if object_list %}
   <table class="table datatable">
@@ -56,7 +52,6 @@
   {{chart_list|load_charts:"line,pie"}}
   <div id="line"></div>
   <div id="pie"></div>
-
 
 {% else %}
     <h1>No ascents were found</h1>

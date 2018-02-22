@@ -38,7 +38,7 @@ class Training(models.Model):
         get_latest_by = 'created_at'
 
 class Top(models.Model):
-    B = 'B'
+    B = 'BLD'
     R = 'R'
     ROUTE_TYPE_CHOICES = (
         (B, 'Boulder'),
@@ -52,8 +52,7 @@ class Top(models.Model):
                                     verbose_name = 'Type')
     scale = models.CharField(max_length = 100, choices = Route.SCALE_CHOICES, default = Route.FR)
     grade = models.CharField(max_length=20)
-    grade_fr = models.CharField(max_length=20, blank=True, null=True)
-    grade_bld_fr = models.CharField(max_length=20, blank=True, null=True)
+    grade_converted = models.CharField(max_length=20, blank=True, null=True)
     ascent_style = models.CharField(max_length = 100, choices = Ascent.ASCENT_STYLE_CHOICES,
                                     verbose_name = 'Style', default = Ascent.OS)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -66,7 +65,7 @@ class Top(models.Model):
             self.grade = self.grade.upper()
 
         if self.route_type=='BLD':
-            self.grade_bld_fr = convert_scale(self, 'FR')
+            self.grade_converted = convert_scale(self, 'V')
         else:
-            self.grade_fr = convert_scale(self, 'FR')
+            self.grade_converted = convert_scale(self, 'FR')
         super().save(*args, **kwargs)

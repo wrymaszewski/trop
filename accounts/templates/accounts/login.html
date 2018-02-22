@@ -1,12 +1,23 @@
 {% extends "accounts/accounts_base.html" %}
-{% load bootstrap %}
 {% block accounts_content %}
   <div class="jumbotron">
     <h1 class="text-center">Log In</h1>
-    <form method="post">
-      {% csrf_token %}
-      {{form|bootstrap}}
-      <input type="submit" value="Log In!" class="btn btn-default">
+    <form  action="" method="post">
+        {{form.media}}
+        {% csrf_token %}
+        {# Include the hidden fields #}
+        {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+        {% endfor %}
+        {% for field in form.visible_fields %}
+            <div class="fieldWrapper form-group">
+                {{ field.errors }}
+                {{ field.label }}
+                  <br>
+                  {{ field }}
+              </div>
+        {% endfor %}
+        <input class="btn btn-primary" type="submit" value="Log In!" />
     </form>
   </div>
 {% endblock accounts_content %}

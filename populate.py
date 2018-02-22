@@ -68,7 +68,7 @@ def populate_sector (N=100):
                             route_type = random.choice(Route.ROUTE_TYPE_CHOICES[0]),
                             protection = random.choice(Route.PROTECTION_CHOICES[0]),
                             scale = Route.FR,
-                            grade = random.choice(['6b', '5c', '7c', '9a', '6a', '7a', '6c+']),
+                            grade = random.choice(['6b', '5c', '7c', '9a', '6a', '7a', '6c+', '8a', '7c']),
                             )[0]
 
             for asc in range(10):
@@ -78,8 +78,8 @@ def populate_sector (N=100):
                     route = route,
                     user = user,
                     date = fakegen.date_this_century(),
-                    ascent_style = random.choice(Ascent.ASCENT_STYLE_CHOICES[0]),
-                    rating = random.choice([0,1,2,3]),
+                    ascent_style = random.choice(Ascent.ASCENT_STYLE_CHOICES)[0],
+                    rating = random.choice(Ascent.RATING_CHOICES)[0],
                     description = fakegen.text()
                 )
 
@@ -111,10 +111,10 @@ def populate_indoor(N=20):
             for tops in range(20):
                 top = Top.objects.get_or_create(
                                 training = training,
-                                route_type = random.choice(Top.ROUTE_TYPE_CHOICES[0]),
+                                route_type = random.choice(Top.ROUTE_TYPE_CHOICES)[0],
                                 scale = Route.FR,
                                 grade = random.choice(['6b', '5c', '7c', '9a', '6a', '7a', '6c+']),
-                                ascent_style = random.choice(Ascent.ASCENT_STYLE_CHOICES[0]),
+                                ascent_style = random.choice(Ascent.ASCENT_STYLE_CHOICES)[0],
                                 )
 
 def populate_post (N=10):
@@ -152,12 +152,12 @@ def populate_post (N=10):
 
 if __name__ == '__main__':
     print("Populating the databases...Please Wait")
-    # print('....Populating User and UserProfile')
-    # populate_user(50)
-    # print('....Populating Sectors')
-    # populate_sector(100)
-    # print('....Populating Indoor')
-    # populate_indoor(50)
+    print('....Populating User and UserProfile')
+    populate_user(5)
+    print('....Populating Sectors')
+    populate_sector(3)
+    print('....Populating Indoor')
+    populate_indoor(5)
     print('....Populating Post')
-    populate_post(15)
+    populate_post(5)
     print('Populating Complete')
