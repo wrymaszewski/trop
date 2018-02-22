@@ -4,7 +4,25 @@
     display: flex;
     @include main-margin;
     justify-content: space-between;
-    .add-route, .back-button {
+    margin: 50px 0;
+    .add-buttons {
+        display: flex;
+        flex-direction: row;
+        .add-route,
+        .add-sector,
+        .add-ascent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            width: 140px;
+            margin-right: 15px;
+        }
+    }
+    .add-route, 
+    .add-sector,
+    .add-ascent,
+    .back-button {
         height: 50px;
         width: 70px;
         border-radius: 12px;
@@ -13,16 +31,7 @@
         background-color: $grey;
         font-family: 'Roboto', sans-serif;
         font-size: large;
-        // font-weight: bold;
         border: none;
         @include hover;
-    }
-    
-    .add-route {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-        width: 140px;
-    }
+    }   
 }

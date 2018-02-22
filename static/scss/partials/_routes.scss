@@ -1,33 +1,84 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~
 // routes
 .routes {
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~
+    // route_list
     display: flex;
     flex-direction: column;
     @include main-margin;
     h1, h2, h3, h4 {
-        border-bottom: 1px solid #ccc;
+        // border-bottom: 1px solid #ccc;
     }
     ul {
         list-style: none;
-        padding: 0;    
-        li {
-
-            a {
-                display: flex;
-                text-decoration: none;
-                color: $almost-black;
-                line-height: 40px;
-                @include hover;
-                &:hover {
-                    background-color: #4c4b4b;
-                    font-size: larger;
-                    font-weight: bold;
-                    color: $orange;
-                }
-            }            
+        padding: 0;
+        a {    
+            display: flex;
+            text-decoration: none;
+            color: $almost-black;
+            line-height: 40px;
+            padding-left: 10px;
+            @include hover;
+            &:hover {
+                background-color: #4c4b4b;
+                color: $orange;
+            }
         }
     }
     .region-list, .sector-list {
         display: none;
+        padding-left: 30px;
+    }
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~
+    // route_ascent_list
+
+    .route-info {
+        
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .route-details,
+    .route-ascents {
+        width: 50%;
+    }
+    .route-details {
+        p {
+            border: 1px solid black;
+        }
+    }
+    .route-ascents {
+        tbody > tr > td {
+        padding: 10px 0;
+        }
+    }
+
+    .route-opinions {
+        background-color: khaki;
+        margin: 30px 0;
+    }
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~
+    // highcharts
+
+    #c1, #pie, #line, #DataTables_Table_0_wrapper {
+        font-family: 'Roboto', sans-serif;
+        margin: 50px 0;
+        .highcharts-credits {
+            display: none;
+        }
+        text.highcharts-title {
+            font-family: 'Roboto', sans-serif;
+        }    
+    }
+    a {
+        color: $almost-black;
+        text-decoration: none;
+        font-weight: bold;
+        &:hover {
+            color: $orange
+        }
     }
 }

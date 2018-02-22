@@ -1,52 +1,60 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
 {% load cloudinary %}
-<h1 class="text-center">{{object.name}}</h1>
 
-  <p><strong>Sector: </strong><a href="{% url 'routes:route_list' slug=object.sector.slug %}">{{object.sector.name}}</a>
-  , {{object.sector.region}}, {{object.sector.country}}</p>
-  <p><strong>Grade: </strong>{{object.grade}}, {{object.get_scale_display}} scale</p>
-  <p><strong>Protection: </strong>{{object.get_protection_display}}</p>
-  <p><strong>Average rating: </strong>{% include "routes/_rating.html" %}</p>
+<div class="route-info">
+  <h1>{{object.name}}</h1>
+  <div class="route-details">  
+    <h3>Information</h3>
+    <p>Sector: <a href="{% url 'routes:route_list' slug=object.sector.slug %}">{{object.sector.name}}, {{object.sector.region}}, {{object.sector.country}}</a></p>
+    <p>Grade: {{object.grade}}, {{object.get_scale_display}} scale</p>
+    <p>Protection: {{object.get_protection_display}}</p>
+    <p>Average rating: {% include "routes/_rating.html" %}</p>
+  </div>  
 
-  <h3>Descriptions</h3>
-  {% for object in object_list%}
-  {% if object.description != '' %}
-    <div>
-      <a href="{% url 'accounts:user_profile' username=object.user.username %}">
-        {% cloudinary object.user.userprofile.avatar format="jpg" width=30 height=30 crop="fill" gravity="face" radius="max" %}
-      </a>
-      <span>{{object.description}}</span>
-    </div>
-  {% endif %}
+  {% if object_list %}
+  <div class="route-ascents">
+    <h3>Ascents</h3>
+    <table>
+      <thead>
+        <th>Username</th>
+        <th>Date</th>
+        <th>Style</th>
+        <th>Rating</th>
+      </thead>
+      <tbody>
+      {% for object in object_list %}
+        <tr>
+          <td>
+            {% if object.user.userprofile.hidden %}
+              Hidden User
+            {% else %}
+              <a href="{% url 'accounts:user_profile' username=object.user.username%}">{{object.user.username}}</a>
+            {% endif %}
+          </td>
+          <td>{{object.date}}</td>
+          <td>{{object.get_ascent_style_display}}</td>
+          <td>{% include "routes/_rating.html" %} </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
-  {% endfor %}
-
-{% if object_list %}
-  <table class="table datatable">
-    <thead>
-      <th>Username</th>
-      <th>Date</th>
-      <th>Style</th>
-      <th>Rating</th>
-    </thead>
-    <tbody>
-    {% for object in object_list %}
-      <tr>
-        <td>
-          {% if object.user.userprofile.hidden %}
-            Hidden User
-          {% else %}
-            <a href="{% url 'accounts:user_profile' username=object.user.username%}">{{object.user.username}}</a>
-          {% endif %}
-        </td>
-        <td>{{object.date}}</td>
-        <td>{{object.get_ascent_style_display}}</td>
-        <td>{% include "routes/_rating.html" %} </td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+  <div class="route-opinions">
+    <h3>Descriptions</h3>
+    {% for object in object_list%}
+      {% if object.description != '' %}
+        <div>
+          <a href="{% url 'accounts:user_profile' username=object.user.username %}">
+            {% cloudinary object.user.userprofile.avatar format="jpg" width=30 height=30 crop="fill" gravity="face" radius="max" %}
+          </a>
+          <span>{{object.description}}</span>
+        </div>
+      {% endif %}
+    {% endfor %}   
+  </div>
+</div>
 
   {% load chartit %}
   {{chart_list|load_charts:"line,pie"}}
@@ -56,5 +64,11 @@
 {% else %}
     <h1>No ascents were found</h1>
 {% endif %}
-  <a href="{% url 'routes:new_ascent_from_route' route_slug=object.slug sector_slug=sector.slug %}">New Ascent</a>
+<div class="buttons">
+  <div class="add-buttons">
+    <a class="add-ascent" href="{% url 'routes:new_ascent' %}">Add Ascent</a>
+    <a class="add-sector" href="{% url 'routes:new_sector' %}">Add Sector</a>
+    <a class="add-route" href="#">Add Route</a>
+  </div>
+</div>
 {% endblock route_content %}

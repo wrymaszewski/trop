@@ -1,16 +1,34 @@
 .routes { display: flex; flex-direction: column; margin: 25px 40px 0 40px; }
 
-.routes h1, .routes h2, .routes h3, .routes h4 { border-bottom: 1px solid #ccc; }
-
 .routes ul { list-style: none; padding: 0; }
 
-.routes ul li a { display: flex; text-decoration: none; color: #242424; line-height: 40px; transition: 0.6s linear; }
+.routes ul a { display: flex; text-decoration: none; color: #242424; line-height: 40px; padding-left: 10px; transition: 0.6s linear; }
 
-.routes ul li a:hover { background-color: #242424; color: #e4730a; }
+.routes ul a:hover { background-color: #242424; color: #e4730a; }
 
-.routes ul li a:hover { background-color: #4c4b4b; font-size: larger; font-weight: bold; color: #e4730a; }
+.routes ul a:hover { background-color: #4c4b4b; color: #e4730a; }
 
-.routes .region-list, .routes .sector-list { display: none; }
+.routes .region-list, .routes .sector-list { display: none; padding-left: 30px; }
+
+.routes .route-info { display: flex; flex-direction: row; flex-wrap: wrap; }
+
+.routes .route-details, .routes .route-ascents { width: 50%; }
+
+.routes .route-details p { border: 1px solid black; }
+
+.routes .route-ascents tbody > tr > td { padding: 10px 0; }
+
+.routes .route-opinions { background-color: khaki; margin: 30px 0; }
+
+.routes #c1, .routes #pie, .routes #line, .routes #DataTables_Table_0_wrapper { font-family: 'Roboto', sans-serif; margin: 50px 0; }
+
+.routes #c1 .highcharts-credits, .routes #pie .highcharts-credits, .routes #line .highcharts-credits, .routes #DataTables_Table_0_wrapper .highcharts-credits { display: none; }
+
+.routes #c1 text.highcharts-title, .routes #pie text.highcharts-title, .routes #line text.highcharts-title, .routes #DataTables_Table_0_wrapper text.highcharts-title { font-family: 'Roboto', sans-serif; }
+
+.routes a { color: #242424; text-decoration: none; font-weight: bold; }
+
+.routes a:hover { color: #e4730a; }
 
 .welcome { display: flex; flex-direction: column; justify-content: space-around; align-items: center; margin: 25px 40px 0 40px; }
 
@@ -54,13 +72,15 @@
 
 .users .user-profile .user-options h2 > a:hover, .users .user-profile .user-options h3 > a:hover { background-color: #242424; color: #e4730a; }
 
-.buttons { display: flex; margin: 25px 40px 0 40px; justify-content: space-between; }
+.buttons { display: flex; margin: 25px 40px 0 40px; justify-content: space-between; margin: 50px 0; }
 
-.buttons .add-route, .buttons .back-button { height: 50px; width: 70px; border-radius: 12px; cursor: pointer; color: #fff; background-color: #736B68; font-family: 'Roboto', sans-serif; font-size: large; border: none; transition: 0.6s linear; }
+.buttons .add-buttons { display: flex; flex-direction: row; }
 
-.buttons .add-route:hover, .buttons .back-button:hover { background-color: #242424; color: #e4730a; }
+.buttons .add-buttons .add-route, .buttons .add-buttons .add-sector, .buttons .add-buttons .add-ascent { display: flex; justify-content: center; align-items: center; text-decoration: none; width: 140px; margin-right: 15px; }
 
-.buttons .add-route { display: flex; justify-content: center; align-items: center; text-decoration: none; width: 140px; }
+.buttons .add-route, .buttons .add-sector, .buttons .add-ascent, .buttons .back-button { height: 50px; width: 70px; border-radius: 12px; cursor: pointer; color: #fff; background-color: #736B68; font-family: 'Roboto', sans-serif; font-size: large; border: none; transition: 0.6s linear; }
+
+.buttons .add-route:hover, .buttons .add-sector:hover, .buttons .add-ascent:hover, .buttons .back-button:hover { background-color: #242424; color: #e4730a; }
 
 .navbar { display: flex; align-items: center; justify-content: space-between; background-color: #736B68; height: 50px; border-radius: 0 0 12px 12px; }
 
@@ -78,4 +98,38 @@
 
 .container { width: 900px; margin: 0 auto; font-family: Roboto, sans-serif; }
 
+.container .content { margin-bottom: 80px; }
+
 body { margin: 0; padding: 0; }
+
+.routes { display: flex; flex-direction: column; margin: 25px 40px 0 40px; }
+
+.routes ul { list-style: none; padding: 0; }
+
+.routes ul a { display: flex; text-decoration: none; color: #242424; line-height: 40px; padding-left: 10px; transition: 0.6s linear; }
+
+.routes ul a:hover { background-color: #242424; color: #e4730a; }
+
+.routes ul a:hover { background-color: #4c4b4b; color: #e4730a; }
+
+.routes .region-list, .routes .sector-list { display: none; padding-left: 30px; }
+
+.routes .route-info { display: flex; flex-direction: row; flex-wrap: wrap; }
+
+.routes .route-details, .routes .route-ascents { width: 50%; }
+
+.routes .route-details p { border: 1px solid black; }
+
+.routes .route-ascents tbody > tr > td { padding: 10px 0; }
+
+.routes .route-opinions { background-color: khaki; margin: 30px 0; }
+
+.routes #c1, .routes #pie, .routes #line, .routes #DataTables_Table_0_wrapper { font-family: 'Roboto', sans-serif; margin: 50px 0; }
+
+.routes #c1 .highcharts-credits, .routes #pie .highcharts-credits, .routes #line .highcharts-credits, .routes #DataTables_Table_0_wrapper .highcharts-credits { display: none; }
+
+.routes #c1 text.highcharts-title, .routes #pie text.highcharts-title, .routes #line text.highcharts-title, .routes #DataTables_Table_0_wrapper text.highcharts-title { font-family: 'Roboto', sans-serif; }
+
+.routes a { color: #242424; text-decoration: none; font-weight: bold; }
+
+.routes a:hover { color: #e4730a; }
