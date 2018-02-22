@@ -43,6 +43,7 @@ class SectorList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        print(self.sector_dict)
         context['sector_dict'] = self.sector_dict
         return context
 
