@@ -4,20 +4,16 @@
   <ul>
     {% for group in group_list %}
       <li>
-        <a href="{% url 'accounts:single_group' slug=group.slug %}">{{group.name}}</a>
+        {% if user in group.members.all %}
+          <h4><a href="{% url 'accounts:single_group' slug=group.slug %}">{{group.name}}</a></h4>
+        {% else %}
+          <h4>{{group.name}}</h4>
+        {% endif %}
         <br>
         <p>{{group.description}}</p>
         <br>
         {% if group.members %}
           <h3>Members: {{group.members.count}}</h3>
-            <ul>
-              {% for member in group.members.all %}
-                <li>
-                  <a href="{% url 'accounts:user_profile' username=member.username %}">
-                  {{member.username}}</a>
-                </li>
-              {% endfor %}
-            </ul>
         {% endif %}
         {% if user.is_authenticated %}
           {% if user in group.members.all %}

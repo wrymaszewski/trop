@@ -43,8 +43,8 @@ class SectorList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(self.sector_dict)
         context['sector_dict'] = self.sector_dict
+
         return context
 
 class RouteList(ListView):
@@ -67,6 +67,7 @@ class RouteList(ListView):
         if self.route_list:
             context['route_list'] = self.route_list
         context['chart'] = charts.route_pie_chart(self.kwargs.get('slug'))
+
         return context
 
 class UserAscentList(ListView):
@@ -83,6 +84,7 @@ class UserAscentList(ListView):
                                 charts.user_ascent_chart(self.kwargs.get('username')),
                                 charts.user_ascent_pie_chart(self.kwargs.get('username'))
                                 ]
+
         return context
 
 class RouteAscentList(ListView):
@@ -103,6 +105,7 @@ class RouteAscentList(ListView):
                                 charts.route_ascent_chart(self.kwargs.get('route_slug')),
                                 charts.ascent_pie_chart(self.kwargs.get('route_slug'))
                                 ]
+
         return context
 
 
@@ -117,20 +120,45 @@ class CreateRoute(LoginRequiredMixin, CreateView):
             sector = Sector.objects.latest()
             return {'sector': sector}
 
+class CreateRouteRedirect(LoginRequiredMixin, CreateView):
+    model = Route
+    form_class = forms.RouteForm
+
+    def get_initial(self):
+        if Sector.objects.all():
+            sector = Sector.objects.latest()
+            return {'sector': sector}
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.success_url = reverse_lazy('routes:route_list', kwargs={'slug': self.object.sector.slug})
+        self.object.save()
+        return super().form_valid(form)
+
+
 class CreateRouteFromSector(LoginRequiredMixin, CreateView):
     model = Route
     fields = ['sector', 'name', 'route_type', 'protection', 'scale', 'grade']
 
     def get_initial(self):
-        sector = Sector.objects.get(slug = self.kwargs.get('slug'))
-        self.success_url = reverse_lazy('routes:route_list',
-        kwargs = {'slug': sector.slug})
+        sector = Sector.objects.get(slug =self.kwargs.get('slug'))
+        self.success_url = reverse_lazy('routes:route_list', kwargs = {'slug': sector.slug})
         return {'sector': sector}
 
 class CreateSector(LoginRequiredMixin, CreateView):
     model = Sector
     form_class = forms.SectorForm
     success_url = reverse_lazy('routes:new_route')
+
+class CreateSectorRedirect(LoginRequiredMixin, CreateView):
+    model = Sector
+    form_class = forms.SectorForm
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.success_url = reverse_lazy('routes:sector_list')
+        self.object.save()
+        return super().form_valid(form)
 
 
 class CreateAscent(LoginRequiredMixin, CreateView):

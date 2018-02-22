@@ -46,8 +46,7 @@ def training_line_chart(args):
                 'source': (Top.objects
                            .filter(training__user__username__iexact = args)
                            .values('training__date', 'grade_converted')
-                           .order_by('grade_converted')
-                           .order_by('training__date')),
+                           .order_by('training__date', 'grade_converted')),
 
                 'categories': 'training__date',
                 'legend_by': 'grade_converted'

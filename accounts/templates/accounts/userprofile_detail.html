@@ -21,10 +21,10 @@
     </div>
 
     <div class="user-options">
-        <h3><a href="{% url 'routes:user_ascents'   username=userprofile.user.username %}">Ascents</a></h3>
+        <h3><a href="{% url 'routes:user_ascents'   username=userprofile.user.username %}">Outdoor</a></h3>
+        <h3><a href="{% url 'indoor:training_list' username=userprofile.user.username %}">Indoor</a></h3>
         {% if userprofile.user == user %}
         <h3><a href="{% url 'accounts:edit_profile' username=userprofile.user.username %}">Edit profile</a></h3>
-        <h3><a href="{% url 'indoor:training_list' username=userprofile.user.username %}">Indoor</a></h3>
         {% endif %}
 
       </div>
@@ -39,13 +39,6 @@
         <h3>Indoor Activity</h3>
         <div id="in_line"></div>
         <div id="in_pie"></div>
-    </div>
-
-    <div>
-    {% for post in recent_posts %}
-      <h4> Group: {{post.group.name}}</h4>
-      {% include "posts/_post.html" %}
-    {% endfor %}
     </div>
 
 {% endblock accounts_content %}

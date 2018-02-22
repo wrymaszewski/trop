@@ -39,10 +39,6 @@ class UserList(LoginRequiredMixin, ListView):
 @login_required
 def get_user_profile(request, username):
     userprofile = UserProfile.objects.select_related().get(user__username__iexact = username)
-    recent_posts = (Post.objects
-                    .filter(group__memberships__in=userprofile.user.user_groups.all())
-                    .order_by('created_at')[:5])
-    print(recent_posts)
     context_dict = {
                     "userprofile": userprofile,
                     "chart_list": [
@@ -51,8 +47,7 @@ def get_user_profile(request, username):
                                     outdoor_charts.user_ascent_chart(username),
                                     outdoor_charts.user_ascent_pie_chart(username)
                                     ],
-                    'recent_posts': recent_posts
-                    }
+                }
 
     return render(request, 'accounts/userprofile_detail.html',
                     context_dict)
@@ -99,7 +94,7 @@ class ListGroups(ListView):
 
 class JoinGroup(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
-        return reverse('accounts:single_group', kwargs={'slug':self.kwargs.get('slug')})
+        return reverse('accounts:group_list')
 
     def get(self, request, *args, **kwargs):
         group = get_object_or_404(Group, slug=self.kwargs.get('slug'))

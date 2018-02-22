@@ -20,10 +20,14 @@ urlpatterns = [
     name='delete_ascent'),
     url(r'^ascent/(?P<pk>\d+)/edit/$', views.UpdateAscent.as_view(),
     name='update_ascent'),
-    url(r'^route/new/$', views.CreateRoute.as_view(),
+    url(r'^ascent-route/new/$', views.CreateRoute.as_view(),
     name='new_route'),
     url(r'^route/(?P<slug>[-\w]+)/new/$', views.CreateRouteFromSector.as_view(),
     name='new_route_from_sector'),
-    url(r'^sector/new/$', views.CreateSector.as_view(),
-    name='new_sector')
+    url(r'^ascent-sector/new/$', views.CreateSector.as_view(),
+    name='new_sector'),
+    url(r'^sector/new/$', views.CreateSectorRedirect.as_view(),
+    name = 'new_sector_redirect'),
+    url(r'^route/new/$', views.CreateRouteRedirect.as_view(),
+    name='new_route_redirect')
 ]
