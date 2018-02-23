@@ -8,7 +8,7 @@
 Endomondo for Climbers. It allows users to Sign Up and upload their outdoor ascents and indoor training to the database. Users can form groups to post and comment on eachother's achievements. Ascents and trainings are visualized by [Highcharts](https://www.highcharts.com)-powered charts.
 
 ## Apps
-- [**Acconts**](accounts/) - Information about user profiles and user groups. Users can hide their profiles if they prefer not to be visible to other users.
+- [**Accounts**](accounts/) - Information about user profiles and user groups. Users can hide their profiles if they prefer not to be visible to other users.
 - [**Routes**](routes/) - Module for tracking outdoor ascents.
 - [**Indoor**](indoor/) - Module for tracking indoor trainings.
 - [**Posts**](posts/) - Social networking module for creation of posts and comments in user groups.
