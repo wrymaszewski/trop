@@ -152,12 +152,12 @@ def populate_post (N=10):
 
 if __name__ == '__main__':
     print("Populating the databases...Please Wait")
-    print('....Populating User and UserProfile')
-    populate_user(5)
-    print('....Populating Sectors')
-    populate_sector(3)
-    print('....Populating Indoor')
-    populate_indoor(5)
+    # print('....Populating User and UserProfile')
+    # populate_user(5)
+    # print('....Populating Sectors')
+    # populate_sector(5)
+    # print('....Populating Indoor')
+    # populate_indoor(5)
     print('....Populating Post')
     populate_post(5)
     print('Populating Complete')

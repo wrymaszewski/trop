@@ -24,8 +24,15 @@ class UserProfileRedirectView(LoginRequiredMixin,RedirectView):
     permanent = True
     def get_redirect_url(self, *args, **kwargs):
         if hasattr(self.request.user, 'userprofile'):
-            return reverse_lazy('accounts:user_profile',
-                                kwargs = {'username':self.request.user.username})
+            return reverse('accounts:user_profile', kwargs = {'username': self.request.user.username})
+        else:
+            return reverse('accounts:new_profile')
+
+class UserProfileCreationRedirectView(LoginRequiredMixin,RedirectView):
+    permanent = True
+    def get_redirect_url(self, *args, **kwargs):
+        if hasattr(self.request.user, 'userprofile'):
+            return reverse('home')
         else:
             return reverse('accounts:new_profile')
 

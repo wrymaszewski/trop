@@ -38,8 +38,8 @@
 <div class="buttons">
   <div class="add-buttons">
     <a class="add-ascent" href="{% url 'routes:new_ascent' %}">Add Ascent</a>
-    <a class="add-sector" href="{% url 'routes:new_sector' %}">Add Sector</a>
-    <a class="add-route" href="#">Add Route</a>
+    <a class="add-sector" href="{% url 'routes:new_sector_redirect' %}">Add Sector</a>
+    <a class="add-route" href="{% url 'routes:new_route_from_sector' slug=sector.slug%}">Add Route</a>
   </div>
   <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
 </div>

@@ -11,23 +11,24 @@ User = get_user_model()
 class Sector(models.Model):
     name = models.CharField(max_length = 100, unique=True)
     slug = models.SlugField(allow_unicode = True)
-    region = models.CharField(max_length = 100, verbose_name = 'Region, Country')
+    region = models.CharField(max_length = 250, verbose_name = 'Region, Country')
     country = models.CharField(max_length = 100)
     location = PlainLocationField(based_fields=['region'], zoom = 7,
                                     default = '37.6564706,-119.5724832')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return "{} ({}, {})".format(self.name, self.region, self.country)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         self.name = self.name.capitalize()
-        address = self.region.split(', ')
-        self.country = address[1]
-        self.region = address[0]
+        self.country = self.region.split(', ')[1]
+        self.region = self.region.split(', ')[0]
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return "{} ({}, {})".format(self.name, self.region, self.country)
+
 
     class Meta:
         get_latest_by = 'created_at'
