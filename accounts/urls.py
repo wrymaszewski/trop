@@ -17,7 +17,7 @@ urlpatterns = [
     name='user_profile'),
     url(r'redirect/$', views.UserProfileCreationRedirectView.as_view(),
     name='redirect'),
-    url(r'redirect-profile/$', views.UserProfileCreationRedirectView.as_view(),
+    url(r'redirect-profile/$', views.UserProfileRedirectView.as_view(),
     name='redirect_profile'),
     url(r'new-profile/$', views.CreateUserProfile.as_view(),
     name='new_profile'),
