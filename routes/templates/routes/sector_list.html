@@ -1,36 +1,38 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
-
-  <h1>Climbing locations</h1>
-  <ul>
-    <!-- List of countries -->
-    {% for country, city_dict in sector_dict.items %}
-    <li class="country-list">
-      <h2><a class="countries" href="#{{country|slugify}}">{{country}}</a></h2>
-      <ul>
-          <!-- List of regions -->
-          <li class="region-list">
-          {% for city, sectors in city_dict.items %}
-          <h3><a class="regions" href="#{{city|slugify}}">{{city}}</a></h3>
-          <ul>
-            <!-- List of sectors -->
-            <li class="sector-list">
-              {% for sector in sectors %}
-              <h4><a class="sectors"  href="{% url 'routes:route_list' slug=sector.slug %}">{{sector.name}}</a></h4>
-              {% endfor %}
-            </li>
-          </ul>
-          {% endfor %}
-        </li>
-      </ul>
-    {% endfor %}
-    </li>
-  </ul>
-  <div class="buttons">
+  <div class="route-list">
+    <h1>Climbing locations</h1>
+    <ul>
+      <!-- List of countries -->
+      {% for country, city_dict in sector_dict.items %}
+      <li class="country-list">
+        <h2><a class="countries" href="#{{country|slugify}}">{{country}}</a></h2>
+        <ul>
+            <!-- List of regions -->
+            <li class="region-list">
+            {% for city, sectors in city_dict.items %}
+            <h3><a class="regions" href="#{{city|slugify}}">{{city}}</a></h3>
+            <ul>
+              <!-- List of sectors -->
+              <li class="sector-list">
+                {% for sector in sectors %}
+                <h4><a class="sectors"  href="{% url 'routes:route_list' slug=sector.slug %}">{{sector.name}}</a></h4>
+                {% endfor %}
+              </li>
+            </ul>
+            {% endfor %}
+          </li>
+        </ul>
+      {% endfor %}
+      </li>
+    </ul>    
+  </div>
+    <div class="buttons">
     <div class="add-buttons">
       <a class="add-ascent" href="{% url 'routes:new_ascent' %}">Add Ascent</a>
       <a class="add-sector" href="{% url 'routes:new_sector' %}">Add Sector</a>
       <a class="add-route" href="#">Add Route</a>
     </div>
+    <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
   </div>
 {% endblock route_content %}

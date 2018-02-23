@@ -1,7 +1,8 @@
 {% extends "routes/routes_base.html"  %}
 {% block route_content %}
-  <div class="jumbotron">
-    <form  action="" method="post">
+  <div class="ascent-form">
+    <h1>Update Your Ascent</h1>
+    <form action="" method="post">
         {{form.media}}
         {% csrf_token %}
         {# Include the hidden fields #}
@@ -9,14 +10,22 @@
         {{ hidden }}
         {% endfor %}
         {% for field in form.visible_fields %}
-            <div class="fieldWrapper form-group">
-                {{ field.errors }}
-                {{ field.label }}
-                  <br>
-                  {{ field }}
-              </div>
+          <div class="fieldWrapper form-group">
+            {{ field.errors }}
+            <div class="field-name">
+              {{ field.label }}
+            </div>
+            <div class="field-options">
+              {{ field }}
+            </div>
+          </div>
         {% endfor %}
-        <input class="btn btn-primary" type="submit" value="Save" />
+        <div class="buttons">
+          <div class="add-buttons">
+            <input class="save" type="submit" value="Update Ascent"></input>
+          </div>
+          <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
+        </div>
     </form>
   </div>
 {% endblock route_content %}

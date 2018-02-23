@@ -6,10 +6,10 @@
   <h1>{{object.name}}</h1>
   <div class="route-details">  
     <h3>Information</h3>
-    <p>Sector: <a href="{% url 'routes:route_list' slug=object.sector.slug %}">{{object.sector.name}}, {{object.sector.region}}, {{object.sector.country}}</a></p>
-    <p>Grade: {{object.grade}}, {{object.get_scale_display}} scale</p>
-    <p>Protection: {{object.get_protection_display}}</p>
-    <p>Average rating: {% include "routes/_rating.html" %}</p>
+    <p><a href="{% url 'routes:route_list' slug=object.sector.slug %}"><span>Sector:</span>{{object.sector.name}}, {{object.sector.region}}, {{object.sector.country}}</a></p>
+    <p><span>Grade:</span>{{object.grade}}, {{object.get_scale_display}} scale</p>
+    <p><span>Protection:</span>{{object.get_protection_display}}</p>
+    <p><span>Average rating:</span>{% include "routes/_rating.html" %}</p>
   </div>  
 
   {% if object_list %}
@@ -45,7 +45,7 @@
     <h3>Descriptions</h3>
     {% for object in object_list%}
       {% if object.description != '' %}
-        <div>
+        <div class="post">
           <a href="{% url 'accounts:user_profile' username=object.user.username %}">
             {% cloudinary object.user.userprofile.avatar format="jpg" width=30 height=30 crop="fill" gravity="face" radius="max" %}
           </a>
@@ -70,5 +70,6 @@
     <a class="add-sector" href="{% url 'routes:new_sector' %}">Add Sector</a>
     <a class="add-route" href="#">Add Route</a>
   </div>
+  <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
 </div>
 {% endblock route_content %}
