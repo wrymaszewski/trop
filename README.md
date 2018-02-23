@@ -37,7 +37,7 @@ Endomondo for Climbers. It allows users to Sign Up and upload their outdoor asce
   The project will be soon deployed, however now it can be previewed on a local machine. Steps required are listed below:
   1. Download and install [Anaconda](https://www.anaconda.com/download/#linux)
   2. Create a virual environent in your terminal: `conda create --name <environment_name>`
-  2. Activate the environment: `activate <environment_name>` (Windows) or `source activate <environemnt_name>` (MacOS, Linux)
+  2. Activate the environment: `activate <environment_name>` (Windows) or `source activate <environment_name>` (MacOS, Linux)
   3. Install PIP and dependencies:
   ```
   conda install -c anaconda pip
