@@ -1,23 +1,16 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~
 // modules
-
 @import 'modules/colors';
 @import 'modules/mixins';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~
 // partials
-
 @import 'partials/routes';
 @import 'partials/welcome';
 @import 'partials/user-profile';
 @import 'partials/buttons';
 @import 'partials/navbar';
+@import 'partials/footer';
 @import 'partials/container';
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~
-// body
-
-body {
-    margin: 0;
-    padding: 0;
-}
+@import 'partials/body';
+@import 'partials/routes';

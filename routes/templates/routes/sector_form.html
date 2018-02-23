@@ -1,8 +1,8 @@
 {% extends "routes/routes_base.html"  %}
 {% block route_content %}
-  <div class="jumbotron">
+  <div class="sector-form">
     <h1>New Sector</h1>
-    <form  action="" method="post">
+    <form action="" method="post">
         {% csrf_token %}
         {{form.media}}
         {# Include the hidden fields #}
@@ -13,12 +13,22 @@
         {% for field in form.visible_fields %}
             <div class="fieldWrapper form-group">
                 {{ field.errors }}
-                {{ field.label }}
-                <br>
-                {{ field }}
+                <div class="field-name">
+                    {{ field.label }}
+                    
+                </div>
+                <div class="field-options">    
+                        {{ field }}
+                </div>
             </div>
         {% endfor %}
-        <input class="btn btn-primary" type="submit" value="Save" />
+             
     </form>
+    <div class="buttons">
+            <div class="add-buttons">
+              <input class="save" type="submit" value="Add New Sector"></input>
+            </div>
+            <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
+        </div>         
   </div>
 {% endblock route_content %}

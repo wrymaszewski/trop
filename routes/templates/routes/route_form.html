@@ -1,27 +1,37 @@
 {% extends "routes/routes_base.html"  %}
 {% block route_content %}
-  <div class="jumbotron">
-    <h1 class="text-center">New Route</h1>
-    <form  action="" method="post">
-        {% csrf_token %}
-        {{form.media}}
-        {# Include the hidden fields #}
-        {% for hidden in form.hidden_fields %}
-        {{ hidden }}
-        {% endfor %}
-        {# visible fields #}
-        {% for field in form.visible_fields %}
-            <div class="fieldWrapper form-group">
-                {{ field.errors }}
-                {{ field.label }}
-                <br>
+  <div class="route_form">
+    <h1>New Route</h1>
+    <form action="" method="post">
+      {% csrf_token %}
+      {{form.media}}
+      {# Include the hidden fields #}
+      {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+      {% endfor %}
+      {# visible fields #}
+      {% for field in form.visible_fields %}
+          <div class="fieldWrapper form-group">
+              {{ field.errors }}
+              <div class="field-name">
+                  {{ field.label }}
+              </div>
+              <div class="field-options">
                 {{ field }}
                 {% if field.label == 'Sector' %}
-                  <a href='{% url 'routes:new_sector' %}'><span class='fas fa-plus'></span></a>
+                  <div class="add-buttons">
+                    <a class="add-sector" href="{% url 'routes:new_sector' %}"><span class='fas fa-plus'></span>Add New Sector</a>
+                  </div>
                 {% endif %}
-            </div>
-        {% endfor %}
-        <input class="btn btn-primary" type="submit" value="Save" />
+              </div>
+          </div>
+      {% endfor %}
+      <div class="buttons">
+        <div class="add-buttons">
+          <input class="save" type="submit" value="Add New Route"></input>
+        </div>
+        <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
+      </div>  
     </form>
   </div>
 {% endblock route_content %}

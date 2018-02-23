@@ -13,7 +13,8 @@ class Sector(models.Model):
     slug = models.SlugField(allow_unicode = True)
     region = models.CharField(max_length = 100, verbose_name = 'Region, Country')
     country = models.CharField(max_length = 100)
-    location = PlainLocationField(based_fields=['region'], zoom=7)
+    location = PlainLocationField(based_fields=['region'], zoom = 7,
+                                    default = '37.6564706,-119.5724832')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

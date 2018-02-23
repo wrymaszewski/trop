@@ -21,7 +21,7 @@
             @include logo;
             @include hover;
 
-            padding: 0 10px;
+            padding: 0 20px;
         }
 
         .nav-item {
@@ -41,7 +41,7 @@
                 text-decoration: none;
                 // font-weight: bold;
                 letter-spacing: 0.3px;
-                padding: 0 10px;
+                padding: 0 20px;
                 height: 100%;
 
                 @include hover;      

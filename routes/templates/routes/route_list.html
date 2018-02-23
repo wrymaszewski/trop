@@ -1,7 +1,12 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
 {% if route_list %}
-  <h1 class="text-center" >{{sector}}</h1>
+  <h1>{{sector}}</h1>
+
+  {% load chartit %}
+  {{chart|load_charts:"c1"}}
+  <div id="c1"></div>
+
   <table class="table datatable">
     <thead>
       <th>Name</th>
@@ -23,19 +28,20 @@
     </tbody>
   </table>
 
-  {% load chartit %}
-  {{chart|load_charts:"c1"}}
-  <div id="c1"></div>
+
 
 {% else %}
 <h1>No routes were found</h1>
 {% endif %}
 
-
-
 {% include "_map.html" %}
-  <a href="{% url 'routes:new_route_from_sector' slug=sector.slug %}">Add a Route</a>
-
-
+<div class="buttons">
+  <div class="add-buttons">
+    <a class="add-ascent" href="{% url 'routes:new_ascent' %}">Add Ascent</a>
+    <a class="add-sector" href="{% url 'routes:new_sector' %}">Add Sector</a>
+    <a class="add-route" href="#">Add Route</a>
+  </div>
+  <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
+</div>
 
 {% endblock route_content %}
