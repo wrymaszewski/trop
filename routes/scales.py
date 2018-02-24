@@ -60,7 +60,7 @@ def convert_scale(self, new_scale):
                     ['V14','8b+'],
                     ['V15','8c'],
                     ['V16','8c+'],
-                    ['V17''9a']
+                    ['V17','9a']
     ]
 
     SCALE_INDEXES = {
@@ -74,6 +74,11 @@ def convert_scale(self, new_scale):
         'V': 0,
         'FR': 1
     }
+
+    # print (self.route_type)
+    # print (self.scale)
+    # print (self.grade)
+    # print (new_scale)
 
     if self.route_type == 'BLD':
         for row in SCALES_BLD:

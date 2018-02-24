@@ -65,8 +65,6 @@ class Top(models.Model):
             self.grade = self.grade.lower()
         else:
             self.grade = self.grade.upper()
-        print (self.grade)
-        print (self.scale)
         if self.route_type=='BLD':
             self.grade_converted = convert_scale(self, 'V')
         else:

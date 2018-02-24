@@ -66,8 +66,8 @@ def populate_sector (N=100):
                 route = Route.objects.get_or_create(
                                 sector = sector,
                                 name = fakegen.catch_phrase(),
-                                route_type = random.choice(Route.ROUTE_TYPE_CHOICES[0]),
-                                protection = random.choice(Route.PROTECTION_CHOICES[0]),
+                                route_type = random.choice(Route.ROUTE_TYPE_CHOICES)[0],
+                                protection = random.choice(Route.PROTECTION_CHOICES)[0],
                                 scale = Route.FR,
                                 grade = random.choice(['6b', '5c', '7c', '9a', '6a', '7a', '6c+', '8a', '7c']),
                                 )[0]
@@ -117,7 +117,7 @@ def populate_indoor(N=20):
                 pass
 
             for tops in range(20):
-                # try:
+                try:
                     top = Top.objects.get_or_create(
                                     training = training,
                                     route_type = random.choice(Top.ROUTE_TYPE_CHOICES)[0],
@@ -125,8 +125,8 @@ def populate_indoor(N=20):
                                     grade = random.choice(['6b', '5c', '7c', '9a', '6a', '7a', '6c+']),
                                     ascent_style = random.choice(Ascent.ASCENT_STYLE_CHOICES)[0],
                                     )
-                # except IntegrityError:
-                #     pass
+                except IntegrityError:
+                    pass
 
 def populate_post (N=10):
 
@@ -168,11 +168,11 @@ def populate_post (N=10):
 if __name__ == '__main__':
     print("Populating the databases...Please Wait")
     print('....Populating User and UserProfile')
-    # populate_user(4)
-    # print('....Populating Sectors')
-    # populate_sector(3)
-    # print('....Populating Indoor')
-    # populate_indoor(3)
+    populate_user(4)
+    print('....Populating Sectors')
+    populate_sector(3)
+    print('....Populating Indoor')
+    populate_indoor(3)
     print('....Populating Post')
     populate_post(4)
     print('Populating Complete')
