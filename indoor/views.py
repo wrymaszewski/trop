@@ -13,12 +13,14 @@ class TrainingList(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        return queryset.filter(user__username__iexact = self.kwargs.get('username'))
+        self.username = self.kwargs.get('username')
+        return queryset.filter(user__username__iexact = self.username)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['chart_list'] = [charts.gym_pie_chart(self.kwargs.get('username')),
-                                charts.training_line_chart(self.kwargs.get('username'))]
+        context['chart_list'] = [charts.gym_pie_chart(self.username),
+                                charts.training_line_chart(self.username)]
+        context['username'] = self.username
         return context
 
 class TopList(LoginRequiredMixin, ListView):

@@ -1,7 +1,7 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
-{% if object_list %}
   <h1 class="text-center">Ascents of <a href="{% url 'accounts:user_profile' username=user_prof%}">{{user_prof}}</a></h1>
+{% if object_list %}
   <table class="table datatable">
     <thead>
       <th>Route</th>

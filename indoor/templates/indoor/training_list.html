@@ -1,7 +1,7 @@
 {% extends "indoor/indoor_base.html" %}
 {% block indoor_content %}
 <div class="training-list">
-  <h1>List of trainings</h1>
+  <h1>List of <a href="{% url 'accounts:user_profile' username=username %}">{{username}}'s</a> trainings</h1>
   {% if training_list %}
   <table class="table datatable">
     <thead>
@@ -9,7 +9,7 @@
       <th>Gym</th>
       <th>Tops</th>
       <th>Description</th>
-    {% if user == training_list.0.user %}
+    {% if user.username == username%}
       <th>Modify</th>
     {% endif %}
     </thead>
@@ -20,7 +20,7 @@
         <td>{{training.location}}</td>
         <td>{{training.tops.count}}</td>
         <td>{{training.description}}</td>
-      {% if user == training_list.0.user %}
+      {% if user.username == username%}
         <td>
           <a href="{% url 'indoor:edit_training' pk=training.pk %}"><span class="fas fa-edit" ></span> </a>
           <a href="{% url 'indoor:delete_training' pk=training.pk %}"><span class="fas fa-trash" ></span> </a>
