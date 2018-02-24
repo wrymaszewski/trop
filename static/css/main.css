@@ -188,15 +188,17 @@
 
 .navbar .nav-element .nav-item .nav-link:hover { background-color: #242424; color: #e4730a; }
 
-footer { display: flex; align-items: center; justify-content: space-between; background-color: #736B68; height: 50px; border-radius: 12px 12px 0 0; }
+footer { margin-top: auto; display: flex; align-items: center; justify-content: space-between; background-color: #736B68; height: 50px; border-radius: 12px 12px 0 0; }
 
-footer .authors { color: #fff; }
+footer .authors { color: #242424; }
+
+footer .authors a { color: #fff; }
 
 footer .firms { color: #242424; }
 
 footer .authors, footer .firms { padding-left: 20px; padding-right: 20px; }
 
-footer .authors p, footer .firms p { display: flex; align-items: center; transition: 0.6s linear; }
+footer .authors p, footer .firms p { display: flex; align-items: center; transition: 0.6s linear; margin: 0; }
 
 footer .authors p a, footer .firms p a { color: #fff; text-decoration: none; }
 
@@ -204,9 +206,7 @@ footer .authors p a:hover, footer .firms p a:hover { color: #e4730a; font-weight
 
 footer .authors p a img, footer .firms p a img { height: 40px; width: 40px; }
 
-.container { width: 900px; margin: 0 auto; font-family: Roboto, sans-serif; }
-
-.container .content { margin-bottom: 80px; }
+.container { width: 900px; margin: 0 auto; padding: 0; font-family: Roboto, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
 
 body { margin: 0; padding: 0; }
 
