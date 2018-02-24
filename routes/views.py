@@ -154,13 +154,7 @@ class CreateSector(LoginRequiredMixin, CreateView):
 class CreateSectorRedirect(LoginRequiredMixin, CreateView):
     model = Sector
     form_class = forms.SectorForm
-
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.success_url = reverse_lazy('routes:sector_list')
-        self.object.save()
-        return super().form_valid(form)
-
+    success_url = reverse_lazy('routes:sectors')
 
 class CreateAscent(LoginRequiredMixin, CreateView):
     model = Ascent
