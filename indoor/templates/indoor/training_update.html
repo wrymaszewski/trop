@@ -1,6 +1,6 @@
 {% extends "indoor/indoor_base.html" %}
 {% block indoor_content %}
-  <div class="jumbotron">
+  <div class="training-form">
     <h1>Edit Training</h1>
     <form  action="" method="post">
         {{form.media}}
@@ -12,12 +12,20 @@
         {% for field in form.visible_fields %}
             <div class="fieldWrapper form-group">
                 {{ field.errors }}
+              <div class="field-name">
                 {{ field.label }}
-                  <br>
-                  {{ field }}
+              </div>
+              <div class="field-options">
+                {{ field }}
+              </div>
               </div>
         {% endfor %}
-        <input class="btn btn-primary" type="submit" value="Save" />
+        <div class="buttons">
+          <div class="add-buttons">
+            <input class="save" type="submit" value="Save"></input>
+          </div>
+          <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
+        </div>
     </form>
   </div>
 {% endblock indoor_content %}
