@@ -45,19 +45,23 @@ class UserList(LoginRequiredMixin, ListView):
 
 @login_required
 def get_user_profile(request, username):
-    userprofile = UserProfile.objects.select_related().get(user__username__iexact = username)
-    context_dict = {
-                    "userprofile": userprofile,
-                    "chart_list": [
-                                    indoor_charts.training_line_chart(username),
-                                    indoor_charts.gym_pie_chart(username),
-                                    outdoor_charts.user_ascent_chart(username),
-                                    outdoor_charts.user_ascent_pie_chart(username)
-                                    ],
-                }
+    user = User.objects.get(username=username)
+    if hasattr(user, 'userprofile'):
+        userprofile = UserProfile.objects.get(user = user)
+        context_dict = {
+                        "userprofile": userprofile,
+                        "chart_list": [
+                                        indoor_charts.training_line_chart(username),
+                                        indoor_charts.gym_pie_chart(username),
+                                        outdoor_charts.user_ascent_chart(username),
+                                        outdoor_charts.user_ascent_pie_chart(username)
+                                        ],
+                    }
 
-    return render(request, 'accounts/userprofile_detail.html',
-                    context_dict)
+        return render(request, 'accounts/userprofile_detail.html',
+                        context_dict)
+    else:
+        return render(request, 'accounts/userprofile_error.html', {'username':username})
 
 # CRUD views
 class SignUp(CreateView):

@@ -6,7 +6,7 @@
   <div class="new-group"><a href="{% url 'accounts:new_group' %}">Add Group</a></div>
   <div class="group-details">
     <!-- <p>Group name</p> -->
-    <ul> 
+    <ul>
       {% for group in group_list %}
         <li>
           {% if user in group.members.all %}
@@ -32,6 +32,6 @@
   {% else %}
     <h1>No groups are available</h1>
   {% endif %}
-  
+
   {% endblock accounts_content %}
 </div>
