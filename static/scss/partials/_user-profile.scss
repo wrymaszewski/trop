@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     @include main-margin;
-
+    flex-wrap: wrap;
     // ~~~~~~~~~~~~~~~~~~~~~~~~
     // user-profile 
 
@@ -46,39 +46,36 @@
     }
     // ~~~~~~~~~~~~~~~~~~~~~~~~
     // user-profile
-
     .user-profile {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: flex-start;
         width: 100%;
         height: 100%;
         margin: 25px 0 0 0;
+
         .user-image,
         .user-data,
         .user-options {
             img {
-                max-height: 350px;
-                // max-width: 300px;
+                max-height: 250px;
+                max-width: 250px;
                 border-radius: 12px;
             }
         }
         .user-data {
-        
             padding: 20px;
-        
             .user-name {
                 display: inline-block;
             }
         }
-        
         .user-options {
-        
             h2, h3 {
                 display: flex;
                 width: 110px;
                 height: 50px;
             }
-        
             h2 > a,
             h3 > a {
                 display: flex;
@@ -87,9 +84,15 @@
                 width: 100%;
                 color: #000;
                 text-decoration: none;
-                border-radius: 12px;
-        
+                border-radius: 12px;        
                 @include hover;
+            }
+        }
+        .user-stats {
+            width: 100%;
+            margin: 50px 0;
+            h2 {
+                text-align: center;
             }
         }
     }
