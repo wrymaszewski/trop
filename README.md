@@ -34,21 +34,17 @@ Endomondo for Climbers. It allows users to Sign Up and upload their outdoor asce
 - [ ] mobile version
 
 ## CLI commands
-  The project will be soon deployed, however now it can be previewed on a local machine. Steps required are listed below:
+ The App is now deployed at: https://trackyourtops.herokuapp.com
+  It can be previewed on a local machine. Steps required are listed below:
   1. Download and install [Anaconda](https://www.anaconda.com/download/#linux)
   2. Create a virual environent in your terminal: `conda create --name <environment_name>`
-  2. Activate the environment: `activate <environment_name>` (Windows) or `source activate <environment_name>` (MacOS, Linux)
-  3. Install PIP and dependencies:
+  3. Activate the environment: `activate <environment_name>` (Windows) or `source activate <environment_name>` (MacOS, Linux) 
+  4. Clone the repo: `git clone https://github.com/wrymaszewski/trop.git` and go to the main folder.
+  5. Install PIP and dependencies:
   ```
   conda install -c anaconda pip
-  pip install django
-  pip install django-extensions
-  pip install chartit
-  pip install cloudinary
-  pip install django-mediumeditor
-  pip install django-location-field
+  pip install -r requirements.txt
   ```
-  4. Clone the repo: `git clone https://github.com/wrymaszewski/trop.git`
-  5. Go into the main folder containing manage.py and start the server: `python manage.py runserver`. local server setup default address is <http://127.0.0.1:8000/>
+  6. Start the server: `python manage.py runserver`. local server setup default address is <http://127.0.0.1:8000/>
 
 Please report bugs to wrymaszewski@gmail.com or in the Issues section.
