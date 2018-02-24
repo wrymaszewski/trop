@@ -202,6 +202,10 @@
 
 .users .group-list .group-view { display: flex; flex-direction: row; flex-wrap: wrap; }
 
+.users .group-list .group-view .group-btn { width: 15%; display: flex; justify-content: center; align-items: center; border-radius: 12px; transition: 0.6s linear; text-decoration: none; color: #24292e; font-size: larger; font-weight: bolder; }
+
+.users .group-list .group-view .group-btn:hover { background-color: #24292e; color: #e4730a; }
+
 .users .group-list .group-view .group-info { width: 100%; }
 
 .users .group-list .group-view .group-info p > span { font-weight: bold; }
@@ -234,11 +238,11 @@
 
 .buttons .add-buttons { display: flex; flex-direction: row; }
 
-.buttons .add-buttons .add-route, .buttons .add-buttons .add-sector, .buttons .add-buttons .add-ascent, .buttons .add-buttons .save, .buttons .add-buttons .add-training { display: flex; justify-content: center; align-items: center; text-decoration: none; width: 140px; margin-right: 15px; }
+.buttons .add-buttons .add-route, .buttons .add-buttons .add-sector, .buttons .add-buttons .add-ascent, .buttons .add-buttons .save, .buttons .add-buttons .add-training, .buttons .add-buttons .add-comment, .buttons .add-buttons .join-leave, .buttons .add-buttons .add-post { display: flex; justify-content: center; align-items: center; text-decoration: none; width: 140px; margin-right: 15px; }
 
-.buttons .add-route, .buttons .add-sector, .buttons .add-ascent, .buttons .back-button, .buttons .save, .buttons .delete-button, .buttons .add-training { height: 50px; width: 90px; border-radius: 12px; cursor: pointer; color: #fff; background-color: #736B68; font-family: 'Roboto', sans-serif; font-size: large; font-weight: bold; border: none; transition: 0.6s linear; }
+.buttons .add-route, .buttons .add-sector, .buttons .add-ascent, .buttons .back-button, .buttons .save, .buttons .delete-button, .buttons .add-training, .buttons .add-comment, .buttons .join-leave, .buttons .add-post { height: 50px; width: 90px; border-radius: 12px; cursor: pointer; color: #fff; background-color: #736B68; font-family: 'Roboto', sans-serif; font-size: large; font-weight: bold; border: none; transition: 0.6s linear; }
 
-.buttons .add-route:hover, .buttons .add-sector:hover, .buttons .add-ascent:hover, .buttons .back-button:hover, .buttons .save:hover, .buttons .delete-button:hover, .buttons .add-training:hover { background-color: #24292e; color: #e4730a; }
+.buttons .add-route:hover, .buttons .add-sector:hover, .buttons .add-ascent:hover, .buttons .back-button:hover, .buttons .save:hover, .buttons .delete-button:hover, .buttons .add-training:hover, .buttons .add-comment:hover, .buttons .join-leave:hover, .buttons .add-post:hover { background-color: #24292e; color: #e4730a; }
 
 .navbar { display: flex; align-items: center; justify-content: space-between; background-color: #736B68; height: 50px; border-radius: 0 0 12px 12px; }
 
@@ -465,3 +469,19 @@ body { margin: 0; padding: 0; }
 .indoor .top-form .fieldWrapper.form-group .field-options #id_route_type li, .indoor .top-form .fieldWrapper.form-group .field-options #id_ascent_style li, .indoor .top-form .fieldWrapper.form-group .field-options #id_scale li { padding-right: 10px; }
 
 .indoor .top-form .fieldWrapper.form-group .field-options textarea#id_description { border-radius: 6px; border: 1px solid #736B68; }
+
+.posts .new-comment, .posts .new-post { min-height: 300px; width: 100%; }
+
+.posts .new-comment h1, .posts .new-post h1 { text-align: center; }
+
+.posts .new-comment form > .fieldWrapper.form-group, .posts .new-post form > .fieldWrapper.form-group { display: flex; flex-direction: row; }
+
+.posts .new-comment form > .fieldWrapper.form-group .field-label, .posts .new-post form > .fieldWrapper.form-group .field-label { padding-left: 10px; font-weight: bold; width: 10%; }
+
+.posts .new-comment form > .fieldWrapper.form-group .field, .posts .new-post form > .fieldWrapper.form-group .field { width: 80%; height: 100px; }
+
+.posts .new-comment form > .fieldWrapper.form-group .field input[type=text], .posts .new-post form > .fieldWrapper.form-group .field input[type=text] { width: 400px; height: 30px; }
+
+.posts .new-comment form > .fieldWrapper.form-group .field input[type=text] .django-mediumeditor-editable, .posts .new-post form > .fieldWrapper.form-group .field input[type=text] .django-mediumeditor-editable { width: 80px; }
+
+.posts .new-comment form > .fieldWrapper.form-group .field .django-mediumeditor-editable, .posts .new-post form > .fieldWrapper.form-group .field .django-mediumeditor-editable { min-height: 100px; }

@@ -45,7 +45,12 @@
         <h4>No comments</h4>
       {% endif %}
       {% if user in group.members.all %}
-        <a href="{% url 'posts:new_comment' pk=post.pk slug=post.group.slug %}">New Comment</a>
+      <div class="buttons">
+        <div class="add-buttons">
+          <a class="add-comment" href="{% url 'posts:new_comment' pk=post.pk slug=post.group.slug %}">New Comment</a>
+        </div>  
+      </div>
+      
       {% endif %}
     </div>
   </div>

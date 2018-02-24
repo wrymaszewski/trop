@@ -15,14 +15,24 @@
         <h2>No Posts</h2>
       {% endif %}
       {% if user in group.members.all %}
-        <a href="{% url 'posts:new_post' slug=group.slug%}">New Post</a>
+      <div class="buttons">
+          <div class="add-buttons">
+        <a class="add-post" href="{% url 'posts:new_post' slug=group.slug%}">New Post</a>
+        </div>
+      </div>
       {% endif %}
       {% if user.is_authenticated %}
-        {% if user in group.members.all %}
-          <a href="{% url 'accounts:leave_group' slug=group.slug %}">Leave!</a>
-        {% else %}
-          <a href="{% url 'accounts:join_group' slug=group.slug %}">Join!</a>
-        {% endif %}
+        <div class="buttons">
+          <div class="add-buttons">
+            <!-- <input class="save" type="submit" value="Save"> -->
+            <!-- <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);"> -->
+          {% if user in group.members.all %}
+            <a class="join-leave" href="{% url 'accounts:leave_group' slug=group.slug %}">Leave!</a>
+          {% else %}
+            <a class="join-leave" href="{% url 'accounts:join_group' slug=group.slug %}">Join!</a>
+          {% endif %}
+        </div>
+        </div>
       {% endif %}
     </div>
     <div class="group-members">

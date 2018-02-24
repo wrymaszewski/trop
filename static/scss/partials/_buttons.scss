@@ -12,7 +12,10 @@
         .add-sector,
         .add-ascent,
         .save,
-        .add-training {
+        .add-training,
+        .add-comment,
+        .join-leave,
+        .add-post {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,7 +30,10 @@
     .back-button,
     .save,
     .delete-button,
-    .add-training {
+    .add-training,
+    .add-comment,
+    .join-leave,
+    .add-post {
         height: 50px;
         width: 90px;
         border-radius: 12px;

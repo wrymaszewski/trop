@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-  <div class="container">
-        {% block posts_content %}
-        {% endblock posts_content %}
-    <input class="btn btn-default" type=button value='Back' onClick="javascript:history.go(-1);">
+  <div class="posts">
+      {% block posts_content %}
+      {% endblock posts_content %}
+      <!-- <div class="buttons">
+        <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
+      </div> -->
   </div>
 {% endblock content %}
