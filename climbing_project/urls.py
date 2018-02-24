@@ -28,9 +28,4 @@ urlpatterns = [
     url(r'^routes/', include('routes.urls', namespace='routes')),
     url(r'^indoor/', include('indoor.urls', namespace = 'indoor')),
     url(r'^posts/', include('posts.urls', namespace='posts')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-# if not settings.DEBUG:
-#     urlpatterns += patterns('',
-#         (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
-#     )
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
