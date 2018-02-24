@@ -134,7 +134,7 @@
 
 .welcome .random-pic { border-radius: 12px; margin: 25px; }
 
-.users { display: flex; justify-content: space-between; margin: 25px 40px 0 40px; }
+.users { display: flex; justify-content: space-between; margin: 25px 40px 0 40px; flex-wrap: wrap; }
 
 .users .user-list { display: flex; flex-direction: column; width: 100%; }
 
@@ -150,9 +150,9 @@
 
 .users .user-list ul li a:hover { background-color: #4c4b4b; font-size: larger; font-weight: bold; color: #e4730a; }
 
-.users .user-profile { display: flex; justify-content: space-between; width: 100%; height: 100%; margin: 25px 0 0 0; }
+.users .user-profile { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: flex-start; width: 100%; height: 100%; margin: 25px 0 0 0; }
 
-.users .user-profile .user-image img, .users .user-profile .user-data img, .users .user-profile .user-options img { max-height: 350px; border-radius: 12px; }
+.users .user-profile .user-image img, .users .user-profile .user-data img, .users .user-profile .user-options img { max-height: 250px; max-width: 250px; border-radius: 12px; }
 
 .users .user-profile .user-data { padding: 20px; }
 
@@ -163,6 +163,10 @@
 .users .user-profile .user-options h2 > a, .users .user-profile .user-options h3 > a { display: flex; align-items: center; padding-left: 10px; width: 100%; color: #000; text-decoration: none; border-radius: 12px; transition: 0.6s linear; }
 
 .users .user-profile .user-options h2 > a:hover, .users .user-profile .user-options h3 > a:hover { background-color: #242424; color: #e4730a; }
+
+.users .user-profile .user-stats { width: 100%; margin: 50px 0; }
+
+.users .user-profile .user-stats h2 { text-align: center; }
 
 .buttons { display: flex; margin: 25px 40px 0 40px; justify-content: space-between; margin: 50px 0; }
 
