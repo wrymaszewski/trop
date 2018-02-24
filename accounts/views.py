@@ -73,24 +73,39 @@ class CreateUserProfile(LoginRequiredMixin, CreateView):
     model = UserProfile
     fields = ['first_name', 'last_name', 'email',
                 'description', 'avatar', 'hidden']
-    success_url = reverse_lazy('accounts:redirect')
 
     def form_valid(self, form):
          self.object = form.save(commit=False)
          self.object.user = self.request.user
+         self.success_url = reverse_lazy('accounts:user_profile',
+            kwargs={'username': self.object.user.username})
+
          self.object.save()
          return super().form_valid(form)
 
 class UpdateUserProfile(LoginRequiredMixin, UpdateView):
     model = UserProfile
     fields = ['first_name', 'last_name', 'email',
-                'description', 'avatar', 'hidden']
+                'description', 'hidden']
     template_name = 'accounts/userprofile_update.html'
-    success_url = reverse_lazy('accounts:redirect')
 
     def get_object(self, queryset=None):
-        return get_object_or_404(self.model, user=self.request.user)
+        self.object = get_object_or_404(self.model, user=self.request.user)
+        self.success_url = reverse_lazy('accounts:user_profile',
+            kwargs={'username': self.object.user.username})
+        return self.object
 
+class ChangeAvatar(LoginRequiredMixin, UpdateView):
+    #dealing with Cloudinary name error
+    model = UserProfile
+    fields = ['avatar']
+    template_name = 'accounts/avatar_update.html'
+
+    def get_object(self, queryset=None):
+        self.object = UserProfile.objects.get(user__username__iexact = self.kwargs.get('username'))
+        self.success_url = reverse_lazy('accounts:user_profile',
+            kwargs={'username': self.object.user.username})
+        return self.object
 
 ###### Groups
 class CreateGroup(LoginRequiredMixin, CreateView):

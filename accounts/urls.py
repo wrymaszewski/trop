@@ -23,6 +23,8 @@ urlpatterns = [
     name='new_profile'),
     url(r'(?P<username>\w+)/edit-profile/$', views.UpdateUserProfile.as_view(),
     name='edit_profile'),
+    url(r'(?P<username>\w+)/edit-avatar/$', views.ChangeAvatar.as_view(),
+    name='edit_avatar'),
     # Groups
     url(r'group/new/$', views.CreateGroup.as_view(),
     name='new_group'),
