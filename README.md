@@ -42,7 +42,6 @@ Endomondo for Climbers. It allows users to Sign Up and upload their outdoor asce
   3. Install PIP and dependencies:
   ```
   conda install -c anaconda pip
-  pip install django
   pip install -r requirements.txt
   ```
   4. Clone the repo: `git clone https://github.com/wrymaszewski/trop.git`
