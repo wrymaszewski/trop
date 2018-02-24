@@ -1,9 +1,9 @@
 {% extends "accounts/accounts_base.html" %}
 {% block accounts_content %}
-{% if group_list %}
 <div class="group-list">
   <h1>User groups</h1>
   <div class="new-group"><a href="{% url 'accounts:new_group' %}">Add Group</a></div>
+  {% if group_list %}
   <div class="group-details">
     <!-- <p>Group name</p> -->
     <ul>
