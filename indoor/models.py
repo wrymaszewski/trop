@@ -3,12 +3,17 @@ from django.contrib.auth import get_user_model
 from location_field.models.plain import PlainLocationField
 from routes.models import Route, Ascent
 from routes.scales import convert_scale
+from django.core.validators import RegexValidator
 # Create your models here.
 User = get_user_model()
 
 class Gym(models.Model):
     name = models.CharField(max_length = 100)
-    address = models.CharField(max_length = 200, verbose_name = 'Street, City')
+    address = models.CharField(max_length = 200, verbose_name = 'Street, City',
+                                validators = [RegexValidator(
+                                regex='.+,\s.+',
+                                message = 'Input needs to consist of street and city names divided by a comma (,) and a space'
+                                )])
     location = PlainLocationField(based_fields = ['address'], zoom=10,
                                     default='52.2479423,20.953566')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -17,9 +22,15 @@ class Gym(models.Model):
     def __str__(self):
         return "{} ({})".format(self.name, self.address)
 
+    def save(self, *args, **kwargs):
+        self.address = self.address.title()
+        super().save(*args, **kwargs)
+
     class Meta:
         ordering = ['name']
         get_latest_by = 'created_at'
+
+
 
 class Training(models.Model):
     user = models.ForeignKey(User, related_name='trainings',
@@ -69,4 +80,7 @@ class Top(models.Model):
             self.grade_converted = convert_scale(self, 'V')
         else:
             self.grade_converted = convert_scale(self, 'FR')
+        # error handling
+        if not type(self.grade_converted) is str:
+            self.grade_converted = self.grade
         super().save(*args, **kwargs)

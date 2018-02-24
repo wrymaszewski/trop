@@ -3,6 +3,7 @@ from django.utils.text import slugify
 from location_field.models.plain import PlainLocationField
 from django.contrib.auth import get_user_model
 from .scales import convert_scale
+from django.core.validators import RegexValidator
 
 User = get_user_model()
 
@@ -11,7 +12,11 @@ User = get_user_model()
 class Sector(models.Model):
     name = models.CharField(max_length = 100, unique=True)
     slug = models.SlugField(allow_unicode = True)
-    region = models.CharField(max_length = 250, verbose_name = 'Region, Country')
+    region = models.CharField(max_length = 250, verbose_name = 'Region, Country',
+                        validators =[RegexValidator(
+                                    regex='.+,\s.+',
+                                    message = 'Input needs to consist of region and country names divided by a comma (,) and a space'
+                                    )])
     country = models.CharField(max_length = 100)
     location = PlainLocationField(based_fields=['region'], zoom = 7,
                                     default = '37.6564706,-119.5724832')
@@ -21,14 +26,13 @@ class Sector(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
-        self.name = self.name.capitalize()
-        self.country = self.region.split(', ')[1]
-        self.region = self.region.split(', ')[0]
+        self.name = self.name.title()
+        self.country = self.region.split(', ')[1].title()
+        self.region = self.region.split(', ')[0].title()
         super().save(*args, **kwargs)
 
     def __str__(self):
         return "{} ({}, {})".format(self.name, self.region, self.country)
-
 
     class Meta:
         get_latest_by = 'created_at'
@@ -77,17 +81,20 @@ class Route(models.Model):
         updated_at = models.DateTimeField(auto_now=True)
 
         def save(self, *args, **kwargs):
-            if self.route_type=='BLD':
-                self.grade_converted = convert_scale(self, 'V')
-            else:
-                self.grade_converted = convert_scale(self, 'FR')
-
             self.slug = slugify(self.name)
-            self.name = self.name.capitalize()
+            self.name = self.name.title()
+
             if self.scale == 'YDS' or self.scale == 'FR':
                 self.grade = self.grade.lower()
             else:
                 self.grade = self.grade.upper()
+            if self.route_type=='BLD':
+                self.grade_converted = convert_scale(self, 'V')
+            else:
+                self.grade_converted = convert_scale(self, 'FR')
+            # error handling
+            if not type(self.grade_converted) is str:
+                self.grade_converted = self.grade
             super().save(*args, **kwargs)
 
         def __str__(self):

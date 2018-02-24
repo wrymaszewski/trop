@@ -15,8 +15,6 @@ urlpatterns = [
     name = 'users'),
     url(r'(?P<username>\w+)/profile/$', views.get_user_profile,
     name='user_profile'),
-    url(r'(?P<username>\w+)/no-profile-error/$', views.get_user_profile,
-    name='user_profile_error'),
     url(r'redirect/$', views.UserProfileCreationRedirectView.as_view(),
     name='redirect'),
     url(r'redirect-profile/$', views.UserProfileRedirectView.as_view(),
