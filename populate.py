@@ -62,26 +62,31 @@ def populate_sector (N=100):
 
         for rou in range(20):
 
-            route = Route.objects.get_or_create(
-                            sector = sector,
-                            name = fakegen.catch_phrase(),
-                            route_type = random.choice(Route.ROUTE_TYPE_CHOICES[0]),
-                            protection = random.choice(Route.PROTECTION_CHOICES[0]),
-                            scale = Route.FR,
-                            grade = random.choice(['6b', '5c', '7c', '9a', '6a', '7a', '6c+', '8a', '7c']),
-                            )[0]
+            try:
+                route = Route.objects.get_or_create(
+                                sector = sector,
+                                name = fakegen.catch_phrase(),
+                                route_type = random.choice(Route.ROUTE_TYPE_CHOICES[0]),
+                                protection = random.choice(Route.PROTECTION_CHOICES[0]),
+                                scale = Route.FR,
+                                grade = random.choice(['6b', '5c', '7c', '9a', '6a', '7a', '6c+', '8a', '7c']),
+                                )[0]
+            except IntegrityError:
+                pass
 
             for asc in range(10):
-
-                user = random.choice(User.objects.all())
-                ascent = Ascent.objects.get_or_create(
-                    route = route,
-                    user = user,
-                    date = fakegen.date_this_century(),
-                    ascent_style = random.choice(Ascent.ASCENT_STYLE_CHOICES)[0],
-                    rating = random.choice(Ascent.RATING_CHOICES)[0],
-                    description = fakegen.text()
-                )
+                try:
+                    user = random.choice(User.objects.all())
+                    ascent = Ascent.objects.get_or_create(
+                        route = route,
+                        user = user,
+                        date = fakegen.date_this_century(),
+                        ascent_style = random.choice(Ascent.ASCENT_STYLE_CHOICES)[0],
+                        rating = random.choice(Ascent.RATING_CHOICES)[0],
+                        description = fakegen.text()
+                    )
+                except IntegrityError:
+                    pass
 
 def populate_indoor(N=20):
     for gyms in range(N):
@@ -101,21 +106,27 @@ def populate_indoor(N=20):
         for trainings in range(50):
 
             user = random.choice(User.objects.all())
-            training = Training.objects.get_or_create(
+            try:
+               training = Training.objects.get_or_create(
                             user = user,
                             location = gym,
                             date = fakegen.date_this_century(),
                             description = fakegen.text()
                             )[0]
+            except IntegrityError:
+                pass
 
             for tops in range(20):
-                top = Top.objects.get_or_create(
-                                training = training,
-                                route_type = random.choice(Top.ROUTE_TYPE_CHOICES)[0],
-                                scale = Route.FR,
-                                grade = random.choice(['6b', '5c', '7c', '9a', '6a', '7a', '6c+']),
-                                ascent_style = random.choice(Ascent.ASCENT_STYLE_CHOICES)[0],
-                                )
+                # try:
+                    top = Top.objects.get_or_create(
+                                    training = training,
+                                    route_type = random.choice(Top.ROUTE_TYPE_CHOICES)[0],
+                                    scale = Route.FR,
+                                    grade = random.choice(['6b', '5c', '7c', '9a', '6a', '7a', '6c+']),
+                                    ascent_style = random.choice(Ascent.ASCENT_STYLE_CHOICES)[0],
+                                    )
+                # except IntegrityError:
+                #     pass
 
 def populate_post (N=10):
 
@@ -131,33 +142,37 @@ def populate_post (N=10):
                         )[0]
         for posts in range(10):
             user = random.choice([user1, user2, user3])
-
-            post = Post.objects.get_or_create(
-                group = group,
-                author = user,
-                title = fakegen.sentence(),
-                text = fakegen.text(),
-                )[0]
+            try:
+                post = Post.objects.get_or_create(
+                    group = group,
+                    author = user,
+                    title = fakegen.sentence(),
+                    text = fakegen.text(),
+                    )[0]
+            except IntegrityError:
+                pass
 
             for comments in range(4):
                 com_user = random.choice(User.objects.all())
-                comment = Comment.objects.get_or_create(
-                    post = post,
-                    author = com_user,
-                    text = fakegen.text()
-                    )
 
-
+                try:
+                    comment = Comment.objects.get_or_create(
+                        post = post,
+                        author = com_user,
+                        text = fakegen.text()
+                        )
+                except IntegrityError:
+                    pass
 
 
 if __name__ == '__main__':
     print("Populating the databases...Please Wait")
-    # print('....Populating User and UserProfile')
-    # populate_user(5)
+    print('....Populating User and UserProfile')
+    # populate_user(20)
     # print('....Populating Sectors')
-    # populate_sector(5)
+    # populate_sector(20)
     # print('....Populating Indoor')
-    # populate_indoor(5)
+    # populate_indoor(20)
     print('....Populating Post')
-    populate_post(5)
+    populate_post(20)
     print('Populating Complete')
