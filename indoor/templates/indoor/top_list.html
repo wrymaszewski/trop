@@ -1,5 +1,6 @@
 {% extends "indoor/indoor_base.html" %}
 {% block indoor_content %}
+<div class="top-form">
   <h1>Training {{training}}</h1>
   <table class="table datatable">
     <thead>
@@ -36,4 +37,5 @@
 
   {% include "_map.html" %}
   <a href="{% url 'indoor:new_top' pk=training.pk %}">Add a Top</a>
+</div>
 {% endblock indoor_content %}

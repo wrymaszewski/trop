@@ -1,23 +1,31 @@
 {% extends "indoor/indoor_base.html" %}
 {% block indoor_content %}
-  <div class="jumbotron">
+  <div class="gym-form">
     <h1>New Gym</h1>
-    <form  action="" method="post">
-        {{form.media}}
-        {% csrf_token %}
-        {# Include the hidden fields #}
-        {% for hidden in form.hidden_fields %}
-        {{ hidden }}
-        {% endfor %}
-        {% for field in form.visible_fields %}
-            <div class="fieldWrapper form-group">
-                {{ field.errors }}
+    <form action="" method="post">
+      {{form.media}}
+      {% csrf_token %}
+      {# Include the hidden fields #}
+      {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+      {% endfor %}
+      {% for field in form.visible_fields %}
+          <div class="fieldWrapper form-group">
+              {{ field.errors }}
+              <div class="field-name">
                 {{ field.label }}
-                  <br>
-                  {{ field }}
               </div>
-        {% endfor %}
-        <input class="btn btn-primary" type="submit" value="Save" />
+              <div class="field-options">
+                {{ field }}
+              </div>
+            </div>
+      {% endfor %}
     </form>
+    <div class="buttons">
+      <div class="add-buttons">
+        <input class="save" type="submit" value="Add New Gym"></input>
+      </div>
+      <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
+    </div>
   </div>
 {% endblock indoor_content %}

@@ -1,5 +1,6 @@
 {% extends "indoor/indoor_base.html" %}
 {% block indoor_content %}
+<div class="training-list">
   <h1>List of trainings</h1>
   {% if training_list %}
   <table class="table datatable">
@@ -30,13 +31,20 @@
     </tbody>
   </table>
 
+
 {% load chartit %}
 {{chart_list|load_charts:'pie,line'}}
 <div id="line"></div>
 <div id="pie"></div>
 
 {% else %}
-  <h2>There were no records found</h2>
+  <h2 class="no-records">There were no records found</h2>
 {% endif %}
-  <a href="{% url 'indoor:new_training' %}">Add a Training</a>
+  <div class="buttons">
+      <div class="add-buttons">
+          <a class="add-training" href="{% url 'indoor:new_training' %}">Add Training</a>
+      </div>
+      <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
+  </div>
+</div>
 {% endblock indoor_content %}
