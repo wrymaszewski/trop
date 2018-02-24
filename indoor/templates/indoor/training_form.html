@@ -1,6 +1,6 @@
 {% extends "indoor/indoor_base.html" %}
 {% block indoor_content %}
-  <div class="jumbotron">
+<div class="training-form">
     <h1>New Training</h1>
     <form method="post">
       {% csrf_token %}
@@ -9,16 +9,26 @@
       {% endfor %}
       {% for field in form.visible_fields %}
           <div class="fieldWrapper form-group">
-                {{ field.errors }}
+              {{ field.errors }}
+              <div class="field-name">
                 {{ field.label }}
-                <br>
+              </div>
+              <div class="field-options">
                 {{ field }}
+              </div>
               {% if field.label == 'Gym' %}
-                <a href="{% url 'indoor:new_gym' %}"><span class='fas fa-plus'></span></a>
+              <div class="add-buttons">
+                <a href="{% url 'indoor:new_gym' %}">&nbsp<span class='fas fa-plus'></span>&nbspAdd New Gym</a>
+              </div>
               {% endif %}
           </div>
       {% endfor %}
-      <input class="btn btn-default" type="submit" name="" value="Submit">
+      <div class="buttons">
+          <div class="add-buttons">
+            <input class="save" type="submit" value="Add Training"></input>
+          </div>
+          <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
+        </div>
     </form>
   </div>
 {% endblock indoor_content %}

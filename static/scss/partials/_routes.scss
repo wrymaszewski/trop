@@ -195,9 +195,9 @@
                         padding: 2px 20px 2px 10px;
                         @include hover;
                         font-weight: normal;
-                        .svg-inline--fa.fa-plus.fa-w-14 {
-                            padding: 0 10px;
-                        }
+                        // .svg-inline--fa.fa-plus.fa-w-14 {
+                            // padding: 0 10px;
+                        // }
                     }
                 }
                 input[type=text] {
@@ -257,9 +257,6 @@
                         padding: 2px 20px 2px 10px;
                         @include hover;
                         font-weight: normal;
-                        .svg-inline--fa.fa-plus.fa-w-14 {
-                            padding: 0 10px;
-                        }
                     }
                 }
                 input[type=date] {
@@ -293,7 +290,7 @@
             background-color: #B5D5E3;
             border-radius: 12px;
             position: relative;
-            height: 460px;
+            min-height: 460px;
             .fieldWrapper.form-group {
             
                 margin: 10px 0;
@@ -312,7 +309,7 @@
                 input[type=text] {
                     width: 40%;
                     color: $white;
-                    background-color: #4797B9;
+                    // background-color: #4797B9;
                     height: 1.5rem;
                     border-radius: 6px;
                 }
@@ -323,6 +320,8 @@
                 .map-widget {
                     position: absolute;
                     left: 125px;
+                    height: 635px;
+                    width: 450px;
                 }
             }
         }

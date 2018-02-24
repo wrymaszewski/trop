@@ -4,14 +4,18 @@
     display: flex;
     @include main-margin;
     justify-content: space-between;
-    margin: 50px 0;
+    margin: 10px 0;
     .add-buttons {
         display: flex;
         flex-direction: row;
         .add-route,
         .add-sector,
         .add-ascent,
-        .save {
+        .save,
+        .add-training,
+        .add-comment,
+        .join-leave,
+        .add-post {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,7 +29,11 @@
     .add-ascent,
     .back-button,
     .save,
-    .delete-button {
+    .delete-button,
+    .add-training,
+    .add-comment,
+    .join-leave,
+    .add-post {
         height: 50px;
         width: 90px;
         border-radius: 12px;
