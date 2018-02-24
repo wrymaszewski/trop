@@ -14,20 +14,22 @@
             <div class="fieldWrapper form-group">
                 {{ field.errors }}
                 <div class="field-name">
+                  {% if field.label != 'Location' %}
                     {{ field.label }}
-
+                  {% endif %}
                 </div>
                 <div class="field-options">
                         {{ field }}
                 </div>
             </div>
         {% endfor %}
-    </form>
     <div class="buttons">
             <div class="add-buttons">
               <input class="save" type="submit" value="Add New Sector"></input>
             </div>
             <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
     </div>
+  </form>
+
   </div>
 {% endblock route_content %}

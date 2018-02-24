@@ -105,7 +105,8 @@ class RouteAscentList(ListView):
                                 charts.route_ascent_chart(self.kwargs.get('route_slug')),
                                 charts.ascent_pie_chart(self.kwargs.get('route_slug'))
                                 ]
-
+        context['lat'] = self.route.sector.location.split(',')[0]
+        context['lng'] = self.route.sector.location.split(',')[1]
         return context
 
 

@@ -9,7 +9,8 @@ User = get_user_model()
 class Gym(models.Model):
     name = models.CharField(max_length = 100)
     address = models.CharField(max_length = 200, verbose_name = 'Street, City')
-    location = PlainLocationField(based_fields = ['address'], zoom=10)
+    location = PlainLocationField(based_fields = ['address'], zoom=10,
+                                    default='52.2479423,20.953566')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
