@@ -7,7 +7,6 @@
     flex-wrap: wrap;
     // ~~~~~~~~~~~~~~~~~~~~~~~~
     // user-profile 
-
     .user-list {
         display: flex;
         flex-direction: column;    
@@ -16,22 +15,17 @@
             border-bottom: 1px solid #ccc;
         }
         ul {
-    
             list-style: none;
             padding: 0;
-    
             li {
                 border-bottom: 1px solid #ccc;
                 display: flex;
-                
-    
                 a {
                     text-decoration: none;
                     color: $almost-black;
                     line-height: 40px;
                     width: 100%;
                     @include hover;
-
                     &:hover {
                         background-color: #4c4b4b;
                         font-size: larger;
@@ -39,8 +33,6 @@
                         color: $orange;
                     }
                 }
-    
-                
             }
         }  
     }
@@ -95,5 +87,161 @@
                 text-align: center;
             }
         }
+    }
+    // ~~~~~~~~~~~~~~~~~~~~~~~~
+    // user-groups 
+    .group-list {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        h1 {
+            text-align: center;
+        }
+        .new-group {
+            display: flex;
+            flex-direction: row-reverse;
+            a {
+                width: 140px;
+                padding: 10px 15px;
+                border-radius: 12px; 
+                background-color: $almost-black;
+                color: $white;
+                text-decoration: none;
+                text-align: center;
+                font-weight: 600;
+                @include hover;
+            }
+        }
+        .group-details {
+            display: flex;
+            flex-direction: column;
+            ul {
+                list-style: none;
+                padding: 0;
+                width: 100%;
+                li {
+                    margin: 10px 0;
+                    border-radius: 12px;
+                    background-color: $grey;
+                    display: flex;
+                    min-height: 60px;
+
+                    .group-name,
+                    .group-desc,
+                    .group-members,
+                    .group-btn {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                    }
+                    .group-name {
+                        width: 20%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        a {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 100%;
+                            width: 100%;
+                            color: $almost-black;
+                            text-decoration: none;
+                            font-size: larger;
+                            font-weight: bold;
+                            border-radius: 12px;
+                            @include hover;
+                            &:hover {
+                                // background-color: inherit;
+                                color: $orange;
+                            }
+                        }
+                    }
+                    .group-desc {
+                        padding-left: 20px;
+                        width: 50%;
+                    }
+                    .group-members {
+                        width: 15%;
+                        span {
+                            font-size: larger;
+                            font-weight: bolder;
+                        }
+                    }
+                    .group-btn {
+                        width: 15%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 12px;
+                        @include hover;
+                        text-decoration: none;
+                        color: $almost-black;
+                        font-size: larger;
+                        font-weight: bolder;
+                    }
+                }
+            }
+        } 
+        .group-view {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            .group-info {
+                width: 100%;
+                p > span {
+                    font-weight: bold;
+                }
+            }
+            .group-posts {
+                background-color: $baltic;
+                border-radius: 12px;
+                width: 75%;                
+            }
+            .group-members {
+                padding-left: 10px;
+                width: 25%;
+                ul {
+                    padding: 0;                    
+                    li {
+                        padding: 5px 0;
+                        list-style: none;
+                        a {
+                            text-decoration: none;
+                            font-weight: bold;
+                            color: $almost-black;
+                            @include hover;
+                            &:hover {
+                                background-color: inherit;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .group-new {
+        
+        .fieldWrapper.form-group {
+            display: flex;
+            flex-direction: row;
+            .field-label,
+            .field-name {
+                margin: 10px 0;
+                input[type=text],
+                textarea {
+                    border: 1px solid $grey;
+                    border-radius: 12px;
+                    padding-left: 5px;
+                     
+                }
+            }
+            .field-label {
+                width: 15%;
+            }
+        }
+    }
+    .buttons {
+        width: 100%;
     }
 }

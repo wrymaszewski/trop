@@ -17,20 +17,20 @@
       <a href="{% url 'posts:delete_post' pk=post.pk %}"><span class="fas fa-trash" ></span> </a>
       {% endif %}
     </div>
-    <div class="comment container">
+    <div class="comment ">
       {% if post.comments %}
         <h4>Comments: {{post.comments.count}}</h4>
         <ul>
           {% for comment in post.comments.all %}
           <li>
-            <div class="container">
+            <div class="">
               <h5 class="media-heading">
                 <span class="username">
                   {% cloudinary comment.author.userprofile.avatar format="jpg" width=30 height=30 crop="fill" gravity="face" radius="max" %}
                   <a href="{% url 'accounts:user_profile' username=comment.author.username %}">{{comment.author.username}}</a>
                 </span>
               </h5>
-              <div class="container comment-body">
+              <div class=" comment-body">
                 <p>{{comment.text|safe|linebreaksbr}}</p>
               </div>
               {% if user.is_authenticated and comment.author == user %}

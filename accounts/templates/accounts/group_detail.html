@@ -1,34 +1,38 @@
 {% extends "accounts/accounts_base.html" %}
 {% block accounts_content %}
-<h1>Group: {{group.name}}</h1>
-<p>{{group.description}}</p>
-<div class="container">
-  <h3>Members: {{group.members.count}}</h3>
-  <ul>
-    {% for member in group.members.all %}
-      <li><a href="{% url 'accounts:user_profile' username=member.username%}">{{member.username}}</a></li>
-    {% endfor %}
-  </ul>
+<div class="group-list">
+  <div class="group-view">
+    <div class="group-info">
+      <h1>Group name: {{group.name}}</h1>
+      <p><span>Group description:</span> {{group.description}}</p>
+    </div>
+    <div class="group-posts">
+      {% if group.posts %}
+      {% for post in  group.posts.all%}
+        {% include "posts/_post.html" %}
+      {% endfor %}
+      {% else %}
+        <h2>No Posts</h2>
+      {% endif %}
+      {% if user in group.members.all %}
+        <a href="{% url 'posts:new_post' slug=group.slug%}">New Post</a>
+      {% endif %}
+      {% if user.is_authenticated %}
+        {% if user in group.members.all %}
+          <a href="{% url 'accounts:leave_group' slug=group.slug %}">Leave!</a>
+        {% else %}
+          <a href="{% url 'accounts:join_group' slug=group.slug %}">Join!</a>
+        {% endif %}
+      {% endif %}
+    </div>
+    <div class="group-members">
+      <h3>Members: {{group.members.count}}</h3>
+      <ul class="group-users">
+        {% for member in group.members.all %}
+          <li><a href="{% url 'accounts:user_profile' username=member.username%}">{{member.username}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>    
+  </div>
 </div>
-<div class="container">
-{% if group.posts %}
-{% for post in  group.posts.all%}
-  {% include "posts/_post.html" %}
-{% endfor %}
-{% else %}
-  <h2>No Posts</h2>
-{% endif %}
-{% if user in group.members.all %}
-  <a href="{% url 'posts:new_post' slug=group.slug%}">New Post</a>
-{% endif %}
-{% if user.is_authenticated %}
-  {% if user in group.members.all %}
-    <a href="{% url 'accounts:leave_group' slug=group.slug %}">Leave!</a>
-  {% else %}
-    <a href="{% url 'accounts:join_group' slug=group.slug %}">Join!</a>
-  {% endif %}
-{% endif %}
-</div>
-
-
 {% endblock accounts_content %}

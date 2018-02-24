@@ -51,12 +51,12 @@
             {% if user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'accounts:redirect_profile' %}">
-                  <span class="fas fa-user"></span><span> {{user}}</span>
+                  <span class="fas fa-user"></span><span>&nbsp{{user}}</span>
                 </a>
               </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'accounts:logout' %}">
-                    <span class="fas fa-sign-out-alt"></span><span> Log Out</span>
+                    <span class="fas fa-sign-out-alt"></span><span>&nbspLog Out</span>
                   </a>
                 </li>
             {% else %}
