@@ -20,10 +20,11 @@
                 </div>  
             </div>
         {% endfor %}
+        <div class="buttons">
+            <input class="save" type="submit" value="Save">
+            <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
+        </div>
     </form>  
 </div>
-<div class="buttons">
-    <input class="save" type="submit" value="Save">
-    <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
-</div>
+
 {% endblock posts_content %}

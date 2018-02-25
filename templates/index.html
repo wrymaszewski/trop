@@ -7,8 +7,9 @@
       <span class="high">tr</span>ack your t<span class="high">op</span>s <span class="fas fa-arrow-up"></span>
     </div>
     {% if user.is_authenticated %}
-    <h2>Recent Posts</h2>
+    
     <div class="posts">
+        <h2>Recent Posts</h2>
       {% for post in recent_posts %}
         <h5>Group: <a href="{% url 'accounts:single_group' slug=post.group.slug %}">{{post.group.name}}</a> </h5>
         {% include "posts/_post.html" %}

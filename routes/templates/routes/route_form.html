@@ -1,6 +1,6 @@
 {% extends "routes/routes_base.html"  %}
 {% block route_content %}
-  <div class="route_form">
+  <div class="route-form">
     <h1>New Route</h1>
     <form action="" method="post">
       {% csrf_token %}
@@ -20,7 +20,7 @@
                 {{ field }}
                 {% if field.label == 'Sector' %}
                   <div class="add-buttons">
-                    <a class="add-sector" href="{% url 'routes:new_sector' %}"><span class='fas fa-plus'></span>Add New Sector</a>
+                    <a class="add-sector" href="{% url 'routes:new_sector' %}"><span class='fas fa-plus'></span>&nbspAdd New Sector</a>
                   </div>
                 {% endif %}
               </div>

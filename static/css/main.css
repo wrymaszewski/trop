@@ -2,7 +2,7 @@
 
 .routes .route-list ul { list-style: none; padding: 0; }
 
-.routes .route-list ul a { display: flex; text-decoration: none; color: #24292e; line-height: 40px; padding-left: 10px; transition: 0.6s linear; border-radius: 12px; }
+.routes .route-list ul a { display: flex; text-decoration: none; color: #24292e; line-height: 40px; padding-left: 10px; transition: 0.6s linear; border-radius: 12px; background-color: #ccc; }
 
 .routes .route-list ul a:hover { background-color: #24292e; color: #e4730a; }
 
@@ -16,9 +16,9 @@
 
 .routes .route-info .route-details { display: flex; flex-direction: column; }
 
-.routes .route-info .route-details p { display: flex; align-items: center; justify-content: left; background-color: #4797B9; height: 50px; border-radius: 12px; }
+.routes .route-info .route-details p { display: flex; align-items: center; justify-content: left; background-color: #ccc; height: 50px; border-radius: 12px; }
 
-.routes .route-info .route-details p span { width: 120px; padding-left: 10px; }
+.routes .route-info .route-details p span { width: 150px; padding-left: 10px; }
 
 .routes .route-info .route-details p a { display: flex; align-items: center; width: 100%; height: 100%; transition: 0.6s linear; }
 
@@ -26,9 +26,9 @@
 
 .routes .route-info .route-ascents table { width: 100%; }
 
-.routes .route-info .route-ascents thead th { background-color: #4797B9; height: 30px; font-size: 1.2rem; border-top-left-radius: 12px; border-top-right-radius: 12px; }
+.routes .route-info .route-ascents thead th { background-color: #ccc; height: 30px; font-size: 1.2rem; border-top-left-radius: 12px; border-top-right-radius: 12px; }
 
-.routes .route-info .route-ascents tbody > tr:nth-of-type(2n) { background-color: #B5D5E3; }
+.routes .route-info .route-ascents tbody > tr:nth-of-type(2n) { background-color: #ccc; }
 
 .routes .route-info .route-ascents tbody > tr > td { padding: 5px 10px; }
 
@@ -40,7 +40,7 @@
 
 .routes .route-info .route-opinions .post { display: flex; flex-direction: row; padding: 10px 0; }
 
-.routes .route-info .route-opinions .post:nth-of-type(2n) { background-color: #B5D5E3; border-radius: 12px; }
+.routes .route-info .route-opinions .post:nth-of-type(2n) { background-color: #ccc; border-radius: 12px; }
 
 .routes .route-info .route-opinions .post a { display: flex; justify-content: center; align-items: center; height: 40px; width: 10%; padding: 0 5px; }
 
@@ -56,55 +56,55 @@
 
 .routes a:hover { color: #e4730a; }
 
-.routes .route_form h1 { text-align: center; }
+.routes .route-form h1 { text-align: center; }
 
-.routes .route_form .fieldWrapper.form-group { background-color: #B5D5E3; border-radius: 12px; margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
+.routes .route-form .fieldWrapper.form-group { background-color: #ccc; border-radius: 12px; margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
 
-.routes .route_form .fieldWrapper.form-group .field-name { width: 15%; font-weight: bold; }
+.routes .route-form .fieldWrapper.form-group .field-name { width: 15%; font-weight: bold; }
 
-.routes .route_form .fieldWrapper.form-group .field-options { display: flex; flex-direction: row; width: 85%; }
+.routes .route-form .fieldWrapper.form-group .field-options { display: flex; flex-direction: row; width: 85%; }
 
-.routes .route_form .fieldWrapper.form-group .field-options select { width: 50%; height: 1.5rem; background-color: #4797B9; }
+.routes .route-form .fieldWrapper.form-group .field-options select { width: 50%; height: 1.5rem; background-color: #ccc; }
 
-.routes .route_form .fieldWrapper.form-group .field-options .add-buttons { margin-left: 10px; }
+.routes .route-form .fieldWrapper.form-group .field-options .add-buttons { margin-left: 10px; }
 
-.routes .route_form .fieldWrapper.form-group .field-options .add-buttons .add-sector { display: flex; justify-content: center; align-items: center; color: #fff; height: 21px; background-color: #4797B9; border-radius: 6px; padding: 2px 20px 2px 10px; transition: 0.6s linear; font-weight: normal; }
+.routes .route-form .fieldWrapper.form-group .field-options .add-buttons .add-sector { display: flex; justify-content: center; align-items: center; color: #fff; height: 21px; background-color: #ccc; border-radius: 6px; padding: 2px 20px 2px 10px; transition: 0.6s linear; font-weight: normal; }
 
-.routes .route_form .fieldWrapper.form-group .field-options .add-buttons .add-sector:hover { background-color: #24292e; color: #e4730a; }
+.routes .route-form .fieldWrapper.form-group .field-options .add-buttons .add-sector:hover { background-color: #24292e; color: #e4730a; }
 
-.routes .route_form .fieldWrapper.form-group .field-options input[type=text] { width: 50%; height: 1.5rem; border-radius: 6px; }
+.routes .route-form .fieldWrapper.form-group .field-options input[type=text] { width: 50%; height: 1.5rem; border-radius: 6px; padding-left: 5px; }
 
-.routes .route_form .fieldWrapper.form-group .field-options #id_route_type, .routes .route_form .fieldWrapper.form-group .field-options #id_protection, .routes .route_form .fieldWrapper.form-group .field-options #id_scale { display: flex; flex-direction: row; list-style: none; padding: 0; }
+.routes .route-form .fieldWrapper.form-group .field-options #id_route_type, .routes .route-form .fieldWrapper.form-group .field-options #id_protection, .routes .route-form .fieldWrapper.form-group .field-options #id_scale { display: flex; flex-direction: row; list-style: none; padding: 0; }
 
-.routes .route_form .fieldWrapper.form-group .field-options #id_route_type li, .routes .route_form .fieldWrapper.form-group .field-options #id_protection li, .routes .route_form .fieldWrapper.form-group .field-options #id_scale li { padding-right: 10px; }
+.routes .route-form .fieldWrapper.form-group .field-options #id_route_type li, .routes .route-form .fieldWrapper.form-group .field-options #id_protection li, .routes .route-form .fieldWrapper.form-group .field-options #id_scale li { padding-right: 10px; }
 
 .routes .ascent-form h1 { text-align: center; }
 
-.routes .ascent-form .fieldWrapper.form-group { background-color: #B5D5E3; border-radius: 12px; margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
+.routes .ascent-form .fieldWrapper.form-group { background-color: #ccc; border-radius: 12px; margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
 
 .routes .ascent-form .fieldWrapper.form-group .field-name { width: 15%; font-weight: bold; }
 
 .routes .ascent-form .fieldWrapper.form-group .field-options { display: flex; flex-direction: row; width: 85%; }
 
-.routes .ascent-form .fieldWrapper.form-group .field-options select { width: 50%; height: 1.5rem; background-color: #4797B9; }
+.routes .ascent-form .fieldWrapper.form-group .field-options select { width: 50%; height: 1.5rem; }
 
 .routes .ascent-form .fieldWrapper.form-group .field-options .add-buttons { margin-left: 10px; }
 
-.routes .ascent-form .fieldWrapper.form-group .field-options .add-buttons .add-sector { display: flex; justify-content: center; align-items: center; color: #fff; height: 21px; background-color: #4797B9; border-radius: 6px; padding: 2px 20px 2px 10px; transition: 0.6s linear; font-weight: normal; }
+.routes .ascent-form .fieldWrapper.form-group .field-options .add-buttons .add-sector { display: flex; justify-content: center; align-items: center; color: #fff; height: 21px; background-color: #ccc; border-radius: 6px; padding: 2px 20px 2px 10px; transition: 0.6s linear; font-weight: normal; }
 
 .routes .ascent-form .fieldWrapper.form-group .field-options .add-buttons .add-sector:hover { background-color: #24292e; color: #e4730a; }
 
-.routes .ascent-form .fieldWrapper.form-group .field-options input[type=date] { height: 1.5rem; background-color: #4797B9; height: 21px; border-radius: 6px; }
+.routes .ascent-form .fieldWrapper.form-group .field-options input[type=date] { height: 1.5rem; height: 21px; border-radius: 6px; }
 
 .routes .ascent-form .fieldWrapper.form-group .field-options #id_ascent_style, .routes .ascent-form .fieldWrapper.form-group .field-options #id_rating { display: flex; flex-direction: row; list-style: none; padding: 0; }
 
 .routes .ascent-form .fieldWrapper.form-group .field-options #id_ascent_style li, .routes .ascent-form .fieldWrapper.form-group .field-options #id_rating li { padding-right: 10px; }
 
-.routes .ascent-form .fieldWrapper.form-group .field-options textarea#id_description { border-radius: 6px; border: 1px solid #736B68; }
+.routes .ascent-form .fieldWrapper.form-group .field-options textarea#id_description { border-radius: 6px; border: 1px solid #737373; padding: 5px; }
 
 .routes .sector-form h1 { text-align: center; }
 
-.routes .sector-form form { background-color: #B5D5E3; border-radius: 12px; position: relative; min-height: 460px; }
+.routes .sector-form form { border-radius: 12px; position: relative; min-height: 460px; }
 
 .routes .sector-form form .fieldWrapper.form-group { margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
 
@@ -112,11 +112,13 @@
 
 .routes .sector-form form .fieldWrapper.form-group .field-options { display: flex; flex-direction: row; width: 85%; }
 
-.routes .sector-form form .fieldWrapper.form-group input[type=text] { width: 40%; color: #fff; height: 1.5rem; border-radius: 6px; }
+.routes .sector-form form .fieldWrapper.form-group input[type=text] { width: 40%; color: #24292e; padding-left: 5px; height: 1.5rem; border-radius: 6px; }
 
 .routes .sector-form form .fieldWrapper.form-group input[type=text]#id_location { border: 3px solid black; visibility: hidden; }
 
 .routes .sector-form form .fieldWrapper.form-group .map-widget { position: absolute; left: 125px; height: 635px; width: 450px; }
+
+.routes .buttons { margin-top: 280px; }
 
 .welcome { display: flex; flex-direction: column; justify-content: space-around; align-items: center; margin: 25px 40px 0 40px; }
 
@@ -156,7 +158,7 @@
 
 .users .user-profile .user-options h2, .users .user-profile .user-options h3 { display: flex; width: 110px; height: 50px; }
 
-.users .user-profile .user-options h2 > a, .users .user-profile .user-options h3 > a { display: flex; align-items: center; padding-left: 10px; width: 100%; color: #000; text-decoration: none; border-radius: 12px; transition: 0.6s linear; }
+.users .user-profile .user-options h2 > a, .users .user-profile .user-options h3 > a { display: flex; align-items: center; padding-left: 10px; width: 100%; color: #24292e; text-decoration: none; border-radius: 12px; transition: 0.6s linear; }
 
 .users .user-profile .user-options h2 > a:hover, .users .user-profile .user-options h3 > a:hover { background-color: #24292e; color: #e4730a; }
 
@@ -178,7 +180,7 @@
 
 .users .group-list .group-details ul { list-style: none; padding: 0; width: 100%; }
 
-.users .group-list .group-details ul li { margin: 10px 0; border-radius: 12px; background-color: #736B68; display: flex; min-height: 60px; }
+.users .group-list .group-details ul li { margin: 10px 0; border-radius: 12px; background-color: #737373; display: flex; min-height: 60px; }
 
 .users .group-list .group-details ul li .group-name, .users .group-list .group-details ul li .group-desc, .users .group-list .group-details ul li .group-members, .users .group-list .group-details ul li .group-btn { display: flex; justify-content: flex-start; align-items: center; }
 
@@ -210,7 +212,7 @@
 
 .users .group-list .group-view .group-info p > span { font-weight: bold; }
 
-.users .group-list .group-view .group-posts { background-color: #4797B9; border-radius: 12px; width: 75%; }
+.users .group-list .group-view .group-posts { background-color: #ccc; border-radius: 12px; width: 75%; }
 
 .users .group-list .group-view .group-members { padding-left: 10px; width: 25%; }
 
@@ -228,7 +230,7 @@
 
 .users .group-new .fieldWrapper.form-group .field-label, .users .group-new .fieldWrapper.form-group .field-name { margin: 10px 0; }
 
-.users .group-new .fieldWrapper.form-group .field-label input[type=text], .users .group-new .fieldWrapper.form-group .field-label textarea, .users .group-new .fieldWrapper.form-group .field-name input[type=text], .users .group-new .fieldWrapper.form-group .field-name textarea { border: 1px solid #736B68; border-radius: 12px; padding-left: 5px; }
+.users .group-new .fieldWrapper.form-group .field-label input[type=text], .users .group-new .fieldWrapper.form-group .field-label textarea, .users .group-new .fieldWrapper.form-group .field-name input[type=text], .users .group-new .fieldWrapper.form-group .field-name textarea { border: 1px solid #737373; border-radius: 12px; padding-left: 5px; }
 
 .users .group-new .fieldWrapper.form-group .field-label { width: 15%; }
 
@@ -240,15 +242,15 @@
 
 .buttons .add-buttons .add-route, .buttons .add-buttons .add-sector, .buttons .add-buttons .add-ascent, .buttons .add-buttons .save, .buttons .add-buttons .add-training, .buttons .add-buttons .add-comment, .buttons .add-buttons .join-leave, .buttons .add-buttons .add-post { display: flex; justify-content: center; align-items: center; text-decoration: none; width: 140px; margin-right: 15px; }
 
-.buttons .add-route, .buttons .add-sector, .buttons .add-ascent, .buttons .back-button, .buttons .save, .buttons .delete-button, .buttons .add-training, .buttons .add-comment, .buttons .join-leave, .buttons .add-post { height: 50px; width: 90px; border-radius: 12px; cursor: pointer; color: #fff; background-color: #736B68; font-family: 'Roboto', sans-serif; font-size: large; font-weight: bold; border: none; transition: 0.6s linear; }
+.buttons .add-route, .buttons .add-sector, .buttons .add-ascent, .buttons .back-button, .buttons .save, .buttons .delete-button, .buttons .add-training, .buttons .add-comment, .buttons .join-leave, .buttons .add-post { height: 50px; width: 90px; border-radius: 12px; cursor: pointer; color: #fff; background-color: #737373; font-family: 'Roboto', sans-serif; font-size: large; font-weight: bold; border: none; transition: 0.6s linear; }
 
 .buttons .add-route:hover, .buttons .add-sector:hover, .buttons .add-ascent:hover, .buttons .back-button:hover, .buttons .save:hover, .buttons .delete-button:hover, .buttons .add-training:hover, .buttons .add-comment:hover, .buttons .join-leave:hover, .buttons .add-post:hover { background-color: #24292e; color: #e4730a; }
 
-.navbar { display: flex; align-items: center; justify-content: space-between; background-color: #736B68; height: 50px; border-radius: 0 0 12px 12px; }
+.navbar { display: flex; align-items: center; justify-content: space-between; background-color: #737373; height: 50px; border-radius: 0 0 12px 12px; }
 
 .navbar .nav-element { display: flex; align-items: center; padding: 0; height: 100%; }
 
-.navbar .nav-element:first-child { font-family: Bungee, sans-serif; text-decoration: none; color: #24292e; font-size: xx-large; transition: 0.6s linear; padding: 0 20px; }
+.navbar .nav-element:first-child { font-family: Bungee, sans-serif; text-decoration: none; color: #24292e; font-size: xx-large; transition: 0.6s linear; padding: 0 20px; border-bottom-left-radius: 12px; }
 
 .navbar .nav-element:first-child:hover { background-color: #24292e; color: #e4730a; }
 
@@ -258,7 +260,11 @@
 
 .navbar .nav-element .nav-item .nav-link:hover { background-color: #24292e; color: #e4730a; }
 
-footer { margin-top: auto; display: flex; align-items: center; justify-content: space-between; background-color: #736B68; height: 50px; border-radius: 12px 12px 0 0; }
+.navbar .nav-element .right { border-bottom-right-radius: 12px; }
+
+.navbar .nav-element-lonely { display: flex; justify-content: center; align-items: center; height: 100%; }
+
+footer { margin-top: auto; display: flex; align-items: center; justify-content: space-between; background-color: #737373; height: 50px; border-radius: 12px 12px 0 0; }
 
 footer .authors { color: #24292e; }
 
@@ -276,7 +282,7 @@ footer .authors p a:hover, footer .firms p a:hover { color: #e4730a; font-weight
 
 footer .authors p a img, footer .firms p a img { height: 40px; width: 40px; }
 
-.container { width: 900px; margin: 0 auto; padding: 0; font-family: Roboto, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+.container { width: 900px; margin: 0 auto; padding: 0; font-family: Roboto, sans-serif; min-height: 100vh; display: flex; flex-direction: column; color: #24292e; }
 
 * { box-sizing: border-box; }
 
@@ -286,7 +292,7 @@ body { margin: 0; padding: 0; }
 
 .routes .route-list ul { list-style: none; padding: 0; }
 
-.routes .route-list ul a { display: flex; text-decoration: none; color: #24292e; line-height: 40px; padding-left: 10px; transition: 0.6s linear; border-radius: 12px; }
+.routes .route-list ul a { display: flex; text-decoration: none; color: #24292e; line-height: 40px; padding-left: 10px; transition: 0.6s linear; border-radius: 12px; background-color: #ccc; }
 
 .routes .route-list ul a:hover { background-color: #24292e; color: #e4730a; }
 
@@ -300,9 +306,9 @@ body { margin: 0; padding: 0; }
 
 .routes .route-info .route-details { display: flex; flex-direction: column; }
 
-.routes .route-info .route-details p { display: flex; align-items: center; justify-content: left; background-color: #4797B9; height: 50px; border-radius: 12px; }
+.routes .route-info .route-details p { display: flex; align-items: center; justify-content: left; background-color: #ccc; height: 50px; border-radius: 12px; }
 
-.routes .route-info .route-details p span { width: 120px; padding-left: 10px; }
+.routes .route-info .route-details p span { width: 150px; padding-left: 10px; }
 
 .routes .route-info .route-details p a { display: flex; align-items: center; width: 100%; height: 100%; transition: 0.6s linear; }
 
@@ -310,9 +316,9 @@ body { margin: 0; padding: 0; }
 
 .routes .route-info .route-ascents table { width: 100%; }
 
-.routes .route-info .route-ascents thead th { background-color: #4797B9; height: 30px; font-size: 1.2rem; border-top-left-radius: 12px; border-top-right-radius: 12px; }
+.routes .route-info .route-ascents thead th { background-color: #ccc; height: 30px; font-size: 1.2rem; border-top-left-radius: 12px; border-top-right-radius: 12px; }
 
-.routes .route-info .route-ascents tbody > tr:nth-of-type(2n) { background-color: #B5D5E3; }
+.routes .route-info .route-ascents tbody > tr:nth-of-type(2n) { background-color: #ccc; }
 
 .routes .route-info .route-ascents tbody > tr > td { padding: 5px 10px; }
 
@@ -324,7 +330,7 @@ body { margin: 0; padding: 0; }
 
 .routes .route-info .route-opinions .post { display: flex; flex-direction: row; padding: 10px 0; }
 
-.routes .route-info .route-opinions .post:nth-of-type(2n) { background-color: #B5D5E3; border-radius: 12px; }
+.routes .route-info .route-opinions .post:nth-of-type(2n) { background-color: #ccc; border-radius: 12px; }
 
 .routes .route-info .route-opinions .post a { display: flex; justify-content: center; align-items: center; height: 40px; width: 10%; padding: 0 5px; }
 
@@ -340,55 +346,55 @@ body { margin: 0; padding: 0; }
 
 .routes a:hover { color: #e4730a; }
 
-.routes .route_form h1 { text-align: center; }
+.routes .route-form h1 { text-align: center; }
 
-.routes .route_form .fieldWrapper.form-group { background-color: #B5D5E3; border-radius: 12px; margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
+.routes .route-form .fieldWrapper.form-group { background-color: #ccc; border-radius: 12px; margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
 
-.routes .route_form .fieldWrapper.form-group .field-name { width: 15%; font-weight: bold; }
+.routes .route-form .fieldWrapper.form-group .field-name { width: 15%; font-weight: bold; }
 
-.routes .route_form .fieldWrapper.form-group .field-options { display: flex; flex-direction: row; width: 85%; }
+.routes .route-form .fieldWrapper.form-group .field-options { display: flex; flex-direction: row; width: 85%; }
 
-.routes .route_form .fieldWrapper.form-group .field-options select { width: 50%; height: 1.5rem; background-color: #4797B9; }
+.routes .route-form .fieldWrapper.form-group .field-options select { width: 50%; height: 1.5rem; background-color: #ccc; }
 
-.routes .route_form .fieldWrapper.form-group .field-options .add-buttons { margin-left: 10px; }
+.routes .route-form .fieldWrapper.form-group .field-options .add-buttons { margin-left: 10px; }
 
-.routes .route_form .fieldWrapper.form-group .field-options .add-buttons .add-sector { display: flex; justify-content: center; align-items: center; color: #fff; height: 21px; background-color: #4797B9; border-radius: 6px; padding: 2px 20px 2px 10px; transition: 0.6s linear; font-weight: normal; }
+.routes .route-form .fieldWrapper.form-group .field-options .add-buttons .add-sector { display: flex; justify-content: center; align-items: center; color: #fff; height: 21px; background-color: #ccc; border-radius: 6px; padding: 2px 20px 2px 10px; transition: 0.6s linear; font-weight: normal; }
 
-.routes .route_form .fieldWrapper.form-group .field-options .add-buttons .add-sector:hover { background-color: #24292e; color: #e4730a; }
+.routes .route-form .fieldWrapper.form-group .field-options .add-buttons .add-sector:hover { background-color: #24292e; color: #e4730a; }
 
-.routes .route_form .fieldWrapper.form-group .field-options input[type=text] { width: 50%; height: 1.5rem; border-radius: 6px; }
+.routes .route-form .fieldWrapper.form-group .field-options input[type=text] { width: 50%; height: 1.5rem; border-radius: 6px; padding-left: 5px; }
 
-.routes .route_form .fieldWrapper.form-group .field-options #id_route_type, .routes .route_form .fieldWrapper.form-group .field-options #id_protection, .routes .route_form .fieldWrapper.form-group .field-options #id_scale { display: flex; flex-direction: row; list-style: none; padding: 0; }
+.routes .route-form .fieldWrapper.form-group .field-options #id_route_type, .routes .route-form .fieldWrapper.form-group .field-options #id_protection, .routes .route-form .fieldWrapper.form-group .field-options #id_scale { display: flex; flex-direction: row; list-style: none; padding: 0; }
 
-.routes .route_form .fieldWrapper.form-group .field-options #id_route_type li, .routes .route_form .fieldWrapper.form-group .field-options #id_protection li, .routes .route_form .fieldWrapper.form-group .field-options #id_scale li { padding-right: 10px; }
+.routes .route-form .fieldWrapper.form-group .field-options #id_route_type li, .routes .route-form .fieldWrapper.form-group .field-options #id_protection li, .routes .route-form .fieldWrapper.form-group .field-options #id_scale li { padding-right: 10px; }
 
 .routes .ascent-form h1 { text-align: center; }
 
-.routes .ascent-form .fieldWrapper.form-group { background-color: #B5D5E3; border-radius: 12px; margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
+.routes .ascent-form .fieldWrapper.form-group { background-color: #ccc; border-radius: 12px; margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
 
 .routes .ascent-form .fieldWrapper.form-group .field-name { width: 15%; font-weight: bold; }
 
 .routes .ascent-form .fieldWrapper.form-group .field-options { display: flex; flex-direction: row; width: 85%; }
 
-.routes .ascent-form .fieldWrapper.form-group .field-options select { width: 50%; height: 1.5rem; background-color: #4797B9; }
+.routes .ascent-form .fieldWrapper.form-group .field-options select { width: 50%; height: 1.5rem; }
 
 .routes .ascent-form .fieldWrapper.form-group .field-options .add-buttons { margin-left: 10px; }
 
-.routes .ascent-form .fieldWrapper.form-group .field-options .add-buttons .add-sector { display: flex; justify-content: center; align-items: center; color: #fff; height: 21px; background-color: #4797B9; border-radius: 6px; padding: 2px 20px 2px 10px; transition: 0.6s linear; font-weight: normal; }
+.routes .ascent-form .fieldWrapper.form-group .field-options .add-buttons .add-sector { display: flex; justify-content: center; align-items: center; color: #fff; height: 21px; background-color: #ccc; border-radius: 6px; padding: 2px 20px 2px 10px; transition: 0.6s linear; font-weight: normal; }
 
 .routes .ascent-form .fieldWrapper.form-group .field-options .add-buttons .add-sector:hover { background-color: #24292e; color: #e4730a; }
 
-.routes .ascent-form .fieldWrapper.form-group .field-options input[type=date] { height: 1.5rem; background-color: #4797B9; height: 21px; border-radius: 6px; }
+.routes .ascent-form .fieldWrapper.form-group .field-options input[type=date] { height: 1.5rem; height: 21px; border-radius: 6px; }
 
 .routes .ascent-form .fieldWrapper.form-group .field-options #id_ascent_style, .routes .ascent-form .fieldWrapper.form-group .field-options #id_rating { display: flex; flex-direction: row; list-style: none; padding: 0; }
 
 .routes .ascent-form .fieldWrapper.form-group .field-options #id_ascent_style li, .routes .ascent-form .fieldWrapper.form-group .field-options #id_rating li { padding-right: 10px; }
 
-.routes .ascent-form .fieldWrapper.form-group .field-options textarea#id_description { border-radius: 6px; border: 1px solid #736B68; }
+.routes .ascent-form .fieldWrapper.form-group .field-options textarea#id_description { border-radius: 6px; border: 1px solid #737373; padding: 5px; }
 
 .routes .sector-form h1 { text-align: center; }
 
-.routes .sector-form form { background-color: #B5D5E3; border-radius: 12px; position: relative; min-height: 460px; }
+.routes .sector-form form { border-radius: 12px; position: relative; min-height: 460px; }
 
 .routes .sector-form form .fieldWrapper.form-group { margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
 
@@ -396,11 +402,13 @@ body { margin: 0; padding: 0; }
 
 .routes .sector-form form .fieldWrapper.form-group .field-options { display: flex; flex-direction: row; width: 85%; }
 
-.routes .sector-form form .fieldWrapper.form-group input[type=text] { width: 40%; color: #fff; height: 1.5rem; border-radius: 6px; }
+.routes .sector-form form .fieldWrapper.form-group input[type=text] { width: 40%; color: #24292e; padding-left: 5px; height: 1.5rem; border-radius: 6px; }
 
 .routes .sector-form form .fieldWrapper.form-group input[type=text]#id_location { border: 3px solid black; visibility: hidden; }
 
 .routes .sector-form form .fieldWrapper.form-group .map-widget { position: absolute; left: 125px; height: 635px; width: 450px; }
+
+.routes .buttons { margin-top: 280px; }
 
 .indoor { height: 100%; }
 
@@ -408,7 +416,7 @@ body { margin: 0; padding: 0; }
 
 .indoor .training-form h1 { text-align: center; }
 
-.indoor .training-form .fieldWrapper.form-group { background-color: #B5D5E3; border-radius: 12px; margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
+.indoor .training-form .fieldWrapper.form-group { background-color: #ccc; border-radius: 12px; margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
 
 .indoor .training-form .fieldWrapper.form-group .field-name { width: 15%; font-weight: bold; }
 
@@ -422,7 +430,7 @@ body { margin: 0; padding: 0; }
 
 .indoor .training-form .fieldWrapper.form-group .field-options #id_ascent_style li, .indoor .training-form .fieldWrapper.form-group .field-options #id_rating li { padding-right: 10px; }
 
-.indoor .training-form .fieldWrapper.form-group .field-options textarea#id_description { border-radius: 6px; border: 1px solid #736B68; }
+.indoor .training-form .fieldWrapper.form-group .field-options textarea#id_description { border-radius: 6px; border: 1px solid #737373; }
 
 .indoor .training-form .fieldWrapper.form-group .add-buttons { margin-left: 10px; }
 
@@ -432,7 +440,7 @@ body { margin: 0; padding: 0; }
 
 .indoor .gym-form h1 { text-align: center; }
 
-.indoor .gym-form form { background-color: #B5D5E3; border-radius: 12px; position: relative; min-height: 460px; }
+.indoor .gym-form form { background-color: #ccc; border-radius: 12px; position: relative; min-height: 460px; }
 
 .indoor .gym-form form .fieldWrapper.form-group { margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
 
@@ -440,48 +448,78 @@ body { margin: 0; padding: 0; }
 
 .indoor .gym-form form .fieldWrapper.form-group .field-options { display: flex; flex-direction: row; width: 85%; }
 
-.indoor .gym-form form .fieldWrapper.form-group input[type=text] { width: 40%; color: #fff; height: 1.5rem; border-radius: 6px; }
+.indoor .gym-form form .fieldWrapper.form-group input[type=text] { width: 40%; color: #24292e; padding-left: 5px; height: 1.5rem; border-radius: 6px; }
 
 .indoor .gym-form form .fieldWrapper.form-group input[type=text]#id_location { border: 3px solid black; visibility: hidden; }
 
 .indoor .gym-form form .fieldWrapper.form-group .map-widget { position: absolute; left: 125px; height: 635px; width: 450px; }
 
+.indoor .gym-form form .buttons { margin-top: 280px; }
+
 .indoor .top-form h1 { text-align: center; }
 
-.indoor .top-form .fieldWrapper.form-group { background-color: #B5D5E3; border-radius: 12px; margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
+.indoor .top-form .fieldWrapper.form-group { background-color: #ccc; border-radius: 12px; margin: 10px 0; padding: 15px 10px; display: flex; flex-direction: row; }
 
 .indoor .top-form .fieldWrapper.form-group .field-name { width: 15%; font-weight: bold; }
 
 .indoor .top-form .fieldWrapper.form-group .field-options { display: flex; flex-direction: row; width: 85%; }
 
-.indoor .top-form .fieldWrapper.form-group .field-options select { width: 50%; height: 1.5rem; background-color: #4797B9; }
+.indoor .top-form .fieldWrapper.form-group .field-options select { width: 50%; height: 1.5rem; }
 
 .indoor .top-form .fieldWrapper.form-group .field-options .add-buttons { margin-left: 10px; }
 
-.indoor .top-form .fieldWrapper.form-group .field-options .add-buttons .add-sector { display: flex; justify-content: center; align-items: center; color: #fff; height: 21px; background-color: #4797B9; border-radius: 6px; padding: 2px 20px 2px 10px; transition: 0.6s linear; font-weight: normal; }
+.indoor .top-form .fieldWrapper.form-group .field-options .add-buttons .add-sector { display: flex; justify-content: center; align-items: center; color: #fff; height: 21px; border-radius: 6px; padding: 2px 20px 2px 10px; transition: 0.6s linear; font-weight: normal; }
 
 .indoor .top-form .fieldWrapper.form-group .field-options .add-buttons .add-sector:hover { background-color: #24292e; color: #e4730a; }
 
-.indoor .top-form .fieldWrapper.form-group .field-options input[type=date] { height: 1.5rem; background-color: #4797B9; height: 21px; border-radius: 6px; }
+.indoor .top-form .fieldWrapper.form-group .field-options input[type=date] { height: 1.5rem; height: 21px; border-radius: 6px; }
 
 .indoor .top-form .fieldWrapper.form-group .field-options #id_route_type, .indoor .top-form .fieldWrapper.form-group .field-options #id_ascent_style, .indoor .top-form .fieldWrapper.form-group .field-options #id_scale { display: flex; flex-direction: row; list-style: none; padding: 0; }
 
 .indoor .top-form .fieldWrapper.form-group .field-options #id_route_type li, .indoor .top-form .fieldWrapper.form-group .field-options #id_ascent_style li, .indoor .top-form .fieldWrapper.form-group .field-options #id_scale li { padding-right: 10px; }
 
-.indoor .top-form .fieldWrapper.form-group .field-options textarea#id_description { border-radius: 6px; border: 1px solid #736B68; }
+.indoor .top-form .fieldWrapper.form-group .field-options textarea#id_description { border-radius: 6px; border: 1px solid #737373; }
+
+.posts { background-color: #ccc; border-radius: 12px; padding: 20px; margin: 40px; }
+
+.posts h2 { text-align: center; }
 
 .posts .new-comment, .posts .new-post { min-height: 300px; width: 100%; }
 
 .posts .new-comment h1, .posts .new-post h1 { text-align: center; }
 
-.posts .new-comment form > .fieldWrapper.form-group, .posts .new-post form > .fieldWrapper.form-group { display: flex; flex-direction: row; }
+.posts .new-comment form .fieldWrapper.form-group, .posts .new-post form .fieldWrapper.form-group { display: flex; flex-direction: row; }
 
-.posts .new-comment form > .fieldWrapper.form-group .field-label, .posts .new-post form > .fieldWrapper.form-group .field-label { padding-left: 10px; font-weight: bold; width: 10%; }
+.posts .new-comment form .fieldWrapper.form-group .field-label, .posts .new-post form .fieldWrapper.form-group .field-label { padding: 10px; font-weight: bold; width: 10%; }
 
-.posts .new-comment form > .fieldWrapper.form-group .field, .posts .new-post form > .fieldWrapper.form-group .field { width: 80%; height: 100px; }
+.posts .new-comment form .fieldWrapper.form-group .field, .posts .new-post form .fieldWrapper.form-group .field { width: 80%; height: 100px; }
 
-.posts .new-comment form > .fieldWrapper.form-group .field input[type=text], .posts .new-post form > .fieldWrapper.form-group .field input[type=text] { width: 400px; height: 30px; }
+.posts .new-comment form .fieldWrapper.form-group .field input[type=text], .posts .new-post form .fieldWrapper.form-group .field input[type=text] { width: 400px; height: 30px; padding-left: 5px; }
 
-.posts .new-comment form > .fieldWrapper.form-group .field input[type=text] .django-mediumeditor-editable, .posts .new-post form > .fieldWrapper.form-group .field input[type=text] .django-mediumeditor-editable { width: 80px; }
+.posts .new-comment form .fieldWrapper.form-group .field input[type=text] .django-mediumeditor-editable, .posts .new-post form .fieldWrapper.form-group .field input[type=text] .django-mediumeditor-editable { width: 80px; }
 
-.posts .new-comment form > .fieldWrapper.form-group .field .django-mediumeditor-editable, .posts .new-post form > .fieldWrapper.form-group .field .django-mediumeditor-editable { min-height: 100px; }
+.posts .new-comment form .fieldWrapper.form-group .field .django-mediumeditor-editable, .posts .new-post form .fieldWrapper.form-group .field .django-mediumeditor-editable { background-color: #fff; border-radius: 12px; min-height: 40px; }
+
+.posts .new-comment form .buttons, .posts .new-post form .buttons { margin-top: 80px; }
+
+.users { display: flex; justify-content: center; }
+
+.users .login-signup.wide { width: 650px; }
+
+.users .login-signup { background-color: #ccc; border-radius: 12px; width: 450px; }
+
+.users .login-signup h1 { text-align: center; }
+
+.users .login-signup .fieldWrapper.form-group { display: flex; flex-direction: row; }
+
+.users .login-signup .fieldWrapper.form-group .field-label { display: flex; flex-direction: row; width: 50%; font-size: large; padding: 10px; }
+
+.users .login-signup .fieldWrapper.form-group .label { display: flex; margin: 5px 0; width: 50%; }
+
+.users .login-signup .fieldWrapper.form-group .label input[type=text], .users .login-signup .fieldWrapper.form-group .label input[type=password], .users .login-signup .fieldWrapper.form-group .label input[type=email], .users .login-signup .fieldWrapper.form-group .label textarea { width: 80%; padding-left: 10px; font-weight: bold; border-radius: 6px; border: 0; }
+
+.users .login-signup .fieldWrapper.form-group .label textarea { padding: 10px; }
+
+.users .buttons { display: flex; justify-content: center; margin: 40px 0; }
+
+.users .buttons .add-buttons .save { background-color: #24292e; }

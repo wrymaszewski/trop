@@ -1,4 +1,11 @@
 .posts {
+    background-color: $grey-form;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 40px;
+    h2 {
+        text-align: center;
+    }
     .new-comment,
     .new-post {
         min-height: 300px;
@@ -6,30 +13,38 @@
         h1 {
             text-align: center;
         }
-        form > .fieldWrapper.form-group {
-            display: flex;
-            flex-direction: row;
-            .field-label {
-                padding-left: 10px;
-                font-weight: bold; 
-                width: 10%;
-            }
-            .field {
-                width: 80%;
-                height: 100px;
-                input[type=text] {
-                    width: 400px;
-                    height: 30px;
-                    .django-mediumeditor-editable {
-                        width: 80px;
-                    }
+        form {
+            .fieldWrapper.form-group {
+                display: flex;
+                flex-direction: row;;
+                .field-label {
+                    padding: 10px;
+                    font-weight: bold; 
+                    width: 10%;
                 }
-                .django-mediumeditor-editable {
-                    // background-color: olive;
-                    min-height: 100px;
+                .field {
+                    width: 80%;
+                    height: 100px;
+                    input[type=text] {
+                        width: 400px;
+                        height: 30px;
+                        padding-left: 5px;
+                        .django-mediumeditor-editable {
+                            width: 80px;
+                        }
+                    }
+                    .django-mediumeditor-editable {
+                        background-color: $white;
+                        border-radius: 12px;
+                        min-height: 40px;
+                    }
+                    
                 }
                 
             }
+        .buttons {
+            margin-top: 80px;
+            } 
         }
     }
 }

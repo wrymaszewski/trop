@@ -16,6 +16,7 @@
             @include logo;
             @include hover;
             padding: 0 20px;
+            border-bottom-left-radius: 12px;
         }
         .nav-item {
             display: flex;
@@ -35,5 +36,14 @@
                 @include hover;      
             }              
         }
+        .right {
+            border-bottom-right-radius: 12px;
+        }
+    }
+    .nav-element-lonely {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
     }
 }

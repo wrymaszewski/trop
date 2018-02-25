@@ -15,19 +15,18 @@
                 {{ field.errors }}
                 <div class="field-name">
                     {{ field.label }}
-
                 </div>
                 <div class="field-options">
                         {{ field }}
                 </div>
             </div>
         {% endfor %}
-    </form>
-    <div class="buttons">
+        <div class="buttons">
             <div class="add-buttons">
-              <input class="save" type="submit" value="Add New Sector"></input>
+                <input class="save" type="submit" value="Add New Sector"></input>
             </div>
             <input class="back-button" type=button value='Back' onClick="javascript:history.go(-1);">
-    </div>
+        </div>
+    </form>
   </div>
 {% endblock route_content %}
