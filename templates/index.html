@@ -6,7 +6,7 @@
     <div class="slogan">
       <span class="high">tr</span>ack your t<span class="high">op</span>s <span class="fas fa-arrow-up"></span>
     </div>
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and not user.userprofile.hidden %}
     <h2>Recent Posts</h2>
     <div class="posts">
       {% for post in recent_posts %}
@@ -15,8 +15,12 @@
       {% endfor %}
     </div>
     {% else %}
+    {% if user.userprofile.hidden %}
+      <h4>Reveal your profile to take part in discussions!</h4>
+    {% endif %}
       <img class="random-pic" src="https://source.unsplash.com/800x450/?climbing,mountains" alt="">
     {% endif %}
+
   </div>
 
 

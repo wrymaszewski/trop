@@ -2,14 +2,16 @@
 {% block accounts_content %}
 <div class="group-list">
   <h1>User groups</h1>
-  <div class="new-group"><a href="{% url 'accounts:new_group' %}">Add Group</a></div>
+  {% if not user.userprofile.hidden %}
+    <div class="new-group"><a href="{% url 'accounts:new_group' %}">Add Group</a></div>
+  {% endif %}
   {% if group_list %}
   <div class="group-details">
     <!-- <p>Group name</p> -->
     <ul>
       {% for group in group_list %}
         <li>
-          {% if user in group.members.all %}
+          {% if user in group.members.all and not user.userprofile.hidden %}
             <div class="group-name"><a href="{% url 'accounts:single_group' slug=group.slug %}">{{group.name}}</a></div>
           {% else %}
             <div class="group-name">{{group.name}}</div>
@@ -18,7 +20,7 @@
           {% if group.members %}
             <div class="group-members"><span>{{group.members.count}}</span>&nbspmembers</div>
           {% endif %}
-          {% if user.is_authenticated %}
+          {% if user.is_authenticated and not user.userprofile.hidden %}
             {% if user in group.members.all %}
             <a class="group-btn" href="{% url 'accounts:leave_group' slug=group.slug %}">Leave!</a>
             {% else %}

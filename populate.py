@@ -1,11 +1,9 @@
 import os
-# Configure settings for project
-# Need to run this before calling models from application!
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','climbing_project.settings')
 
 import django
-# Import settings
 django.setup()
+
 from django.contrib.auth import get_user_model
 import random
 from faker import Faker
@@ -168,11 +166,11 @@ def populate_post (N=10):
 if __name__ == '__main__':
     print("Populating the databases...Please Wait")
     print('....Populating User and UserProfile')
-    populate_user(4)
+    populate_user(50)
     print('....Populating Sectors')
-    populate_sector(3)
+    populate_sector(10)
     print('....Populating Indoor')
-    populate_indoor(3)
+    populate_indoor(10)
     print('....Populating Post')
-    populate_post(4)
+    populate_post(10)
     print('Populating Complete')

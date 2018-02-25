@@ -45,7 +45,7 @@ class UserList(LoginRequiredMixin, ListView):
 
 @login_required
 def get_user_profile(request, username):
-    user = User.objects.get(username=username)
+    user = User.objects.get(username__iexact=username)
     if hasattr(user, 'userprofile'):
         userprofile = UserProfile.objects.get(user = user)
         context_dict = {
@@ -86,23 +86,11 @@ class CreateUserProfile(LoginRequiredMixin, CreateView):
 class UpdateUserProfile(LoginRequiredMixin, UpdateView):
     model = UserProfile
     fields = ['first_name', 'last_name', 'email',
-                'description', 'hidden']
+                'description', 'avatar', 'hidden']
     template_name = 'accounts/userprofile_update.html'
 
     def get_object(self, queryset=None):
         self.object = get_object_or_404(self.model, user=self.request.user)
-        self.success_url = reverse_lazy('accounts:user_profile',
-            kwargs={'username': self.object.user.username})
-        return self.object
-
-class ChangeAvatar(LoginRequiredMixin, UpdateView):
-    #dealing with Cloudinary name error
-    model = UserProfile
-    fields = ['avatar']
-    template_name = 'accounts/avatar_update.html'
-
-    def get_object(self, queryset=None):
-        self.object = UserProfile.objects.get(user__username__iexact = self.kwargs.get('username'))
         self.success_url = reverse_lazy('accounts:user_profile',
             kwargs={'username': self.object.user.username})
         return self.object

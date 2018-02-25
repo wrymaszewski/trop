@@ -8,7 +8,6 @@
     <div class="user-image">
       {% load cloudinary %}
       {% cloudinary userprofile.avatar %}
-      <a href="{% url 'accounts:edit_avatar' username=userprofile.user.username %}">Change Avatar</a>
     </div>
 
     <div class="user-data">
