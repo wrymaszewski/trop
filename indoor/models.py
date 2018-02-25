@@ -30,8 +30,6 @@ class Gym(models.Model):
         ordering = ['name']
         get_latest_by = 'created_at'
 
-
-
 class Training(models.Model):
     user = models.ForeignKey(User, related_name='trainings',
         on_delete=models.CASCADE)
@@ -56,7 +54,6 @@ class Top(models.Model):
         (B, 'Boulder'),
         (R, 'Rope')
     )
-
 
     training = models.ForeignKey(Training,
         related_name='tops', on_delete=models.CASCADE)

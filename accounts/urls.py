@@ -11,8 +11,6 @@ urlpatterns = [
     name='logout'),
     url(r'signup/$', views.SignUp.as_view(),
     name='signup'),
-    url(r'^$', views.UserList.as_view(),
-    name = 'users'),
     url(r'(?P<username>\w+)/profile/$', views.get_user_profile,
     name='user_profile'),
     url(r'redirect/$', views.UserProfileCreationRedirectView.as_view(),
@@ -23,8 +21,7 @@ urlpatterns = [
     name='new_profile'),
     url(r'(?P<username>\w+)/edit-profile/$', views.UpdateUserProfile.as_view(),
     name='edit_profile'),
-    url(r'(?P<username>\w+)/edit-avatar/$', views.ChangeAvatar.as_view(),
-    name='edit_avatar'),
+
     # Groups
     url(r'group/new/$', views.CreateGroup.as_view(),
     name='new_group'),
