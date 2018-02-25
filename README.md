@@ -46,6 +46,6 @@ Endomondo for Climbers. It allows users to Sign Up and upload their outdoor asce
   conda install -c anaconda pip
   pip install -r requirements.txt
   ```
-  6. Start the server: `python manage.py runserver`. local server setup default address is <http://127.0.0.1:8000/>
+  6. Start the server: `python manage.py runserver`. local server setup default address is <http://127.0.0.1:8000/>. You can clear the existing database with `python manage.py flush` and populate it with fake data using `python populate.py`
 
 Please report bugs to wrymaszewski@gmail.com or in the Issues section.
