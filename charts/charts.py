@@ -1,8 +1,10 @@
 from chartit import Chart, DataPool
 from routes.models import Ascent
+#fucntions for chart generation
 
-#Helper functions
+#Helpers
 def verbose_months(date_trunc):
+    # changing x axis to predefined strings
     names = {'01': 'Jan', '02': 'Feb', '03': 'Mar', '04': 'Apr', '05': 'May', '06': 'Jun',
          '07': 'Jul', '08': 'Aug', '09': 'Sep', '10': 'Oct', '11': 'Nov', '12': 'Dec'}
     date_trunc = str(date_trunc)
@@ -17,6 +19,7 @@ def verbose_months(date_trunc):
         return joined
 
 def verbose_style(ascent_style):
+    # geting human-readible values of ascent_style
     return dict(Ascent.ASCENT_STYLE_CHOICES)[ascent_style]
 
 #generic chart views

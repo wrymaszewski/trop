@@ -1,14 +1,13 @@
 from django.db import models
 from django.utils.text import slugify
 from location_field.models.plain import PlainLocationField
-from django.contrib.auth import get_user_model
-from .scales import convert_scale
 from django.core.validators import RegexValidator
+from .scales import convert_scale
 
+from django.contrib.auth import get_user_model
 User = get_user_model()
 
 # Create your models here.
-
 class Sector(models.Model):
     name = models.CharField(max_length = 100, unique=True)
     slug = models.SlugField(allow_unicode = True)

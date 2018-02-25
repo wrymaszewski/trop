@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'location_field.apps.DefaultConfig',
-    'django_extensions',
     'chartit',
     'cloudinary',
     'mediumeditor',
@@ -149,15 +148,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
 LOGIN_REDIRECT_URL = '/accounts/redirect'
 LOGOUT_REDIRECT_URL = '/'
 
- # Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
+# for production
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Update database configuration with $DATABASE_URL.
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)

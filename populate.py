@@ -16,7 +16,7 @@ fakegen = Faker()
 User = get_user_model()
 
 def populate_user(N=200):
-    # create n users and userprofiles
+    # create N users and userprofiles
 
     for i in range(N):
         # Create Fake Data for entry

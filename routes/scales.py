@@ -75,11 +75,6 @@ def convert_scale(self, new_scale):
         'FR': 1
     }
 
-    # print (self.route_type)
-    # print (self.scale)
-    # print (self.grade)
-    # print (new_scale)
-
     if self.route_type == 'BLD':
         for row in SCALES_BLD:
             if row[SCALE_INDEXES_BLD[self.scale]]==self.grade:

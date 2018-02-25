@@ -11,8 +11,6 @@ urlpatterns = [
     name='logout'),
     url(r'signup/$', views.SignUp.as_view(),
     name='signup'),
-    url(r'^$', views.UserList.as_view(),
-    name = 'users'),
     url(r'(?P<username>\w+)/profile/$', views.get_user_profile,
     name='user_profile'),
     url(r'redirect/$', views.UserProfileCreationRedirectView.as_view(),
