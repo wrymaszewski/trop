@@ -31,6 +31,7 @@ Endomondo for Climbers. It allows users to Sign Up and upload their outdoor asce
 - [x] routes module
 - [x] indoor module
 - [x] posts module
+- [ ] pretty frontend
 - [ ] mobile version
 
 ## CLI commands
