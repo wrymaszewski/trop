@@ -6,7 +6,7 @@
       <h1>Group name: {{group.name}}</h1>
       <p><span>Group description:</span> {{group.description}}</p>
     </div>
-    <div class="group-posts">
+    <div class="posts">
       {% if group.posts %}
       {% for post in  group.posts.all%}
         {% include "posts/_post.html" %}

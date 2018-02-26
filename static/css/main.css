@@ -210,7 +210,7 @@
 
 .users .group-list .group-view .group-info { width: 100%; }
 
-.users .group-list .group-view .group-info p > span { font-weight: bold; }
+.users .group-list .group-view .group-info p > span { font-weight: bold; padding-left: 60px; }
 
 .users .group-list .group-view .group-posts { background-color: #ccc; border-radius: 12px; width: 75%; }
 
@@ -480,7 +480,7 @@ body { margin: 0; padding: 0; }
 
 .indoor .top-form .fieldWrapper.form-group .field-options textarea#id_description { border-radius: 6px; border: 1px solid #737373; }
 
-.posts { background-color: #ccc; border-radius: 12px; padding: 20px; margin: 40px; }
+.posts { border-radius: 6px; padding: 20px; margin: 40px; }
 
 .posts h2 { text-align: center; }
 
@@ -498,9 +498,49 @@ body { margin: 0; padding: 0; }
 
 .posts .new-comment form .fieldWrapper.form-group .field input[type=text] .django-mediumeditor-editable, .posts .new-post form .fieldWrapper.form-group .field input[type=text] .django-mediumeditor-editable { width: 80px; }
 
-.posts .new-comment form .fieldWrapper.form-group .field .django-mediumeditor-editable, .posts .new-post form .fieldWrapper.form-group .field .django-mediumeditor-editable { background-color: #fff; border-radius: 12px; min-height: 40px; }
+.posts .new-comment form .fieldWrapper.form-group .field .django-mediumeditor-editable, .posts .new-post form .fieldWrapper.form-group .field .django-mediumeditor-editable { background-color: #fff; border-radius: 6px; min-height: 40px; }
 
 .posts .new-comment form .buttons, .posts .new-post form .buttons { margin-top: 80px; }
+
+.posts .group-posts .group-name { display: flex; justify-content: center; align-items: center; background-color: #737373; border-radius: 6px; height: 50px; margin: 40px 0; }
+
+.posts .group-posts .group-name span { font-weight: normal; font-size: smaller; }
+
+.posts .group-posts .group-name a { color: #fff; text-decoration: none; font-size: large; }
+
+.posts .group-posts .post-media { background-color: #ccc; padding: 5px 20px; margin: 20px 0; border-radius: 6px; }
+
+.posts .group-posts .post-media .post-title { background-color: #fff; padding: 10px; border-radius: 6px; }
+
+.posts .group-posts .post-media .media-body { display: flex; flex-direction: row; justify-content: center; align-items: center; flex-wrap: wrap; }
+
+.posts .group-posts .post-media .media-body .post-body { background-color: #fff; border-radius: 6px; padding: 5px 15px; width: 72%; }
+
+.posts .group-posts .post-media .media-body .posts-user { width: 28%; }
+
+.posts .group-posts .post-media .media-body .posts-user .posts-user-info { display: flex; justify-content: flex-start; align-items: center; text-decoration: none; color: #fff; width: 100%; transition: 0.6s linear; }
+
+.posts .group-posts .post-media .media-body .posts-user .posts-user-info span { padding-left: 5px; }
+
+.posts .group-posts .post-media .media-body .posts-user .posts-user-info:hover { background-color: #24292e; color: #e4730a; }
+
+.posts .group-posts .post-media .media-body .posts-user .posts-user-info:hover { background-color: initial; font-weight: bolder; }
+
+.posts .group-posts .post-media .media-body .comment { width: 100%; }
+
+.posts .group-posts .post-media .media-body .comment ul { list-style: none; padding: 0; }
+
+.posts .group-posts .post-media .media-body .comment .users-comment { display: flex; flex-direction: row; justify-content: center; align-items: center; }
+
+.posts .group-posts .post-media .media-body .comment .users-comment .users-comment-user { display: flex; justify-content: flex-start; align-items: center; width: 28%; height: 50px; margin-right: 20px; text-decoration: none; color: #fff; transition: 0.6s linear; }
+
+.posts .group-posts .post-media .media-body .comment .users-comment .users-comment-user:hover { background-color: #24292e; color: #e4730a; }
+
+.posts .group-posts .post-media .media-body .comment .users-comment .users-comment-user span { font-size: smaller; padding-left: 5px; }
+
+.posts .group-posts .post-media .media-body .comment .users-comment .users-comment-user:hover { background-color: initial; font-weight: bolder; }
+
+.posts .group-posts .post-media .media-body .comment .users-comment .users-comment-comment { background-color: #fff; border-radius: 6px; padding: 1px 10px; font-size: small; margin: 5px 0; width: 72%; }
 
 .users { display: flex; justify-content: center; }
 
