@@ -58,7 +58,7 @@ def populate_sector (N=100):
                                 location = fake_location
                                 )[0]
 
-        for rou in range(20):
+        for rou in range(5):
 
             try:
                 route = Route.objects.get_or_create(
@@ -72,7 +72,7 @@ def populate_sector (N=100):
             except IntegrityError:
                 pass
 
-            for asc in range(10):
+            for asc in range(3):
                 try:
                     user = random.choice(User.objects.all())
                     ascent = Ascent.objects.get_or_create(
@@ -101,7 +101,7 @@ def populate_indoor(N=20):
                             location = fake_location
                             )[0]
 
-        for trainings in range(50):
+        for trainings in range(5):
 
             user = random.choice(User.objects.all())
             try:
@@ -114,7 +114,7 @@ def populate_indoor(N=20):
             except IntegrityError:
                 pass
 
-            for tops in range(20):
+            for tops in range(4):
                 try:
                     top = Top.objects.get_or_create(
                                     training = training,
@@ -138,7 +138,7 @@ def populate_post (N=10):
                         description = fakegen.sentence(),
                         # members = [user1, user2, user3]
                         )[0]
-        for posts in range(10):
+        for posts in range(5):
             user = random.choice([user1, user2, user3])
             try:
                 post = Post.objects.get_or_create(
@@ -150,7 +150,7 @@ def populate_post (N=10):
             except IntegrityError:
                 pass
 
-            for comments in range(4):
+            for comments in range(3):
                 com_user = random.choice(User.objects.all())
 
                 try:
@@ -166,11 +166,11 @@ def populate_post (N=10):
 if __name__ == '__main__':
     print("Populating the databases...Please Wait")
     print('....Populating User and UserProfile')
-    populate_user(50)
+    populate_user(5)
     print('....Populating Sectors')
-    populate_sector(10)
+    populate_sector(5)
     print('....Populating Indoor')
-    populate_indoor(10)
+    populate_indoor(5)
     print('....Populating Post')
-    populate_post(10)
+    populate_post(5)
     print('Populating Complete')
