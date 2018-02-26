@@ -1,0 +1,57 @@
+.users {
+    display: flex;
+    justify-content: center;
+    .login-signup.wide {
+        width: 650px;
+    }
+    .login-signup {
+        background-color: $grey-form;
+        border-radius: 12px;
+        width: 450px;
+        h1 {
+            text-align: center;
+        }
+        .fieldWrapper.form-group {
+            display: flex;
+            flex-direction: row;
+
+            .field-label {
+                display: flex;
+                flex-direction: row;
+                width: 50%;
+                font-size: large;
+                padding: 10px;
+            }
+            .label {
+                display: flex;
+                margin: 5px 0;
+                width: 50%;
+                input[type=text],
+                input[type=password],
+                input[type=email],
+                textarea {
+                    width: 80%;
+                    padding-left: 10px;
+                    font-weight: bold;
+                    border-radius: 6px;
+                    border: 0;
+                }
+                textarea {
+                    padding: 10px;
+                }
+            }
+        }
+    }
+    .buttons {
+        display: flex;
+        justify-content: center;
+        margin: 40px 0;
+        .add-buttons {
+        
+            .save {
+            
+                background-color: $almost-black;
+            }
+        }
+    }
+}
