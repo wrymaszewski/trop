@@ -141,12 +141,24 @@
                             }
                         }
                         .users-comment-comment {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
                             background-color: $white;
                             border-radius: 6px;
                             padding: 1px 10px;
                             font-size: small;
                             margin: 5px 0;
                             width: 72%;
+                            p {
+                                width: 90%;
+                            }
+                            .comment-edit {
+                                display: flex;
+                                justify-content: space-around;
+                                align-items: center;
+                                width: 10%;
+                            }
                         }
                     }
                 }

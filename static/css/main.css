@@ -120,6 +120,10 @@
 
 .routes .buttons { margin-top: 280px; }
 
+.routes .map-section { display: flex; justify-content: center; }
+
+.routes .map-section #map { height: 800px; }
+
 .welcome { display: flex; flex-direction: column; justify-content: space-around; align-items: center; margin: 25px 40px 0 40px; }
 
 .welcome .logo { font-family: Bungee, sans-serif; text-decoration: none; color: #24292e; font-size: xx-large; font-size: 5rem; }
@@ -410,6 +414,10 @@ body { margin: 0; padding: 0; }
 
 .routes .buttons { margin-top: 280px; }
 
+.routes .map-section { display: flex; justify-content: center; }
+
+.routes .map-section #map { height: 800px; }
+
 .indoor { height: 100%; }
 
 .indoor .training-list .no-records { min-height: 200px; }
@@ -540,7 +548,11 @@ body { margin: 0; padding: 0; }
 
 .posts .group-posts .post-media .media-body .comment .users-comment .users-comment-user:hover { background-color: initial; font-weight: bolder; }
 
-.posts .group-posts .post-media .media-body .comment .users-comment .users-comment-comment { background-color: #fff; border-radius: 6px; padding: 1px 10px; font-size: small; margin: 5px 0; width: 72%; }
+.posts .group-posts .post-media .media-body .comment .users-comment .users-comment-comment { display: flex; flex-direction: row; justify-content: flex-start; background-color: #fff; border-radius: 6px; padding: 1px 10px; font-size: small; margin: 5px 0; width: 72%; }
+
+.posts .group-posts .post-media .media-body .comment .users-comment .users-comment-comment p { width: 90%; }
+
+.posts .group-posts .post-media .media-body .comment .users-comment .users-comment-comment .comment-edit { display: flex; justify-content: space-around; align-items: center; width: 10%; }
 
 .users { display: flex; justify-content: center; }
 

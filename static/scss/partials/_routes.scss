@@ -1,7 +1,6 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~
 // routes
 .routes {
-
     // ~~~~~~~~~~~~~~~~~~~~~~~~
     // route_list
     .route-list {
@@ -34,16 +33,13 @@
             display: none;
             padding-left: 30px;
         }
-        // .countries:nth-child(2n) {
-        //     background-color: $grey-form;
-        // }
     }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~
     // route_ascent_list
     .route-info {
         display: flex;
-        flex-direction: column;  
+        flex-direction: column;
         .route-details,
         .route-ascents,
         .route-opinions,
@@ -331,5 +327,12 @@
     }
     .buttons {
         margin-top: 280px;
+    }
+    .map-section {
+        display: flex;
+        justify-content: center;
+        #map {
+            height: 800px;
+        }
     }
 }

@@ -44,11 +44,13 @@
                 {% endif %}
               </a>
               <div class="users-comment-comment">
-                <p>{{comment.text|safe|linebreaksbr}}</p>
-              </div>
+                {{comment.text|safe|linebreaksbr}}
               {% if user.is_authenticated and comment.author == user %}
-              <a href="{% url 'posts:edit_comment' pk=comment.pk slug=post.group.slug %}"><span class="fas fa-edit" ></span> </a>
-              <a href="{% url 'posts:delete_comment' pk=comment.pk slug=post.group.slug %}"><span class="fas fa-trash" ></span> </a>
+                <div class="comment-edit">
+                  <a href="{% url 'posts:edit_comment' pk=comment.pk slug=post.group.slug %}"><span class="fas fa-edit" ></span> </a>
+                  <a href="{% url 'posts:delete_comment' pk=comment.pk slug=post.group.slug %}"><span class="fas fa-trash" ></span> </a>
+                </div>
+              </div>
               {% endif %}
             </div>
           </li>
