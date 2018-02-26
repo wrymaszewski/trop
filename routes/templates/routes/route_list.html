@@ -1,8 +1,7 @@
 {% extends "routes/routes_base.html" %}
 {% block route_content %}
-{% if route_list %}
   <h1>{{sector}}</h1>
-
+{% if route_list %}
   {% load chartit %}
   {{chart|load_charts:"c1"}}
   <div id="c1"></div>

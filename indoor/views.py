@@ -1,7 +1,6 @@
-from django.shortcuts import render
 from . import models, forms, charts
 from django.views.generic import (CreateView, UpdateView,
-    DeleteView, ListView, DetailView)
+                        DeleteView, ListView, DetailView)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
@@ -13,12 +12,14 @@ class TrainingList(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        return queryset.filter(user__username__iexact = self.kwargs.get('username'))
+        self.username = self.kwargs.get('username')
+        return queryset.filter(user__username__iexact = self.username)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['chart_list'] = [charts.gym_pie_chart(self.kwargs.get('username')),
-                                charts.training_line_chart(self.kwargs.get('username'))]
+        context['chart_list'] = [charts.gym_pie_chart(self.username),
+                                charts.training_line_chart(self.username)]
+        context['username'] = self.username
         return context
 
 class TopList(LoginRequiredMixin, ListView):
@@ -26,8 +27,8 @@ class TopList(LoginRequiredMixin, ListView):
     template_name = 'indoor/top_list.html'
 
     def get_queryset(self):
-        self.training = models.Training.objects.get(pk=self.kwargs.get('pk'))
-        self.tops = models.Top.objects.select_related().filter(training=self.training)
+        self.training = models.Training.objects.select_related().get(pk=self.kwargs.get('pk'))
+        self.tops = self.training.tops.all()
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -42,7 +43,6 @@ class TopList(LoginRequiredMixin, ListView):
         return context
 
 # CRUD operations
-
 class CreateGym(LoginRequiredMixin, CreateView):
     model = models.Gym
     form_class = forms.GymForm
@@ -60,7 +60,6 @@ class CreateTraining(LoginRequiredMixin, CreateView):
         self.success_url = reverse_lazy('indoor:new_top', kwargs={'pk': self.object.pk})
         return super().form_valid(form)
 
-
 class CreateTop(LoginRequiredMixin, CreateView):
     model = models.Top
     form_class = forms.TopForm
@@ -76,8 +75,6 @@ class CreateTop(LoginRequiredMixin, CreateView):
     def form_valid(self,form):
         self.success_url = reverse_lazy('indoor:new_top', kwargs = {'pk': self.kwargs.get('pk')})
         return super().form_valid(form)
-
-
 
 class UpdateTraining(LoginRequiredMixin, UpdateView):
     model = models.Training

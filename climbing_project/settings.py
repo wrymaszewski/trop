@@ -28,9 +28,9 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'ngb*3&#xol5_8%b@t%)cbehz0ba^_p*u=)_osd=7478yb963d8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'location_field.apps.DefaultConfig',
-    'django_extensions',
     'chartit',
     'cloudinary',
     'mediumeditor',
@@ -61,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 ROOT_URLCONF = 'climbing_project.urls'
@@ -113,12 +114,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# LOCATION_FIELD = {
-#     'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
-#     'provider.google.api_key': 'AIzaSyCYtpFDw_8LlRzTV9vHKuFUKDLX_nbpYfg',
-#     'provider.google.api_libraries': '',
-#     'provider.google.map.type': 'ROADMAP',
-# }
+LOCATION_FIELD = {
+    'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
+    'provider.google.api_key': 'AIzaSyARgfbgBXMspECr3Xal6K8jv0vMjWaEL2c',
+    'provider.google.api_libraries': '',
+    'provider.google.map.type': 'ROADMAP',
+}
 
 cloudinary.config(
   cloud_name = "wrymaszewski",
@@ -145,8 +146,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 LOGIN_REDIRECT_URL = '/accounts/redirect'
 LOGOUT_REDIRECT_URL = '/'
+
+# for production
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)

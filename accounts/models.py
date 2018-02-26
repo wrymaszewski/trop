@@ -4,9 +4,6 @@ from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 from django.urls import reverse_lazy
 from cloudinary.models import CloudinaryField
-
-
-
 # Create your models here.
 
 class User(auth.models.User, auth.models.PermissionsMixin):
@@ -20,13 +17,18 @@ class UserProfile(models.Model):
     first_name = models.CharField(max_length=100, blank=True, null=True)
     last_name = models.CharField(max_length = 100, blank=True, null=True)
     avatar = CloudinaryField('avatar', default = 'user-placeholder-circle_o5pzxf.png',
-                            null=True, blank=True)
+                null=True, blank=True)
     email = models.EmailField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     hidden = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
+
+    def save(self, *args, **kwargs):
+        self.first_name = self.first_name.capitalize()
+        self.last_name = self.last_name.capitalize()
+        super().save(*args, **kwargs)
 
 class Group(models.Model):
     name = models.CharField(max_length = 255, unique=True)
@@ -38,6 +40,7 @@ class Group(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
+        self.name = self.name.title()
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
@@ -46,8 +49,6 @@ class Group(models.Model):
 
     class Meta:
         ordering = ['name']
-
-
 
 class GroupMember(models.Model):
     group = models.ForeignKey(Group, related_name='memberships', on_delete=models.CASCADE)

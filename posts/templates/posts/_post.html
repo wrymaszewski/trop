@@ -4,15 +4,19 @@
   <div class="media-body">
     <h5 class="media-heading">
       <span class="username">
-        {% cloudinary post.author.userprofile.avatar format="jpg" width=50 height=50 crop="fill" gravity="face" radius="max" %}
-        <a href="{% url 'accounts:user_profile' username=post.author.username %}">{{post.author.username}}</a>
-      </span>
+        {% if post.author.userprofile.hidden %}
+          Hidden User
+        {% else %}
+          {% cloudinary post.author.userprofile.avatar format="jpg" width=50 height=50 crop="fill" gravity="face" radius="max" %}
+          <a href="{% url 'accounts:user_profile' username=post.author.username %}">{{post.author.username}}</a>
+        {% endif %}
+        </span>
     </h5>
     <div class="post_body">
       <p>{{post.text|safe|linebreaksbr}}</p>
     </div>
     <div class="media-footer">
-      {% if user.is_authenticated and post.author == user %}
+      {% if user.is_authenticated and post.author == user and not post.author.userprofile.hidden %}
       <a href="{% url 'posts:edit_post' pk=post.pk %}"><span class="fas fa-edit" ></span> </a>
       <a href="{% url 'posts:delete_post' pk=post.pk %}"><span class="fas fa-trash" ></span> </a>
       {% endif %}
@@ -26,9 +30,13 @@
             <div class="">
               <h5 class="media-heading">
                 <span class="username">
-                  {% cloudinary comment.author.userprofile.avatar format="jpg" width=30 height=30 crop="fill" gravity="face" radius="max" %}
-                  <a href="{% url 'accounts:user_profile' username=comment.author.username %}">{{comment.author.username}}</a>
+                  {% if comment.author.userprofile.hidden %}
+                    Hidden User
+                  {% else %}
+                    {% cloudinary comment.author.userprofile.avatar format="jpg" width=30 height=30 crop="fill" gravity="face" radius="max" %}
+                    <a href="{% url 'accounts:user_profile' username=comment.author.username %}">{{comment.author.username}}</a>
                 </span>
+                  {% endif %}
               </h5>
               <div class=" comment-body">
                 <p>{{comment.text|safe|linebreaksbr}}</p>
@@ -44,13 +52,13 @@
       {% else %}
         <h4>No comments</h4>
       {% endif %}
-      {% if user in group.members.all %}
+      {% if user in group.members.all and not user.userprofile.hidden%}
       <div class="buttons">
         <div class="add-buttons">
           <a class="add-comment" href="{% url 'posts:new_comment' pk=post.pk slug=post.group.slug %}">New Comment</a>
-        </div>  
+        </div>
       </div>
-      
+
       {% endif %}
     </div>
   </div>

@@ -14,7 +14,9 @@
             <div class="fieldWrapper form-group">
                 {{ field.errors }}
                 <div class="field-name">
+                  {% if field.label != 'Location' %}
                     {{ field.label }}
+                  {% endif %}
                 </div>
                 <div class="field-options">
                         {{ field }}

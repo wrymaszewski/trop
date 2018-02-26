@@ -4,6 +4,7 @@ from posts.models import Post
 class Homepage(ListView):
     template_name = 'index.html'
 
+    # adding 5 most recent posts with commments to the index page for logged users
     def get_queryset(self):
         if self.request.user.is_authenticated:
             print (self.request.user)

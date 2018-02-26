@@ -60,7 +60,7 @@ def convert_scale(self, new_scale):
                     ['V14','8b+'],
                     ['V15','8c'],
                     ['V16','8c+'],
-                    ['V17''9a']
+                    ['V17','9a']
     ]
 
     SCALE_INDEXES = {
