@@ -1,7 +1,6 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~
 // routes
 .routes {
-
     // ~~~~~~~~~~~~~~~~~~~~~~~~
     // route_list
     .route-list {
@@ -12,6 +11,7 @@
             // border-bottom: 1px solid #ccc;
         }
         ul {
+            
             list-style: none;
             padding: 0;
             a {    
@@ -22,6 +22,7 @@
                 padding-left: 10px;
                 @include hover;
                 border-radius: 12px;
+                background-color: $grey-form;
                 &:hover {
                     background-color: #4c4b4b;
                     color: $orange;
@@ -38,7 +39,7 @@
     // route_ascent_list
     .route-info {
         display: flex;
-        flex-direction: column;  
+        flex-direction: column;
         .route-details,
         .route-ascents,
         .route-opinions,
@@ -56,11 +57,11 @@
                 display: flex;
                 align-items: center;
                 justify-content: left;
-                background-color: #4797B9;
+                background-color: $grey-form;
                 height: 50px;
                 border-radius: 12px;
                 span {
-                    width: 120px;
+                    width: 150px;
                     padding-left: 10px;
                 }
                 a {
@@ -81,20 +82,17 @@
                 width: 100%;
             }
             thead th {
-                background-color: #4797B9;
+                background-color: $grey-form;
                 height: 30px;
                 font-size: 1.2rem;
                 border-top-left-radius: 12px;
                 border-top-right-radius: 12px;
             }
             tbody > tr {
+                
                 &:nth-of-type(2n) {
-                    background-color: #B5D5E3;
+                    background-color: $grey-form; 
                 }
-                // &:last-of-type {
-                //     border-bottom-left-radius: 12px;
-                //     border-bottom-right-radius: 12px; 
-                // }
             }
             tbody > tr > td {
                 padding: 5px 10px;
@@ -117,7 +115,7 @@
                 flex-direction: row;
                 padding: 10px 0;
                 &:nth-of-type(2n) {
-                    background-color: #B5D5E3;
+                    background-color: $grey-form;
                     border-radius: 12px;
                 }
                 a {
@@ -158,12 +156,12 @@
     }
     // ~~~~~~~~~~~~~~~~~~~~~~~~
     // forms
-    .route_form {
+    .route-form {
         h1 {
             text-align: center;
         }
         .fieldWrapper.form-group {
-            background-color: #B5D5E3;
+            background-color: $grey-form;
             border-radius: 12px;
             margin: 10px 0;
             padding: 15px 10px;
@@ -180,7 +178,7 @@
                 select {
                     width: 50%;
                     height: 1.5rem;
-                    background-color: #4797B9;
+                    background-color: $grey-form;
                 }
                 .add-buttons {
                     margin-left: 10px;
@@ -190,7 +188,7 @@
                         align-items: center;
                         color: $white;
                         height: 21px;
-                        background-color: #4797B9;
+                        background-color: $grey-form;
                         border-radius: 6px;
                         padding: 2px 20px 2px 10px;
                         @include hover;
@@ -204,6 +202,7 @@
                     width: 50%;
                     height: 1.5rem;
                     border-radius: 6px;
+                    padding-left: 5px;
                 }
                 #id_route_type,
                 #id_protection,
@@ -224,7 +223,7 @@
             text-align: center;
         }
         .fieldWrapper.form-group {
-            background-color: #B5D5E3;
+            background-color: $grey-form;
             border-radius: 12px;
             margin: 10px 0;
             padding: 15px 10px;
@@ -242,7 +241,7 @@
                 select {
                     width: 50%;
                     height: 1.5rem;
-                    background-color: #4797B9;
+                    // background-color: #4797B9;
                 }
                 .add-buttons {
                     margin-left: 10px;
@@ -252,7 +251,7 @@
                         align-items: center;
                         color: $white;
                         height: 21px;
-                        background-color: #4797B9;
+                        background-color: $grey-form;
                         border-radius: 6px;
                         padding: 2px 20px 2px 10px;
                         @include hover;
@@ -261,7 +260,7 @@
                 }
                 input[type=date] {
                     height: 1.5rem;
-                    background-color: #4797B9;
+                    // background-color: #4797B9;
                     height: 21px;
                     border-radius: 6px;
                 }
@@ -278,6 +277,7 @@
                 textarea#id_description {
                     border-radius: 6px;
                     border: 1px solid $grey;
+                    padding: 5px;
                 }
             }
         }   
@@ -287,12 +287,10 @@
             text-align: center;
         }
         form {
-            background-color: #B5D5E3;
             border-radius: 12px;
             position: relative;
             min-height: 460px;
             .fieldWrapper.form-group {
-            
                 margin: 10px 0;
                 padding: 15px 10px;
                 display: flex;
@@ -308,7 +306,8 @@
                 }
                 input[type=text] {
                     width: 40%;
-                    color: $white;
+                    color: $almost-black;
+                    padding-left: 5px;
                     // background-color: #4797B9;
                     height: 1.5rem;
                     border-radius: 6px;
@@ -324,6 +323,16 @@
                     width: 450px;
                 }
             }
+        }
+    }
+    .buttons {
+        margin-top: 280px;
+    }
+    .map-section {
+        display: flex;
+        justify-content: center;
+        #map {
+            height: 800px;
         }
     }
 }

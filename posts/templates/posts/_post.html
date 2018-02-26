@@ -1,18 +1,21 @@
 {% load cloudinary %}
-<div class="post-media">
-  <h3>{{post.title|safe}}</h3>
+<div class="post-media"> 
+  <h3 class="post-title"><span>Post</span> {{post.title|safe}}</h3>
   <div class="media-body">
-    <h5 class="media-heading">
-      <span class="username">
+
+    <div class="posts-user">
+      <a class="posts-user-info" href="{% url 'accounts:user_profile' username=post.author.username %}">
         {% if post.author.userprofile.hidden %}
           Hidden User
         {% else %}
           {% cloudinary post.author.userprofile.avatar format="jpg" width=50 height=50 crop="fill" gravity="face" radius="max" %}
-          <a href="{% url 'accounts:user_profile' username=post.author.username %}">{{post.author.username}}</a>
+          <span>{{post.author.username}}</span>
+        
         {% endif %}
-        </span>
-    </h5>
-    <div class="post_body">
+      </a>
+    </div>
+
+    <div class="post-body">
       <p>{{post.text|safe|linebreaksbr}}</p>
     </div>
     <div class="media-footer">
@@ -21,29 +24,33 @@
       <a href="{% url 'posts:delete_post' pk=post.pk %}"><span class="fas fa-trash" ></span> </a>
       {% endif %}
     </div>
-    <div class="comment ">
+    
+    
+    
+    <div class="comment">
       {% if post.comments %}
         <h4>Comments: {{post.comments.count}}</h4>
         <ul>
           {% for comment in post.comments.all %}
           <li>
-            <div class="">
-              <h5 class="media-heading">
-                <span class="username">
-                  {% if comment.author.userprofile.hidden %}
-                    Hidden User
-                  {% else %}
-                    {% cloudinary comment.author.userprofile.avatar format="jpg" width=30 height=30 crop="fill" gravity="face" radius="max" %}
-                    <a href="{% url 'accounts:user_profile' username=comment.author.username %}">{{comment.author.username}}</a>
-                </span>
-                  {% endif %}
-              </h5>
-              <div class=" comment-body">
-                <p>{{comment.text|safe|linebreaksbr}}</p>
-              </div>
+            <div class="users-comment">
+              <a class="users-comment-user" href="{% url 'accounts:user_profile' username=comment.author.username %}">
+                {% if comment.author.userprofile.hidden %}
+                  Hidden User
+                {% else %}
+                  {% cloudinary comment.author.userprofile.avatar format="jpg" width=30 height=30 crop="fill" gravity="face" radius="max" %}
+                  <span>{{comment.author.username}}</span>
+                
+                {% endif %}
+              </a>
+              <div class="users-comment-comment">
+                {{comment.text|safe|linebreaksbr}}
               {% if user.is_authenticated and comment.author == user %}
-              <a href="{% url 'posts:edit_comment' pk=comment.pk slug=post.group.slug %}"><span class="fas fa-edit" ></span> </a>
-              <a href="{% url 'posts:delete_comment' pk=comment.pk slug=post.group.slug %}"><span class="fas fa-trash" ></span> </a>
+                <div class="comment-edit">
+                  <a href="{% url 'posts:edit_comment' pk=comment.pk slug=post.group.slug %}"><span class="fas fa-edit" ></span> </a>
+                  <a href="{% url 'posts:delete_comment' pk=comment.pk slug=post.group.slug %}"><span class="fas fa-trash" ></span> </a>
+                </div>
+              </div>
               {% endif %}
             </div>
           </li>
@@ -58,7 +65,6 @@
           <a class="add-comment" href="{% url 'posts:new_comment' pk=post.pk slug=post.group.slug %}">New Comment</a>
         </div>
       </div>
-
       {% endif %}
     </div>
   </div>

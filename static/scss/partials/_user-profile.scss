@@ -74,7 +74,7 @@
                 align-items: center;
                 padding-left: 10px;
                 width: 100%;
-                color: #000;
+                color: $almost-black;
                 text-decoration: none;
                 border-radius: 12px;        
                 @include hover;
@@ -203,12 +203,14 @@
             
             .group-info {
                 width: 100%;
+                                
                 p > span {
                     font-weight: bold;
+                    padding-left: 60px;
                 }
             }
             .group-posts {
-                background-color: $baltic;
+                background-color: $grey-form;
                 border-radius: 12px;
                 width: 75%;                
             }
