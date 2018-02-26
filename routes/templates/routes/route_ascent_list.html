@@ -68,7 +68,7 @@
 {% endif %}
 <div class="buttons">
   <div class="add-buttons">
-    <a class="add-ascent" href="{% url 'routes:new_ascent_from_route' route_slug=object.slug sector_slug=sector.slug%}">Add Ascent</a>
+    <a class="add-ascent" href="{% url 'routes:new_ascent_from_route' route_slug=object.slug sector_slug=object.sector.slug %}">Add Ascent</a>
     <a class="add-sector" href="{% url 'routes:new_sector_redirect' %}">Add Sector</a>
     <a class="add-route" href="{% url 'routes:new_route_redirect' %}">Add Route</a>
   </div>
