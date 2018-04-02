@@ -1,4 +1,5 @@
-def convert_scale(self, new_scale):
+import pandas as pd
+def convert_scale(self, new_scale, from_model=True, scale=null, grade=null):
     SCALES =[
             ['5.2','1','I','I'],
             ['5.3','2','II','II'],
@@ -63,23 +64,20 @@ def convert_scale(self, new_scale):
                     ['V17','9a']
     ]
 
-    SCALE_INDEXES = {
-        'YDS': 0,
-        'FR': 1,
-        'UIAA': 2,
-        'POL': 3
-    }
+    rope_df = pd.DataFrame(SCALES)
+    rope_df.columns = ['YDS', 'FR', 'UIAA', 'POL']
+    bld_df = pd.DataFrame(SCALES_BLD)
+    bld_df.columns = ['V', 'FR']
 
-    SCALE_INDEXES_BLD = {
-        'V': 0,
-        'FR': 1
-    }
-
-    if self.route_type == 'BLD':
-        for row in SCALES_BLD:
-            if row[SCALE_INDEXES_BLD[self.scale]]==self.grade:
-                return row[SCALE_INDEXES_BLD[new_scale]]
+    if from_model:
+        # taking the whole entry from db. DEFAULT
+        if self.route_type == 'BLD':
+            return bld_df[bld_df[self.scale] == self.grade][new_scale]
+        else:
+            return rope_df[rope_df[self.scale] == self.grade][new_scale]
     else:
-        for row in SCALES:
-            if row[SCALE_INDEXES[self.scale]] == self.grade:
-                return row[SCALE_INDEXES[new_scale]]
+        # taking a single value, scale and grade needed.
+        if self.route_type == 'BLD':
+            return bld_df[bld_df[scale] == grade][new_scale]
+        else:
+            return rope_df[rope_df[scale] == grade][new_scale]
