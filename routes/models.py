@@ -11,6 +11,7 @@ User = get_user_model()
 class Sector(models.Model):
     name = models.CharField(max_length = 100, unique=True)
     slug = models.SlugField(allow_unicode = True)
+    subregion = models.CharField(max_length = 100, unique=False)
     region = models.CharField(max_length = 250, verbose_name = 'Region, Country',
                         validators =[RegexValidator(
                                     regex='.+,\s.+',
