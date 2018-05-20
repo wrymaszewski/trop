@@ -21,11 +21,11 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    url(r'^$', views.Homepage.as_view(), name = 'home'),
+    url(r'^$', views.Homepage.as_view(), name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^routes/', include('routes.urls', namespace='routes')),
-    url(r'^indoor/', include('indoor.urls', namespace = 'indoor')),
+    url(r'^indoor/', include('indoor.urls', namespace='indoor')),
     url(r'^posts/', include('posts.urls', namespace='posts')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

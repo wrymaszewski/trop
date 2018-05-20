@@ -30,6 +30,7 @@ SECRET_KEY = 'ngb*3&#xol5_8%b@t%)cbehz0ba^_p*u=)_osd=7478yb963d8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# get less hosts
 ALLOWED_HOSTS = ['*']
 
 
@@ -121,6 +122,7 @@ LOCATION_FIELD = {
     'provider.google.map.type': 'ROADMAP',
 }
 
+# change to env variables
 cloudinary.config(
   cloud_name = "wrymaszewski",
   api_key = "731153266842248",
