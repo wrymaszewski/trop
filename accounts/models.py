@@ -14,8 +14,8 @@ User = get_user_model()
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=100, blank=True, null=True)
-    last_name = models.CharField(max_length = 100, blank=True, null=True)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length = 100)
     avatar = CloudinaryField('avatar', default = 'user-placeholder-circle_o5pzxf.png',
                 null=True, blank=True)
     email = models.EmailField(blank=True, null=True)

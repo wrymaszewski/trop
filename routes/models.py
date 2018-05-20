@@ -11,6 +11,7 @@ User = get_user_model()
 class Sector(models.Model):
     name = models.CharField(max_length = 100, unique=True)
     slug = models.SlugField(allow_unicode = True)
+    subregion = models.CharField(max_length = 100, unique=False)
     region = models.CharField(max_length = 250, verbose_name = 'Region, Country',
                         validators =[RegexValidator(
                                     regex='.+,\s.+',
@@ -114,12 +115,14 @@ class Ascent(models.Model):
     PP = 'PP'
     AF = 'AF'
     TR = 'TR'
-    ASCENT_STYLE_CHOICES = ((OS,'OS'),
+    UF = 'UF'
+    ASCENT_STYLE_CHOICES = ((OS,'Onsight'),
                             (FL,'Flash'),
-                            (RP,'RP'),
-                            (PP,'PP'),
-                            (AF,'AF'),
-                            (TR,'TR'))
+                            (RP,'Red point'),
+                            (PP,'Pink point'),
+                            (AF,'All free'),
+                            (TR,'Top rope'),
+                            (UF, 'Unfinished'))
 
     # Ratings
     UNRATED = 0

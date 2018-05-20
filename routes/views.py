@@ -6,6 +6,8 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from .models import Sector, Ascent, Route
 from . import forms, charts
+import pandas as pd
+import numpy as np
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -17,30 +19,54 @@ class SectorList(ListView):
     template_name = 'routes/sector_list.html'
 
     def get_queryset(self):
-        self.sector_dict = {}
-        country_object_list = Sector.objects.all()
-        countries = set()
-        for country in country_object_list:
-            countries.add(country.country)
+        sector_list = Sector.objects.all().select_related()
+        sector_dict = {'Sector':[], 'Subsregion': [],
+                     'Region': [], 'Country': [],
+                     'Rating': [], 'Routes': []}
 
-        for country in sorted(countries):
-            region_object_list = Sector.objects.all().filter(country=country)
-            cities = set()
-            for region in region_object_list:
-                cities.add(region.region)
-            self.sector_dict[country] = {}
+        for sector in sector_list:
+            sector_dict['Sector'].append(sector)
+            sector_dict['Subregion'].append(sector.subregion)
+            sector_dict['Region'].append(sector.region)
+            sector_dict['Country'].append(sector.country)
+            sector_dict['Rating'].append(sector.routes
+                                 .filter(rating__range = range(1,3))
+                                 .aggregate(Avg('rating'))['rating_avg'])
+            sector_dict['Routes'],append(sector.routes.count())
 
-            for region in sorted(cities):
-                    sectors = Sector.objects.all().filter(region=region)
-                    sector_list = []
-                    for sector in sectors:
-                        sector_list.append(sector)
-                    self.sector_dict[country][region] = sector_list
+        sector_df = pd.DataFrame(sector_dict)
+        sector_df.sort_values('Country', inplace=True)
+        sector_df.fillna('None', inplace=True)
+        context_dict = {}
+        for country in sector_df['Country'].unique():
+            country_subset = sector_df[sector_df['Country'] == country].sort_values('Region')
+            context_dict[country] = {'count': country_subset['Routes'].sum(),
+                                    'rating': country_subset['Rating'].mean()}
+            for region in country_subset['Region'].unique():
+                region_subset = country_subset[sector_df['Region'] == region].sort_values('Subregion')
+                context_dict[country][region] = {'count': region_subset['Routes'].sum(),
+                                                'rating': region_subset['Rating'].mean()}
+                for subregion in region_subset['Subregion'].unique():
+                    subregion_subset = region_subset[region_subset['Subregion'] == subregion].sort_values('Sector')
+                    if subregion == 'None':
+                        for sector in subregion_subset['Sector']:
+                            sector_subset = subregion_subset[subregion_subset['Sector'] == sector]
+                            context_dict[country][region][sector] = {'count': sector_subset['Routes'],
+                                                                    'rating': sector_subset['Rating'],
+                                                                    'sector': sector_subset['Sector']}
+                    else:
+                        context_dict[country][region][subregion] = {'count': subregion_subset['Routes'].sum(),
+                                                                   'rating': subregion_subset['Rating'].mean()}
+                        for sector in subregion_subset['Sector']:
+                            sector_subset = subregion_subset[subregion_subset['Sector'] == sector]
+                            context_dict[country][region][subregion][sector] = {'count': sector_subset['Routes'],
+                                                                                'rating': sector_subset['Rating'],
+                                                                                'sector': sector_subset['Sector']}
+        self.context_dict = context_dict
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['sector_dict'] = self.sector_dict
-
+        context['sector_dict'] = self.context_dict
         return context
 
 class RouteList(ListView):

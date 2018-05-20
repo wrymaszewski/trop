@@ -26,11 +26,12 @@
         {% endif %}
 
     </div>
+
     <div class="user-stats">
       {# Charts #}
       {% load chartit %}
       {{chart_list|load_charts:'in_line,in_pie,out_line,out_pie'}}
-
+        
         <h2>Outdoor Activity</h2>
         <div id="out_line"></div>
         <div id="out_pie"></div>
