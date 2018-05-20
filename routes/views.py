@@ -72,7 +72,7 @@ class SectorList(ListView):
                         for sector in subregion_subset['Sector']:
                             sector_subset = (subregion_subset[
                                         subregion_subset['Sector'] == sector])
-                            (context_dict[country]
+                            (context_dict[cousourcentry]
                              [region][subregion][sector] = {
                                     'count': sector_subset['Routes'],
                                     'rating': sector_subset['Rating'],
